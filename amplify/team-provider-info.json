@@ -1,0 +1,20 @@
+{
+  "production": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-codeshare-production-185132-authRole",
+      "UnauthRoleArn": "arn:aws:iam::191263172623:role/amplify-codeshare-production-185132-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::191263172623:role/amplify-codeshare-production-185132-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-codeshare-production-185132-deployment",
+      "UnauthRoleName": "amplify-codeshare-production-185132-unauthRole",
+      "StackName": "amplify-codeshare-production-185132",
+      "StackId": "arn:aws:cloudformation:us-east-1:191263172623:stack/amplify-codeshare-production-185132/ddb026f0-0977-11ec-94af-0e43f2110cc5",
+      "AmplifyAppId": "d3t4uee5vnvism"
+    },
+    "categories": {
+      "auth": {
+        "codeshare628d02d8": {}
+      }
+    }
+  }
+}
