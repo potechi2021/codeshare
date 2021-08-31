@@ -8,7 +8,7 @@
 ### 初めに
 
 - ターミナルで以下の操作を行う
-- 空のディレクトリで``` git clone https://github.com/potechi2021/HackU2021summer ```を打ち、Enterをおす
+- 空のディレクトリで``` git clone https://github.com/potechi2021/codeshare ```を打ち、Enterをおす
 - HackU2021summer/が作成される
 - ```cd HackU2021summer/``` で移動
 - ``` git branch <自分のブランチ名(なんでも大丈夫！)> ``` を打ち、Enterをおす (自分のブランチを作る)
