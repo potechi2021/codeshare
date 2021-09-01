@@ -21,8 +21,13 @@
 ### Amplifyの初期設定
 
 - npm install -g @aws-amplify/cli
+- うまく行かないときは... [参考記事](https://qiita.com/okohs/items/ced3c3de30af1035242d "参考記事")
 - amplify init
 - IDなどを打ち込む
+- npm install
+- node -v
+- npm start
+- 起動したらしばらく待って、Webページがブラウザに表示されればOK！
   
 ### ファイルを変更する時
 
