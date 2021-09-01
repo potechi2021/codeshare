@@ -1,21 +1,20 @@
 import React from 'react';
-import Sidebar from './Sidebar';
 import Amplify from 'aws-amplify';
 import { AmplifyAuthenticator, AmplifySignUp, AmplifySignOut } from '@aws-amplify/ui-react';
 import { AuthState, onAuthUIStateChange } from '@aws-amplify/ui-components';
-import awsconfig from './aws-exports';
+import awsconfig from '../aws-exports';
 import { makeStyles, createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 import {
-  Button,
-  Drawer,
-  List,
-  ListItem,
-  ListItemText,
-  TextField,
-  ListItemIcon,
-} from '@material-ui/core';
-import {Auth, API, graphqlOperation } from 'aws-amplify';
-import { useHistory } from 'react-router';
+    Button,
+    Drawer,
+    List,
+    ListItem,
+    ListItemText,
+    TextField,
+    ListItemIcon,
+  } from '@material-ui/core';
+  import {Auth, API, graphqlOperation } from 'aws-amplify';
+  import { useHistory } from 'react-router';
 
 const drawerWidth = 240;
 
@@ -45,38 +44,26 @@ const useStyles = makeStyles(theme => ({
     },
   }));
   
-export default function MyPage() {
+export default function MakeRoom() {
     const [user] = React.useState();
     const classes = useStyles();
     const history = useHistory();
-
     return (
         <React.Fragment>
-        <Sidebar activeListItem = "mypage"></Sidebar>
         <div className={classes.root}>
-          mypage</div>
+          makeroom</div>    
         <div>
         <Button
-          variant="outlined"
-          onClick={() => {
+            variant="outlined"
+            onClick={() => {
                             Auth.currentAuthenticatedUser().then((user) => {
-                            history.push('/makeroom');
+                            history.push('/mypage');
                             console.log("click");
                             })
                         }}>
-          部屋を作る
+            マイページに戻る
           </Button>
-        <Button
-          variant="outlined"
-          onClick={() => {
-                            Auth.currentAuthenticatedUser().then((user) => {
-                            history.push('/class');
-                            console.log("click");
-                            })
-                        }}>
-          システムプログラミング
-        </Button>
-          </div>    
+        </div>
         </React.Fragment>
     )
 }

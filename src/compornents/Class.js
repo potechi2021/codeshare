@@ -2,7 +2,7 @@ import React from 'react';
 import Amplify from 'aws-amplify';
 import { AmplifyAuthenticator, AmplifySignUp, AmplifySignOut } from '@aws-amplify/ui-react';
 import { AuthState, onAuthUIStateChange } from '@aws-amplify/ui-components';
-import awsconfig from './aws-exports';
+import awsconfig from '../aws-exports';
 import { makeStyles, createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 import {
     Button,
@@ -44,24 +44,34 @@ const useStyles = makeStyles(theme => ({
     },
   }));
   
-export default function MakeRoom() {
+export default function Class() {
     const [user] = React.useState();
     const classes = useStyles();
     const history = useHistory();
     return (
         <React.Fragment>
         <div className={classes.root}>
-          makeroom</div>    
+          class</div>    
         <div>
         <Button
             variant="outlined"
             onClick={() => {
                             Auth.currentAuthenticatedUser().then((user) => {
-                            history.push('/mypage');
+                            history.push('/shareroom');
                             console.log("click");
                             })
                         }}>
-            マイページに戻る
+            第１回
+          </Button>
+        <Button
+            variant="outlined"
+            onClick={() => {
+                            Auth.currentAuthenticatedUser().then((user) => {
+                            history.push('/shareroom');
+                            console.log("click");
+                            })
+                        }}>
+            第２回
           </Button>
         </div>
         </React.Fragment>
