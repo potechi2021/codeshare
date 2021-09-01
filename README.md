@@ -17,6 +17,12 @@
 ```$ git branch ```
 ```* <自分のブランチ名> ```
 ```  main ```
+
+### Amplifyの初期設定
+
+- npm install -g @aws-amplify/cli
+- amplify init
+- IDなどを打ち込む
   
 ### ファイルを変更する時
 
