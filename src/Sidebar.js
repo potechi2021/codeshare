@@ -68,6 +68,7 @@ export default function Sidebar({activeListItem}) {
                             </Button>
                         } />
                     </ListItem>
+                    
                     <ListItem
                         button
                         selected={activeListItem === 'mypage'}
@@ -81,6 +82,7 @@ export default function Sidebar({activeListItem}) {
                     >
                         <ListItemText primary="selectfile" />
                     </ListItem>
+
                     <ListItem
                         button
                         selected={activeListItem === 'selectfile'}
