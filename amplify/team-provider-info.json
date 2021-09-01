@@ -16,5 +16,23 @@
         "codeshare628d02d8": {}
       }
     }
+  },
+  "staging": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-codeshare-staging-191537-authRole",
+      "UnauthRoleArn": "arn:aws:iam::191263172623:role/amplify-codeshare-staging-191537-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::191263172623:role/amplify-codeshare-staging-191537-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-codeshare-staging-191537-deployment",
+      "UnauthRoleName": "amplify-codeshare-staging-191537-unauthRole",
+      "StackName": "amplify-codeshare-staging-191537",
+      "StackId": "arn:aws:cloudformation:us-east-1:191263172623:stack/amplify-codeshare-staging-191537/8f3a5d50-0b0d-11ec-9e89-0e3259ee6b3b",
+      "AmplifyAppId": "d3t4uee5vnvism"
+    },
+    "categories": {
+      "auth": {
+        "codeshare628d02d8": {}
+      }
+    }
   }
 }
