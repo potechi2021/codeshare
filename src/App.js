@@ -5,6 +5,7 @@ import { AuthState, onAuthUIStateChange } from '@aws-amplify/ui-components';
 import awsconfig from './aws-exports';
 import MyPage from './MyPage';
 import SelectFile from './SelectFile';
+import MakeRoom from './MakeRoom';
 
 import {
   HashRouter,
@@ -86,6 +87,7 @@ const App = () => {
           <Route exact path='/' component={MyPage} />
           <Route exact path='/mypage' component={MyPage} />
           <Route exact path='/selectfile' component={SelectFile} />
+          <Route exact path='/makeroom' component={MakeRoom} />
           <Redirect path="*" to="/" />
           
             {/* <Route exact path='/' component={AllPosts} />
