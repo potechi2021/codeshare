@@ -1,5 +1,10 @@
 header {
   background-color: #A1B6EC;
+  padding: 10px;
+}
+
+button {
+  background-color: #A1B6EC;
 }
 
 body {
