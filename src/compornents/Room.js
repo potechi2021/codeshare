@@ -44,36 +44,25 @@ const useStyles = makeStyles(theme => ({
     },
   }));
   
-export default function ShareRoom() {
+export default function Room() {
     const [user] = React.useState();
     const classes = useStyles();
     const history = useHistory();
     return (
         <React.Fragment>
         <div className={classes.root}>
-          shareroom</div>    
+          room</div>    
         <div>
-            {/* <p>{this.location.state.text}</p> */}
-            <Button
-                variant="outlined"
-                onClick={() => {
-                                Auth.currentAuthenticatedUser().then((user) => {
-                                console.log("click");
-                                })
-                            }}>
-                このURLをシェア
-                {/* TODO:コピー機能つけたい */}
-            </Button>
-            <Button
-                variant="outlined"
-                onClick={() => {
-                                Auth.currentAuthenticatedUser().then((user) => {
-                                history.push('/mypage');
-                                console.log("click");
-                                })
-                            }}>
-                マイページに戻る
-            </Button>
+        <Button
+            variant="outlined"
+            onClick={() => {
+                            Auth.currentAuthenticatedUser().then((user) => {
+                            history.push('/mypage');
+                            console.log("click");
+                            })
+                        }}>
+            マイページに戻る
+          </Button>
         </div>
         </React.Fragment>
     )

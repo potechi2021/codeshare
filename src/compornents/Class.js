@@ -57,7 +57,7 @@ export default function Class() {
             variant="outlined"
             onClick={() => {
                             Auth.currentAuthenticatedUser().then((user) => {
-                            history.push('/shareroom');
+                            history.push('/room');
                             console.log("click");
                             })
                         }}>
@@ -67,7 +67,7 @@ export default function Class() {
             variant="outlined"
             onClick={() => {
                             Auth.currentAuthenticatedUser().then((user) => {
-                            history.push('/shareroom');
+                            history.push('/room');
                             console.log("click");
                             })
                         }}>

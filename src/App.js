@@ -6,8 +6,9 @@ import awsconfig from './aws-exports';
 import MyPage from './MyPage';
 import SelectFile from './SelectFile';
 import MakeRoom from './compornents/MakeRoom';
-import Class from './compornents/Class';
 import ShareRoom from './compornents/ShareRoom';
+import Class from './compornents/Class';
+import Room from './compornents/Room';
 
 import {
   HashRouter,
@@ -90,8 +91,9 @@ const App = () => {
           <Route exact path='/mypage' component={MyPage} />
           <Route exact path='/selectfile' component={SelectFile} />
           <Route exact path='/makeroom' component={MakeRoom} />
-          <Route exact path='/class' component={Class} />
           <Route exact path='/shareroom' component={ShareRoom} />
+          <Route exact path='/class' component={Class} />
+          <Route exact path='/room' component={Room} />
           <Redirect path="*" to="/" />
           
             {/* <Route exact path='/' component={AllPosts} />

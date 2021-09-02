@@ -14,7 +14,7 @@ import {Auth, API, graphqlOperation } from 'aws-amplify';
 import { useHistory } from 'react-router';
 
 
-const drawerWidth = 340;
+const drawerWidth = 150;
 const MAX_POST_CONTENT_LENGTH = 140;
 
 const useStyles = makeStyles(theme => ({
@@ -32,7 +32,7 @@ const useStyles = makeStyles(theme => ({
     width: drawerWidth,
   },
   list: {
-    width: 300,
+    width: 100,
   },
 }));
 
