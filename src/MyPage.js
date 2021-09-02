@@ -56,37 +56,39 @@ export default function MyPage() {
 
     return (
       <React.Fragment>
-        <header>
-          <h1>サービス名</h1>
-        </header>
-        <main>
-          <Sidebar activeListItem = "mypage"></Sidebar>
-          <div className={classes.root}>
-            mypage
-          </div>
-          <div>
-            <Button
-              variant="outlined"
-              onClick={() => {
-                                Auth.currentAuthenticatedUser().then((user) => {
-                                  history.push('/makeroom');
-                                  console.log("click");
-                                })
-                            }}>
-              部屋を作る
-            </Button>
-            <Button
-              variant="outlined"
-              onClick={() => {
-                                Auth.currentAuthenticatedUser().then((user) => {
-                                  history.push('/class');
-                                  console.log("click");
-                                })
-                            }}>
-              関数型言語
-            </Button>
-          </div>
-        </main>
+        <body>
+          <header>
+            <h1>サービス名</h1>
+          </header>
+          <main>
+            <Sidebar activeListItem = "mypage"></Sidebar>
+            <div className={classes.root}>
+              mypage
+            </div>
+            <div>
+              <Button
+                variant="outlined"
+                onClick={() => {
+                                  Auth.currentAuthenticatedUser().then((user) => {
+                                    history.push('/makeroom');
+                                    console.log("click");
+                                  })
+                              }}>
+                部屋を作る
+              </Button>
+              <Button
+                variant="outlined"
+                onClick={() => {
+                                  Auth.currentAuthenticatedUser().then((user) => {
+                                    history.push('/class');
+                                    console.log("click");
+                                  })
+                              }}>
+                関数型言語
+              </Button>
+            </div>
+          </main>
+        </body>
       </React.Fragment>
     )
 }
