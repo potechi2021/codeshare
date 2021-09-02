@@ -16,7 +16,7 @@ import {
   import {Auth, API, graphqlOperation } from 'aws-amplify';
   import { useHistory } from 'react-router';
 
-const drawerWidth = 240;
+const drawerWidth = 150;
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -57,11 +57,21 @@ export default function MakeRoom() {
             variant="outlined"
             onClick={() => {
                             Auth.currentAuthenticatedUser().then((user) => {
-                            history.push('/mypage');
+                            history.push('/');
                             console.log("click");
                             })
                         }}>
             マイページに戻る
+          </Button>
+        <Button
+            variant="outlined"
+            onClick={() => {
+                            Auth.currentAuthenticatedUser().then((user) => {
+                            history.push('/shareroom');
+                            console.log("click");
+                            })
+                        }}>
+            部屋作成！
           </Button>
         </div>
         </React.Fragment>
