@@ -6,20 +6,23 @@ import { AuthState, onAuthUIStateChange } from '@aws-amplify/ui-components';
 import awsconfig from '../aws-exports';
 import { makeStyles, createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 import {
-    Button,
-    Drawer,
-    List,
-    ListItem,
-    ListItemText,
-    TextField,
-    ListItemIcon,
-  } from '@material-ui/core';
-  import {Auth, API, graphqlOperation } from 'aws-amplify';
-  import { useHistory } from 'react-router';
+  Button,
+  Drawer,
+  List,
+  ListItem,
+  ListItemText,
+  TextField,
+  ListItemIcon,
+} from '@material-ui/core';
+import {Auth, API, graphqlOperation } from 'aws-amplify';
+import { useHistory } from 'react-router';
 
 const drawerWidth = 240;
 
 const useStyles = makeStyles(theme => ({
+    header: {
+      width: '100%',
+    },
     root: {
       display: 'flex',
       height: '100%',
@@ -45,28 +48,22 @@ const useStyles = makeStyles(theme => ({
     },
   }));
   
-export default function Room() {
+export default function File2() {
     const [user] = React.useState();
     const classes = useStyles();
     const history = useHistory();
+
     return (
-        <React.Fragment>
-        <RoomSidebar activeListItem = "file1"></RoomSidebar>
-          
-        <div className={classes.root}>
-          room</div>    
-        <div>
-        <Button
-            variant="outlined"
-            onClick={() => {
-                            Auth.currentAuthenticatedUser().then((user) => {
-                            history.push('/mypage');
-                            console.log("click");
-                            })
-                        }}>
-            マイページに戻る
-          </Button>
-        </div>
-        </React.Fragment>
+      <React.Fragment>
+        <header>
+          <h1>File2</h1>
+        </header>
+        <main>
+          <RoomSidebar activeListItem = "file2"></RoomSidebar>
+          <div className={classes.root}>
+            file2
+          </div>
+        </main>
+      </React.Fragment>
     )
 }
