@@ -74,7 +74,7 @@ export default function MyPage() {
                             console.log("click");
                             })
                         }}>
-          システムプログラミング
+          関数型言語
         </Button>
           </div>    
         </React.Fragment>
