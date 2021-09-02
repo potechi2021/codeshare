@@ -26,6 +26,7 @@
 - IDなどを打ち込む
 - npm install
 - node -v
+- npm install @material-ui/core
 - npm start
 - 起動したらしばらく待って、Webページがブラウザに表示されればOK！
   
