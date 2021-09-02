@@ -22,6 +22,7 @@ const drawerWidth = 240;
 const useStyles = makeStyles(theme => ({
     header: {
       width: '100%',
+      backgroundColor: "#A1B6EC",
     },
     root: {
       display: 'flex',
