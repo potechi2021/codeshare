@@ -9,6 +9,8 @@ import MakeRoom from './compornents/MakeRoom';
 import ShareRoom from './compornents/ShareRoom';
 import Class from './compornents/Class';
 import Room from './compornents/Room';
+import File1 from './compornents/File1';
+import File2 from './compornents/File2';
 
 import {
   HashRouter,
@@ -94,6 +96,8 @@ const App = () => {
           <Route exact path='/shareroom' component={ShareRoom} />
           <Route exact path='/class' component={Class} />
           <Route exact path='/room' component={Room} />
+          <Route exact path='/file1' component={File1} />
+          <Route exact path='/file2' component={File2} />
           <Redirect path="*" to="/" />
           
             {/* <Route exact path='/' component={AllPosts} />

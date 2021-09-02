@@ -73,6 +73,13 @@ export default function MakeRoom() {
                         }}>
             部屋作成！
           </Button>
+          {/* <form>
+            <label>
+            Name:
+            <input type="text" value={this.state.value} onChange={this.handleChange} />
+            </label>
+            <input type="submit" value="Submit" />
+          </form> */}
         </div>
         </React.Fragment>
     )
