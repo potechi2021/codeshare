@@ -46,8 +46,18 @@ const useStyles = makeStyles(theme => ({
   
 export default function MakeRoom() {
     const [user] = React.useState();
+    const [text, setText] = React.useState('Please write.');
     const classes = useStyles();
     const history = useHistory();
+    const handleChange = (event) => {
+      const target = event.target;
+      setText(target.value);
+    };
+    const handleSubmit = (event) => {
+      const target = event.target;
+      alert('A name was submitted: ' + target.value);
+      event.preventDefault();
+    };
     return (
         <React.Fragment>
         <div className={classes.root}>
@@ -73,13 +83,16 @@ export default function MakeRoom() {
                         }}>
             部屋作成！
           </Button>
-          {/* <form>
+          <form onSubmit={handleSubmit}>
             <label>
-            Name:
-            <input type="text" value={this.state.value} onChange={this.handleChange} />
+            授業名：
+            <input type="text"
+              value={text}
+              onChange={handleChange}
+            />
             </label>
             <input type="submit" value="Submit" />
-          </form> */}
+          </form>
         </div>
         </React.Fragment>
     )
