@@ -37,7 +37,7 @@ type FileTable @model (
 {
   UserID: ID!
   FileName: String!
-  FileID: String!
+  # FileID: String!
   Comment: String!
 }
 
