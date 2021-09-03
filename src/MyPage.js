@@ -67,6 +67,7 @@ export default function MyPage() {
             </div>
             <div>
               <Button
+                color = "primary"
                 variant="outlined"
                 onClick={() => {
                                   Auth.currentAuthenticatedUser().then((user) => {
@@ -77,6 +78,7 @@ export default function MyPage() {
                 部屋を作る
               </Button>
               <Button
+                color = "primary"
                 variant="outlined"
                 onClick={() => {
                                   Auth.currentAuthenticatedUser().then((user) => {
