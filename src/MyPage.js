@@ -61,34 +61,38 @@ export default function MyPage() {
             <h1>サービス名</h1>
           </header>
           <main>
-            <Sidebar activeListItem = "mypage"></Sidebar>
-            <div className={classes.root}>
-              mypage
+            <div class="side">
+              <Sidebar activeListItem = "mypage"></Sidebar>
             </div>
-            <div>
-              <Button
-                color = "primary"
-                variant="outlined"
-                onClick={() => {
-                                  Auth.currentAuthenticatedUser().then((user) => {
-                                    history.push('/makeroom');
-                                    console.log("click");
-                                  })
-                              }}>
-                部屋を作る
-              </Button>
-              <Button
-                color = "primary"
-                variant="outlined"
-                onClick={() => {
-                                  Auth.currentAuthenticatedUser().then((user) => {
-                                    history.push('/class');
-                                    console.log("click");
-                                  })
-                              }}>
-                関数型言語
-              </Button>
-            </div>
+            <div class="content">
+              <div className={classes.root} class="mypage">
+                mypage
+              </div>
+              <div>
+                <Button
+                  color = "primary"
+                  variant="outlined"
+                  onClick={() => {
+                                    Auth.currentAuthenticatedUser().then((user) => {
+                                      history.push('/makeroom');
+                                      console.log("click");
+                                    })
+                                }}>
+                  部屋を作る
+                </Button>
+                <Button
+                  color = "primary"
+                  variant="outlined"
+                  onClick={() => {
+                                    Auth.currentAuthenticatedUser().then((user) => {
+                                      history.push('/class');
+                                      console.log("click");
+                                    })
+                                }}>
+                  関数型言語
+                </Button>
+              </div>
+            </div>            
           </main>
         </body>
       </React.Fragment>
