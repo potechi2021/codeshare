@@ -5,6 +5,8 @@ header {
 
 button {
   background-color: #A1B6EC;
+  color: black !important;
+  border-color: black !important;
 }
 
 body {
@@ -25,4 +27,14 @@ main {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+.MuiPaper-root {
+  background-color: #bfe2b4 !important;
+  color: black !important;
+}
+
+.MuiButton-outlinedPrimary {
+  background-color: #A1B6EC !important;
+  color: white !important;
 }
