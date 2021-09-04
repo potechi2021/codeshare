@@ -44,7 +44,7 @@ const useStyles = makeStyles(theme => ({
       padding: theme.spacing(3),
     },
   }));
-  
+
 export default function Room() {
     const [user] = React.useState();
     const classes = useStyles();
@@ -52,9 +52,22 @@ export default function Room() {
     return (
         <React.Fragment>
         <RoomSidebar activeListItem = "file1"></RoomSidebar>
-          
+
+        <div>
+            <Button
+                variant="outlined"
+                onClick={() => {
+                                Auth.currentAuthenticatedUser().then((user) => {
+                                history.push('/shareroom');
+                                console.log("click");
+                                })
+                            }}>
+                シェア
+            </Button>
+        </div>
+
         <div className={classes.root}>
-          room</div>    
+          room</div>
         <div>
         <Button
             variant="outlined"
@@ -65,6 +78,11 @@ export default function Room() {
                             })
                         }}>
             マイページに戻る
+          </Button>
+
+          <Button
+              variant="outlined">
+              追加
           </Button>
         </div>
         </React.Fragment>
