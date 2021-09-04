@@ -113,10 +113,32 @@ export default function RoomSidebar({activeListItem}) {
                                  {isOpen1_1 && (
                                      <div>
                                          <div>
-                                             <Button>ファイル1</Button>
+                                             <Button
+                                                 selected={activeListItem === 'file1'}
+                                                 onClick={() => {
+                                                     Auth.currentAuthenticatedUser().then((user) => {
+                                                     history.push('/file1');
+                                                     console.log("click");
+                                                     })
+                                                 }}
+                                                 key='file1'
+                                             >
+                                                 file1
+                                             </Button>
                                          </div>
                                          <div>
-                                             <Button>ファイル2</Button>
+                                             <Button
+                                                 selected={activeListItem === 'file2'}
+                                                 onClick={() => {
+                                                     Auth.currentAuthenticatedUser().then((user) => {
+                                                     history.push('/file2');
+                                                     console.log("click");
+                                                     })
+                                                 }}
+                                                 key='file2'
+                                             >
+                                                file2
+                                             </Button>
                                          </div>
                                          <div>
                                              <Button>ファイル3</Button>
@@ -264,33 +286,6 @@ export default function RoomSidebar({activeListItem}) {
                      )}
                  </div>
 
-                    <ListItem
-                        button
-                        selected={activeListItem === 'file1'}
-                        onClick={() => {
-                            Auth.currentAuthenticatedUser().then((user) => {
-                            history.push('/file1');
-                            console.log("click");
-                            })
-                        }}
-                        key='file1'
-                    >
-                        <ListItemText primary="file1" />
-                    </ListItem>
-
-                    <ListItem
-                        button
-                        selected={activeListItem === 'file2'}
-                        onClick={() => {
-                            Auth.currentAuthenticatedUser().then((user) => {
-                            history.push('/file2');
-                            console.log("click");
-                            })
-                        }}
-                        key='file2'
-                    >
-                        <ListItemText primary="file2" />
-                    </ListItem>
                 </List>
         </Drawer>
         )
