@@ -98,6 +98,7 @@ export default function MyPage() {
               <a href="https://www.sixtones.jp/">
                 <div class="largeRoomBox">
                   <img src="https://loosedrawing.com/wp/wp-content/uploads/2020/07/0487.png" />
+                  <p class="largeRoomName">room name</p>
                 </div>
               </a>
             </div>
