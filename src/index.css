@@ -74,11 +74,17 @@ code {
   height: 300px;
   margin: 50px;
   border-radius: 50px;
+  text-align: center;
 }
 
 img {
-  width: 300px;
-  height: 300px;
+  width: 250px;
+  height: 230px;
+}
+
+.largeRoomName {
+  margin: 0px;
+  font-size: large;
 }
 
 .MuiPaper-root {
