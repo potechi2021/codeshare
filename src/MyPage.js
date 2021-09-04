@@ -92,7 +92,15 @@ export default function MyPage() {
                   関数型言語
                 </Button>
               </div>
-            </div>            
+              <div class="largeRoomList">
+                <h2>大部屋一覧</h2>
+              </div>
+              <a href="https://www.sixtones.jp/">
+                <div class="largeRoomBox">
+                  <img src="https://loosedrawing.com/wp/wp-content/uploads/2020/07/0487.png" />
+                </div>
+              </a>
+            </div>
           </main>
         </body>
       </React.Fragment>
