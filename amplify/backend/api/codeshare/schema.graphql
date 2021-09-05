@@ -3,9 +3,9 @@
 type ClassTable @model (
   mutations: {create: "createClassTable", delete: "deleteClassTable", update: null}
 )
-@auth(rules:[
-  {allow: owner, ownerField: "ownerUserID", provider: userPools, operations:[read, create, delete]},
-])
+# @auth(rules:[
+#   {allow: owner, ownerField: "ownerUserID", provider: userPools, operations:[read, create, delete]},
+# ])
 @key(name: "userID", fields:["OwnerUserID"], queryField: "showClassByOwner")
 {
   OwnerUserID: ID!
@@ -16,9 +16,9 @@ type ClassTable @model (
 type RoomTable @model (
   mutations: {create: "createRoomTable", delete: "deleteRoomTable", update: null}
 )
-@auth(rules:[
-  {allow: owner, ownerField: "ownerUserID", provider: userPools, operations:[read, create, delete]},
-])
+# @auth(rules:[
+#   {allow: owner, ownerField: "ownerUserID", provider: userPools, operations:[read, create, delete]},
+# ])
 @key(name: "userID", fields:["OwnerUserID"], queryField: "showByOwner")
 {
   OwnerUserID: ID!
@@ -30,9 +30,9 @@ type RoomTable @model (
 type FileTable @model (
   mutations: {create: "createFileTable", delete: "deleteFileTable", update: "updateFileTable"}
 )
-@auth(rules:[
-  {allow: owner, ownerField: "ownerUserID", provider: userPools, operations:[read, create, delete]},
-])
+# @auth(rules:[
+#   {allow: owner, ownerField: "ownerUserID", provider: userPools, operations:[read, create, delete]},
+# ])
 @key(name: "userID", fields:["UserID"], queryField: "showFileByOwner")
 {
   UserID: ID!
@@ -44,9 +44,9 @@ type FileTable @model (
 type MyPageTable @model (
   mutations: {create: "createMyPageColum", delete: "deleteMyPageColum", update: "updateMyPage"}
 )
-@auth(rules:[
-  {allow: owner, ownerField: "UserID", provider: userPools, operations:[read, create, delete]},
-])
+# @auth(rules:[
+#   {allow: owner, ownerField: "UserID", provider: userPools, operations:[read, create, delete]},
+# ])
 @key(name: "userID", fields:["UserID"], queryField: "showMyPage")
 {
   UserID: ID!
