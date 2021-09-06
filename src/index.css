@@ -1,5 +1,5 @@
 html {
-  height: 100%;
+  height: auto;
 }
 
 header {
@@ -79,13 +79,15 @@ code {
 
 .aLargeRoom {
   position: relative;
+  text-decoration: none;
 }
 
 .comment {
   display: none;
   padding: 10px;
   width: 250px;
-  height: 250px;
+  height: auto;
+  min-height: 250px;
   position: absolute;
   top: 50px;
   left: 50px;
