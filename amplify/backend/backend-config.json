@@ -23,5 +23,11 @@
         }
       }
     }
+  },
+  "storage": {
+    "codeshare": {
+      "service": "S3",
+      "providerPlugin": "awscloudformation"
+    }
   }
 }
