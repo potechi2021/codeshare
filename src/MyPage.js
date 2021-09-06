@@ -77,55 +77,55 @@ export default function MyPage() {
               <h1>サービス名</h1>
             </header>
             <main>
-              <div class="side">
-                <Sidebar activeListItem = "mypage"></Sidebar>
-              </div>
-              <div class="content">
-                <div className={classes.root} class="mypage">
-                  mypage
+              <div class="myPageMain">
+                <div class="side">
+                  <Sidebar activeListItem = "mypage"></Sidebar>
                 </div>
-                <div>
-                  <Button
-                    color = "primary"
-                    variant="outlined"
-                    onClick={() => {
-                                      Auth.currentAuthenticatedUser().then((user) => {
-                                        history.push('/makeroom');
-                                        console.log("click");
-                                      })
-                                  }}>
-                    部屋を作る
-                  </Button>
-                  <Button
-                    color = "primary"
-                    variant="outlined"
-                    onClick={() => {
-                                      Auth.currentAuthenticatedUser().then((user) => {
-                                        history.push('/class');
-                                        console.log("click");
-                                      })
-                                  }}>
-                    関数型言語
-                  </Button>
-                </div>
-                <div class="largeRoomList">
-                  <h2>大部屋一覧</h2>
-                  <ul class="largeRoomList2">
-                    {classState.map((data) => {
-                      return <a href="link" class="aLargeRoom">
-                        <div class="largeRoomBox">
-                          <img src="https://loosedrawing.com/wp/wp-content/uploads/2020/07/0487.png" />
-                          <p class="largeRoomName">{data.ClassName}</p>
-                        </div>
-                        <div class="comment">
-                          <ul>
-                            <li>ルーム名：{data.ClassName}</li>
-                            <li>説明：{data.Comment}</li>
-                          </ul>
-                        </div>
-                      </a>;
-                    })}
-                  </ul>
+                <div class="content">
+                  <div className={classes.root} class="mypage">
+                    mypage
+                  </div>
+                  <div>
+                    <Button
+                      variant="outlined"
+                      onClick={() => {
+                                        Auth.currentAuthenticatedUser().then((user) => {
+                                          history.push('/makeroom');
+                                          console.log("click");
+                                        })
+                                    }}>
+                      部屋を作る
+                    </Button>
+                    <Button
+                      variant="outlined"
+                      onClick={() => {
+                                        Auth.currentAuthenticatedUser().then((user) => {
+                                          history.push('/class');
+                                          console.log("click");
+                                        })
+                                    }}>
+                      関数型言語
+                    </Button>
+                  </div>
+                  <div class="largeRoomList">
+                    <h2>大部屋一覧</h2>
+                    <ul class="largeRoomList2">
+                      {classState.map((data) => {
+                        return <a href="link" class="aLargeRoom">
+                          <div class="largeRoomBox">
+                            <img src="https://loosedrawing.com/wp/wp-content/uploads/2020/07/0487.png" />
+                            <p class="largeRoomName">{data.ClassName}</p>
+                          </div>
+                          <div class="comment">
+                            <ul>
+                              <li>ルーム名：{data.ClassName}</li>
+                              <li>説明：{data.Comment}</li>
+                            </ul>
+                          </div>
+                        </a>;
+                      })}
+                    </ul>
+                  </div>
                 </div>
               </div>
             </main>

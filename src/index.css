@@ -1,5 +1,6 @@
 html {
   height: auto;
+  min-height: 100%;
 }
 
 header {
@@ -11,9 +12,11 @@ header {
 }
 
 button {
-  background-color: #A1B6EC;
-  color: black !important;
+  background-color: #A1B6EC !important;
+  color: white !important;
   border-color: black !important;
+  margin: 10px !important;
+  margin-left: 0px !important;
 }
 
 body {
@@ -28,10 +31,17 @@ body {
 }
 
 main {
-  display: flex;
   background-color: #FCF7EC;
   color: black;
   height: 100%;
+}
+
+.myPageMain {
+  display: flex;
+}
+
+.makeRoomMain {
+  padding: 20px;
 }
 
 code {
