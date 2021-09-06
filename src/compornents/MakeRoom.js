@@ -95,22 +95,25 @@ export default function MakeRoom() {
                 </Button>
               </div>
               <div>
-              <label>
-                授業名：
-                <input type="text"
-                  name="classname"
-                  value={text.classname}
-                  onChange={(e) => setText({...text, classname: e.target.value})}/>
-              </label>
+                <label>
+                  授業名：
+                  <input type="text"
+                    name="classname"
+                    value={text.classname}
+                    onChange={(e) => setText({...text, classname: e.target.value})}/>
+                </label>
               </div>
               <div>
-              <label>
-                説明　：
-                <input type="text"
-                  name="comment"
-                  value={text.comment}
-                  onChange={(e) => setText({...text, comment: e.target.value})}/>
-              </label>
+                <label>
+                  説明　：
+                  <input type="text"
+                    name="comment"
+                    value={text.comment}
+                    onChange={(e) => setText({...text, comment: e.target.value})}/>
+                </label>
+              </div>
+              <div>
+                <textarea placeholder="説明を入力"></textarea>
               </div>
               <div>
               <Button
