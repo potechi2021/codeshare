@@ -72,71 +72,78 @@ export default function MakeRoom() {
       console.log(classData);
     };
     return (
-        <React.Fragment>
-        <div className={classes.root}>
-          makeroom</div>    
-        <div>
-        <Button
-            variant="outlined"
-            onClick={() => {
-                            Auth.currentAuthenticatedUser().then((user) => {
-                            history.push('/');
-                            console.log("click");
-                            })
-                        }}>
-            マイページに戻る
-          </Button>
+      <React.Fragment>
+        <body>
+          <header>
+            <h1>サービス名</h1>
+          </header>
+          <main>
+            <div className={classes.root}>
+              makeroom</div>    
+            <div>
+            <Button
+                variant="outlined"
+                onClick={() => {
+                                Auth.currentAuthenticatedUser().then((user) => {
+                                history.push('/');
+                                console.log("click");
+                                })
+                            }}>
+                マイページに戻る
+              </Button>
 
-          <label>
-            授業名：
-            <input type="text"
-              name="classname"
-              value={text.classname}
-              onChange={(e) => setText({...text, classname: e.target.value})}/>
-          </label>
-          <label>
-            説明：
-            <input type="text"
-              name="comment"
-              value={text.comment}
-              onChange={(e) => setText({...text, comment: e.target.value})}/>
-          </label>
-          <Button
-            variant="outlined"
-            onClick={handleSubmit}>
-            部屋作成
-            </Button>
+              <label>
+                授業名：
+                <input type="text"
+                  name="classname"
+                  value={text.classname}
+                  onChange={(e) => setText({...text, classname: e.target.value})}/>
+              </label>
+              <label>
+                説明：
+                <input type="text"
+                  name="comment"
+                  value={text.comment}
+                  onChange={(e) => setText({...text, comment: e.target.value})}/>
+              </label>
+              <Button
+                variant="outlined"
+                onClick={handleSubmit}>
+                部屋作成
+                </Button>
 
-        {/* <Button
-            variant="outlined"
-            onClick={() => {
-                            Auth.currentAuthenticatedUser().then((user) => {
-                            //history.push('/shareroom');
-                            console.log("click");
-                            })
-                        }}>
-            部屋作成！
-            </Button> */}
-          {/* <form onSubmit={handleSubmit}>
-            <label>
-            授業名：
-            <input type="text"
-              name="classname"
-              value={text.classname}
-              onChange={handleChange}
-            />
-            </label>
-            <label>
-            説明：
-            <input type="text"
-              name="comment"
-              value={text.comment}
-              onChange={handleChange}
-            />
-            </label>
-            <input type="submit" value="Submit" />
-          </form> */}
-        </div>
-        </React.Fragment>
+            {/* <Button
+                variant="outlined"
+                onClick={() => {
+                                Auth.currentAuthenticatedUser().then((user) => {
+                                //history.push('/shareroom');
+                                console.log("click");
+                                })
+                            }}>
+                部屋作成！
+                </Button> */}
+              {/* <form onSubmit={handleSubmit}>
+                <label>
+                授業名：
+                <input type="text"
+                  name="classname"
+                  value={text.classname}
+                  onChange={handleChange}
+                />
+                </label>
+                <label>
+                説明：
+                <input type="text"
+                  name="comment"
+                  value={text.comment}
+                  onChange={handleChange}
+                />
+                </label>
+                <input type="submit" value="Submit" />
+              </form> */}
+            </div>
+          </main>
+        </body>
+      </React.Fragment>
     )
 }
