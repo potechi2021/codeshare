@@ -112,10 +112,16 @@ export default function MyPage() {
                   <h2>大部屋一覧</h2>
                   <ul class="largeRoomList2">
                     {classState.map((data) => {
-                      return <a href="link">
+                      return <a href="link" class="aLargeRoom">
                         <div class="largeRoomBox">
                           <img src="https://loosedrawing.com/wp/wp-content/uploads/2020/07/0487.png" />
                           <p class="largeRoomName">{data.ClassName}</p>
+                        </div>
+                        <div class="comment">
+                          <ul>
+                            <li>ルーム名：{data.ClassName}</li>
+                            <li>説明：{data.Comment}</li>
+                          </ul>
                         </div>
                       </a>;
                     })}

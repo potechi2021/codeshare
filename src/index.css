@@ -77,6 +77,30 @@ code {
   flex-wrap: wrap;
 }
 
+.aLargeRoom {
+  position: relative;
+}
+
+.comment {
+  display: none;
+  padding: 10px;
+  width: 250px;
+  height: 250px;
+  position: absolute;
+  top: 50px;
+  left: 50px;
+  border-radius: 50px;
+  font-size: larger;
+  background-color: #A1B6EC;
+  color: white;
+  z-index: 10000;
+  opacity: 0.9;
+}
+
+.largeRoomBox:hover + .comment {
+  display: block;
+}
+
 .largeRoomBox {
   background-color: white;
   width: 250px;
