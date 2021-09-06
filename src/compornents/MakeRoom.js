@@ -77,21 +77,24 @@ export default function MakeRoom() {
           <header>
             <h1>サービス名</h1>
           </header>
-          <main>
+          <main class="makeRoomMain">
             <div className={classes.root}>
-              makeroom</div>    
+              makeroom
+            </div>    
             <div>
-            <Button
-                variant="outlined"
-                onClick={() => {
-                                Auth.currentAuthenticatedUser().then((user) => {
-                                history.push('/');
-                                console.log("click");
-                                })
-                            }}>
-                マイページに戻る
-              </Button>
-
+              <div class="myPageButton">
+                <Button
+                  variant="outlined"
+                  onClick={() => {
+                                  Auth.currentAuthenticatedUser().then((user) => {
+                                  history.push('/');
+                                  console.log("click");
+                                  })
+                              }}>
+                  マイページに戻る
+                </Button>
+              </div>
+              <div>
               <label>
                 授業名：
                 <input type="text"
@@ -99,18 +102,23 @@ export default function MakeRoom() {
                   value={text.classname}
                   onChange={(e) => setText({...text, classname: e.target.value})}/>
               </label>
+              </div>
+              <div>
               <label>
-                説明：
+                説明　：
                 <input type="text"
                   name="comment"
                   value={text.comment}
                   onChange={(e) => setText({...text, comment: e.target.value})}/>
               </label>
+              </div>
+              <div>
               <Button
                 variant="outlined"
                 onClick={handleSubmit}>
                 部屋作成
-                </Button>
+              </Button>
+              </div>
 
             {/* <Button
                 variant="outlined"
