@@ -110,6 +110,7 @@ export const getMyPageTable = /* GraphQL */ `
       ClassID
       createdAt
       updatedAt
+      ownerUserID
     }
   }
 `;
@@ -126,6 +127,7 @@ export const listMyPageTables = /* GraphQL */ `
         ClassID
         createdAt
         updatedAt
+        ownerUserID
       }
       nextToken
     }
@@ -237,6 +239,7 @@ export const showMyPage = /* GraphQL */ `
         ClassID
         createdAt
         updatedAt
+        ownerUserID
       }
       nextToken
     }
