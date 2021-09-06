@@ -112,7 +112,7 @@ export default function MyPage() {
                   <h2>大部屋一覧</h2>
                   <ul class="largeRoomList2">
                     {classState.map((data) => {
-                      return <a href="https://www.sixtones.jp/">
+                      return <a href="link">
                         <div class="largeRoomBox">
                           <img src="https://loosedrawing.com/wp/wp-content/uploads/2020/07/0487.png" />
                           <p class="largeRoomName">{data.ClassName}</p>
