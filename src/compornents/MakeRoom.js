@@ -13,8 +13,9 @@ import {
     TextField,
     ListItemIcon,
   } from '@material-ui/core';
-  import {Auth, API, graphqlOperation } from 'aws-amplify';
-  import { useHistory } from 'react-router';
+import {Auth, API, graphqlOperation } from 'aws-amplify';
+import { useHistory } from 'react-router';
+import {createClassTable} from '../graphql/mutations' //変更
 
 const drawerWidth = 150;
 
@@ -51,12 +52,24 @@ export default function MakeRoom() {
     const history = useHistory();
     const handleChange = (event) => {
       const target = event.target;
-      setText(target.value);
+      const name = target.name;
+      setText(target[name].value);
     };
     const handleSubmit = (event) => {
       const target = event.target;
-      alert('A name was submitted: ' + target.value);
       event.preventDefault();
+      alert('入力内容: ' + target.value);
+      const newclass = API.graphql(
+        graphqlOperation(createClassTable, {
+          input: {
+            ClassName: text.classname,
+            OwnerUserID: '0003',
+            Comment: text.comment,
+          }
+        }))
+      console.log(newclass);
+      const classData = newclass.data.createClassTable; // createしたクラス情報
+      console.log(classData);
     };
     return (
         <React.Fragment>
@@ -73,26 +86,56 @@ export default function MakeRoom() {
                         }}>
             マイページに戻る
           </Button>
-        <Button
+
+          <label>
+            授業名：
+            <input type="text"
+              name="classname"
+              value={text.classname}
+              onChange={(e) => setText({...text, classname: e.target.value})}/>
+          </label>
+          <label>
+            説明：
+            <input type="text"
+              name="comment"
+              value={text.comment}
+              onChange={(e) => setText({...text, comment: e.target.value})}/>
+          </label>
+          <Button
+            variant="outlined"
+            onClick={handleSubmit}>
+            部屋作成
+            </Button>
+
+        {/* <Button
             variant="outlined"
             onClick={() => {
                             Auth.currentAuthenticatedUser().then((user) => {
-                            history.push('/shareroom');
+                            //history.push('/shareroom');
                             console.log("click");
                             })
                         }}>
             部屋作成！
-          </Button>
-          <form onSubmit={handleSubmit}>
+            </Button> */}
+          {/* <form onSubmit={handleSubmit}>
             <label>
             授業名：
             <input type="text"
-              value={text}
+              name="classname"
+              value={text.classname}
+              onChange={handleChange}
+            />
+            </label>
+            <label>
+            説明：
+            <input type="text"
+              name="comment"
+              value={text.comment}
               onChange={handleChange}
             />
             </label>
             <input type="submit" value="Submit" />
-          </form>
+          </form> */}
         </div>
         </React.Fragment>
     )
