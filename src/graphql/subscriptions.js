@@ -2,8 +2,8 @@
 // this is an auto generated file. This will be overwritten
 
 export const onCreateClassTable = /* GraphQL */ `
-  subscription OnCreateClassTable($ownerUserID: String!) {
-    onCreateClassTable(ownerUserID: $ownerUserID) {
+  subscription OnCreateClassTable {
+    onCreateClassTable {
       id
       OwnerUserID
       ClassName
@@ -15,8 +15,8 @@ export const onCreateClassTable = /* GraphQL */ `
   }
 `;
 export const onDeleteClassTable = /* GraphQL */ `
-  subscription OnDeleteClassTable($ownerUserID: String!) {
-    onDeleteClassTable(ownerUserID: $ownerUserID) {
+  subscription OnDeleteClassTable {
+    onDeleteClassTable {
       id
       OwnerUserID
       ClassName
@@ -28,8 +28,8 @@ export const onDeleteClassTable = /* GraphQL */ `
   }
 `;
 export const onCreateRoomTable = /* GraphQL */ `
-  subscription OnCreateRoomTable($ownerUserID: String!) {
-    onCreateRoomTable(ownerUserID: $ownerUserID) {
+  subscription OnCreateRoomTable {
+    onCreateRoomTable {
       id
       OwnerUserID
       RoomName
@@ -42,8 +42,8 @@ export const onCreateRoomTable = /* GraphQL */ `
   }
 `;
 export const onDeleteRoomTable = /* GraphQL */ `
-  subscription OnDeleteRoomTable($ownerUserID: String!) {
-    onDeleteRoomTable(ownerUserID: $ownerUserID) {
+  subscription OnDeleteRoomTable {
+    onDeleteRoomTable {
       id
       OwnerUserID
       RoomName
@@ -56,8 +56,8 @@ export const onDeleteRoomTable = /* GraphQL */ `
   }
 `;
 export const onCreateFileTable = /* GraphQL */ `
-  subscription OnCreateFileTable($ownerUserID: String!) {
-    onCreateFileTable(ownerUserID: $ownerUserID) {
+  subscription OnCreateFileTable {
+    onCreateFileTable {
       id
       UserID
       FileName
@@ -69,8 +69,8 @@ export const onCreateFileTable = /* GraphQL */ `
   }
 `;
 export const onUpdateFileTable = /* GraphQL */ `
-  subscription OnUpdateFileTable($ownerUserID: String!) {
-    onUpdateFileTable(ownerUserID: $ownerUserID) {
+  subscription OnUpdateFileTable {
+    onUpdateFileTable {
       id
       UserID
       FileName
@@ -82,8 +82,8 @@ export const onUpdateFileTable = /* GraphQL */ `
   }
 `;
 export const onDeleteFileTable = /* GraphQL */ `
-  subscription OnDeleteFileTable($ownerUserID: String!) {
-    onDeleteFileTable(ownerUserID: $ownerUserID) {
+  subscription OnDeleteFileTable {
+    onDeleteFileTable {
       id
       UserID
       FileName
@@ -95,35 +95,38 @@ export const onDeleteFileTable = /* GraphQL */ `
   }
 `;
 export const onCreateMyPageTable = /* GraphQL */ `
-  subscription OnCreateMyPageTable($UserID: String!) {
-    onCreateMyPageTable(UserID: $UserID) {
+  subscription OnCreateMyPageTable {
+    onCreateMyPageTable {
       id
       UserID
       ClassID
       createdAt
       updatedAt
+      ownerUserID
     }
   }
 `;
 export const onUpdateMyPageTable = /* GraphQL */ `
-  subscription OnUpdateMyPageTable($UserID: String!) {
-    onUpdateMyPageTable(UserID: $UserID) {
+  subscription OnUpdateMyPageTable {
+    onUpdateMyPageTable {
       id
       UserID
       ClassID
       createdAt
       updatedAt
+      ownerUserID
     }
   }
 `;
 export const onDeleteMyPageTable = /* GraphQL */ `
-  subscription OnDeleteMyPageTable($UserID: String!) {
-    onDeleteMyPageTable(UserID: $UserID) {
+  subscription OnDeleteMyPageTable {
+    onDeleteMyPageTable {
       id
       UserID
       ClassID
       createdAt
       updatedAt
+      ownerUserID
     }
   }
 `;

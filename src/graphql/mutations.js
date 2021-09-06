@@ -126,6 +126,7 @@ export const createMyPageColum = /* GraphQL */ `
       ClassID
       createdAt
       updatedAt
+      ownerUserID
     }
   }
 `;
@@ -140,6 +141,7 @@ export const updateMyPage = /* GraphQL */ `
       ClassID
       createdAt
       updatedAt
+      ownerUserID
     }
   }
 `;
@@ -154,6 +156,7 @@ export const deleteMyPageColum = /* GraphQL */ `
       ClassID
       createdAt
       updatedAt
+      ownerUserID
     }
   }
 `;
