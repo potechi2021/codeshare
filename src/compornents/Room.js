@@ -13,9 +13,14 @@ import {
     ListItemText,
     TextField,
     ListItemIcon,
+    Card,
+    CardActions,
+    CardContent,
+    Typography,
+    Grid,
   } from '@material-ui/core';
-  import {Auth, API, graphqlOperation } from 'aws-amplify';
-  import { useHistory } from 'react-router';
+import {Auth, API, graphqlOperation } from 'aws-amplify';
+import { useHistory } from 'react-router';
 
 const drawerWidth = 240;
 
@@ -44,6 +49,32 @@ const useStyles = makeStyles(theme => ({
       padding: theme.spacing(3),
     },
   }));
+
+function Nametag(){
+  return (
+      <Button
+          size="small"
+          variant="outlined"
+      >
+          file名
+      </Button>
+  )
+}
+
+function FileCard() {
+  return (
+      <div>
+          <Nametag />
+          <Card variant="outlined">
+              <CardContent>
+                  <Typography>
+                      fileの中身(コード)
+                  </Typography>
+              </CardContent>
+          </Card>
+      </div>
+  );
+}
 
 export default function Room() {
     const [user] = React.useState();
@@ -85,6 +116,9 @@ export default function Room() {
               追加
           </Button>
         </div>
+        <Grid container>
+            <FileCard />
+        </Grid>
         </React.Fragment>
     )
 }
