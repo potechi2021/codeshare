@@ -1,6 +1,6 @@
 {
     "identityPoolName": "codeshare628d02d8_identitypool_628d02d8",
-    "allowUnauthenticatedIdentities": false,
+    "allowUnauthenticatedIdentities": true,
     "resourceNameTruncated": "codesh628d02d8",
     "userPoolName": "codeshare628d02d8_userpool_628d02d8",
     "autoVerifiedAttributes": [

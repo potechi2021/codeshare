@@ -1,6 +1,6 @@
 import React from 'react';
 import Sidebar from './compornents/RoomSidebar';
-import Amplify from 'aws-amplify';
+import Amplify , {Storage} from 'aws-amplify';
 import { AmplifyAuthenticator, AmplifySignUp, AmplifySignOut } from '@aws-amplify/ui-react';
 import { AuthState, onAuthUIStateChange } from '@aws-amplify/ui-components';
 import awsconfig from './aws-exports';
@@ -47,11 +47,33 @@ const useStyles = makeStyles(theme => ({
       padding: theme.spacing(3),
     },
   }));
+
+  Amplify.configure(awsconfig);
   
 export default function File1() {
     const [user] = React.useState();
     const classes = useStyles();
     const history = useHistory();
+
+        //ファイルをアップロード
+        async function onChange(e) {
+          console.log()
+          const file = e.target.files[0];
+          console.log(file.name)
+    
+          try {
+            console.log("1")
+            await Storage.put(file.name, file, {
+              contentType: 'image/png' // contentType is optional
+            });
+            console.log("1")
+            //s3のurlを取得する
+            //movieのカラムを作る
+            // await addFile("url")
+          } catch (error) {
+            console.log('Error uploading file: ', error);
+          }  
+        }
 
     return (
       <React.Fragment>
@@ -64,6 +86,7 @@ export default function File1() {
             file1
           </div>
         </main>
+            <input type="file" onChange={onChange}/>
       </React.Fragment>
     )
 }

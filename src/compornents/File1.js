@@ -1,6 +1,5 @@
 import React from 'react';
 import RoomSidebar from './RoomSidebar';
-import Amplify from 'aws-amplify';
 import { AmplifyAuthenticator, AmplifySignUp, AmplifySignOut } from '@aws-amplify/ui-react';
 import { AuthState, onAuthUIStateChange } from '@aws-amplify/ui-components';
 import awsconfig from '../aws-exports';
@@ -14,10 +13,12 @@ import {
   TextField,
   ListItemIcon,
 } from '@material-ui/core';
-import {Auth, API, graphqlOperation } from 'aws-amplify';
+import Amplify , {Auth, API, graphqlOperation, Storage } from 'aws-amplify';
 import { useHistory } from 'react-router';
 
 const drawerWidth = 240;
+
+Amplify.configure(awsconfig);
 
 const useStyles = makeStyles(theme => ({
     header: {
@@ -53,6 +54,25 @@ export default function File1() {
     const classes = useStyles();
     const history = useHistory();
 
+        //ファイルをアップロード
+        async function onChange(e) {
+          console.log()
+          const file = e.target.files[0];
+          console.log(file.name)
+    
+          try {
+            console.log("1")
+            await Storage.put(file.name, file, {
+              contentType: 'image/png' // contentType is optional
+            });
+            //s3のurlを取得する
+            //mutation
+            //
+          } catch (error) {
+            console.log('Error uploading file: ', error);
+          }  
+        }
+
     return (
       <React.Fragment>
         <header>
@@ -62,6 +82,7 @@ export default function File1() {
           <RoomSidebar activeListItem = "file1"></RoomSidebar>
           <div className={classes.root}>
             file1
+          <input type="file" onChange={onChange}/>
           </div>
         </main>
       </React.Fragment>
