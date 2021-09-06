@@ -110,18 +110,17 @@ export default function MyPage() {
                 </div>
                 <div class="largeRoomList">
                   <h2>大部屋一覧</h2>
-                  <ul>
+                  <ul class="largeRoomList2">
                     {classState.map((data) => {
-                      return <li>{data.id}</li>;
+                      return <a href="link">
+                        <div class="largeRoomBox">
+                          <img src="https://loosedrawing.com/wp/wp-content/uploads/2020/07/0487.png" />
+                          <p class="largeRoomName">{data.ClassName}</p>
+                        </div>
+                      </a>;
                     })}
                   </ul>
                 </div>
-                <a href="https://www.sixtones.jp/">
-                  <div class="largeRoomBox">
-                    <img src="https://loosedrawing.com/wp/wp-content/uploads/2020/07/0487.png" />
-                    <p class="largeRoomName">room name</p>
-                  </div>
-                </a>
               </div>
             </main>
           </body>

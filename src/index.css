@@ -68,18 +68,27 @@ code {
   margin: 20px;
 }
 
+.largeRoomList2 {
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: -ms-flex;
+  display: -o-flex;
+  display: flex;
+  flex-wrap: wrap;
+}
+
 .largeRoomBox {
   background-color: white;
-  width: 300px;
-  height: 300px;
+  width: 250px;
+  height: 250px;
   margin: 50px;
   border-radius: 50px;
   text-align: center;
 }
 
 img {
-  width: 250px;
-  height: 230px;
+  width: 200px;
+  height: 200px;
 }
 
 .largeRoomName {
