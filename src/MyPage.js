@@ -82,6 +82,7 @@ export default function MyPage() {
                   <Sidebar activeListItem = "mypage"></Sidebar>
                 </div>
                 <div class="content">
+                  {/*
                   <div className={classes.root} class="mypage">
                     mypage
                   </div>
@@ -107,6 +108,8 @@ export default function MyPage() {
                       関数型言語
                     </Button>
                   </div>
+                  */}
+                  
                   <div class="largeRoomList">
                     <h2>大部屋一覧</h2>
                     <ul class="largeRoomList2">
