@@ -78,9 +78,11 @@ export default function MakeRoom() {
             <h1>サービス名</h1>
           </header>
           <main class="makeRoomMain">
+            {/*
             <div className={classes.root}>
               makeroom
-            </div>    
+            </div>
+            */}  
             <div>
               <div class="myPageButton">
                 <Button
