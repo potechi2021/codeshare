@@ -1,6 +1,6 @@
 import React from 'react';
 import RoomSidebar from './RoomSidebar';
-import { AmplifyAuthenticator, AmplifySignUp, AmplifySignOut } from '@aws-amplify/ui-react';
+import { AmplifyAuthenticator, AmplifySignUp, AmplifySignOut, AmplifyS3Text } from '@aws-amplify/ui-react';
 import { AuthState, onAuthUIStateChange } from '@aws-amplify/ui-components';
 import awsconfig from '../aws-exports';
 import { makeStyles, createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
@@ -15,6 +15,7 @@ import {
 } from '@material-ui/core';
 import Amplify , {Auth, API, graphqlOperation, Storage } from 'aws-amplify';
 import { useHistory } from 'react-router';
+
 
 const drawerWidth = 240;
 
@@ -84,6 +85,7 @@ export default function File1() {
             file1
           <input type="file" onChange={onChange}/>
           </div>
+          <AmplifyS3Text textKey="exAL-1.py" />
         </main>
       </React.Fragment>
     )
