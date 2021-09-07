@@ -1,4 +1,5 @@
 import React from 'react';
+import Sidebar from '../Sidebar';
 import Amplify from 'aws-amplify';
 import { AmplifyAuthenticator, AmplifySignUp, AmplifySignOut } from '@aws-amplify/ui-react';
 import { AuthState, onAuthUIStateChange } from '@aws-amplify/ui-components';
@@ -77,80 +78,87 @@ export default function MakeRoom() {
           <header>
             <h1>サービス名</h1>
           </header>
-          <main class="makeRoomMain">
-            {/*
-            <div className={classes.root}>
-              makeroom
-            </div>
-            */}  
-            <div>
-              <div class="myPageButton">
-                <Button
-                  variant="outlined"
-                  onClick={() => {
-                                  Auth.currentAuthenticatedUser().then((user) => {
-                                  history.push('/');
-                                  console.log("click");
-                                  })
-                              }}>
-                  マイページに戻る
-                </Button>
+          <main>
+            <div class="makeRoomMain">
+              <div class="side">
+                <Sidebar activeListItem = "mypage"></Sidebar>
               </div>
-              <div class="input">
-                <label>
-                  授業名：
-                  <input type="text"
-                    name="classname"
-                    value={text.classname}
-                    onChange={(e) => setText({...text, classname: e.target.value})}/>
-                </label>
-              </div>
-              <div class="input">
-                <label>
-                  説明　：
-                  <textarea placeholder="説明を入力"></textarea>
-                </label>
-              </div>
-              <div>
-                
-              </div>
-              <div>
-              <Button
-                variant="outlined"
-                onClick={handleSubmit}>
-                部屋作成
-              </Button>
-              </div>
+              <div class="content">
+                  {/*
+                  <div className={classes.root}>
+                    makeroom
+                  </div>
+                  */}  
+                  <div>
+                    <div class="myPageButton">
+                      <Button
+                        variant="outlined"
+                        onClick={() => {
+                                        Auth.currentAuthenticatedUser().then((user) => {
+                                        history.push('/');
+                                        console.log("click");
+                                        })
+                                    }}>
+                        マイページに戻る
+                      </Button>
+                    </div>
+                    <div class="input">
+                      <label>
+                        授業名：
+                        <input type="text"
+                          name="classname"
+                          value={text.classname}
+                          onChange={(e) => setText({...text, classname: e.target.value})}/>
+                      </label>
+                    </div>
+                    <div class="input">
+                      <label>
+                        説明　：
+                        <textarea placeholder="説明を入力"></textarea>
+                      </label>
+                    </div>
+                    <div>
+                      
+                    </div>
+                    <div>
+                    <Button
+                      variant="outlined"
+                      onClick={handleSubmit}>
+                      部屋作成
+                    </Button>
+                    </div>
 
-            {/* <Button
-                variant="outlined"
-                onClick={() => {
-                                Auth.currentAuthenticatedUser().then((user) => {
-                                //history.push('/shareroom');
-                                console.log("click");
-                                })
-                            }}>
-                部屋作成！
-                </Button> */}
-              {/* <form onSubmit={handleSubmit}>
-                <label>
-                授業名：
-                <input type="text"
-                  name="classname"
-                  value={text.classname}
-                  onChange={handleChange}
-                />
-                </label>
-                <label>
-                説明：
-                <input type="text"
-                  name="comment"
-                  value={text.comment}
-                  onChange={handleChange}
-                />
-                </label>
-                <input type="submit" value="Submit" />
-              </form> */}
+                  {/* <Button
+                      variant="outlined"
+                      onClick={() => {
+                                      Auth.currentAuthenticatedUser().then((user) => {
+                                      //history.push('/shareroom');
+                                      console.log("click");
+                                      })
+                                  }}>
+                      部屋作成！
+                      </Button> */}
+                    {/* <form onSubmit={handleSubmit}>
+                      <label>
+                      授業名：
+                      <input type="text"
+                        name="classname"
+                        value={text.classname}
+                        onChange={handleChange}
+                      />
+                      </label>
+                      <label>
+                      説明：
+                      <input type="text"
+                        name="comment"
+                        value={text.comment}
+                        onChange={handleChange}
+                      />
+                      </label>
+                      <input type="submit" value="Submit" />
+                    </form> */}
+                  </div>
+              </div>
             </div>
           </main>
         </body>
