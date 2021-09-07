@@ -94,7 +94,7 @@ export default function MakeRoom() {
                   マイページに戻る
                 </Button>
               </div>
-              <div>
+              <div class="input">
                 <label>
                   授業名：
                   <input type="text"
@@ -103,17 +103,14 @@ export default function MakeRoom() {
                     onChange={(e) => setText({...text, classname: e.target.value})}/>
                 </label>
               </div>
-              <div>
+              <div class="input">
                 <label>
                   説明　：
-                  <input type="text"
-                    name="comment"
-                    value={text.comment}
-                    onChange={(e) => setText({...text, comment: e.target.value})}/>
+                  <textarea placeholder="説明を入力"></textarea>
                 </label>
               </div>
               <div>
-                <textarea placeholder="説明を入力"></textarea>
+                
               </div>
               <div>
               <Button
