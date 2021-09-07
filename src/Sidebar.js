@@ -1,5 +1,5 @@
 import React from 'react';
-
+import MakeClass from './compornents/MakeClass';
 import { makeStyles } from '@material-ui/core/styles';
 import {
   Button,
@@ -104,7 +104,7 @@ export default function Sidebar({activeListItem}) {
                         selected={activeListItem === 'selectfile'}
                         onClick={() => {
                             Auth.currentAuthenticatedUser().then((user) => {
-                            history.push('/makeroom');
+                            history.push('/makeclass');
                             console.log("click");
                             })
                         }}
