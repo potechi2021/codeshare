@@ -1,5 +1,4 @@
 import React from 'react';
-import Sidebar from '../Sidebar';
 import Amplify from 'aws-amplify';
 import { AmplifyAuthenticator, AmplifySignUp, AmplifySignOut } from '@aws-amplify/ui-react';
 import { AuthState, onAuthUIStateChange } from '@aws-amplify/ui-components';
@@ -16,7 +15,7 @@ import {
   } from '@material-ui/core';
 import {Auth, API, graphqlOperation } from 'aws-amplify';
 import { useHistory } from 'react-router';
-import {createClassTable} from '../graphql/mutations' //変更
+import {createRoomTable} from '../graphql/mutations' //変更
 
 const drawerWidth = 150;
 
@@ -49,7 +48,7 @@ const useStyles = makeStyles(theme => ({
 export default function MakeRoom() {
     const [user] = React.useState();
     const [text, setText] = React.useState('Please write.');
-    const classes = useStyles();
+    const rooms = useStyles();
     const history = useHistory();
     const handleChange = (event) => {
       const target = event.target;
@@ -60,17 +59,18 @@ export default function MakeRoom() {
       const target = event.target;
       event.preventDefault();
       alert('入力内容: ' + target.value);
-      const newclass = API.graphql(
-        graphqlOperation(createClassTable, {
+      const newroom = API.graphql(
+        graphqlOperation(createRoomTable, {
           input: {
-            ClassName: text.classname,
+            ClassID: 'a8e5f441-4737-402e-a550-b4bc1fce5a2d',
+            RoomName: text.roomname,
             OwnerUserID: '0003',
             Comment: text.comment,
           }
         }))
-      console.log(newclass);
-      const classData = newclass.data.createClassTable; // createしたクラス情報
-      console.log(classData);
+      console.log(newroom);
+      //const roomData = newroom.data.createRoomTable; // createしたクラス情報
+      //console.log(roomData);
     };
     return (
       <React.Fragment>
@@ -79,86 +79,40 @@ export default function MakeRoom() {
             <h1>サービス名</h1>
           </header>
           <main>
-            <div class="makeRoomMain">
-              <div class="side">
-                <Sidebar activeListItem = "mypage"></Sidebar>
-              </div>
-              <div class="content">
-                  {/*
-                  <div className={classes.root}>
-                    makeroom
-                  </div>
-                  */}  
-                  <div>
-                    <div class="myPageButton">
-                      <Button
-                        variant="outlined"
-                        onClick={() => {
-                                        Auth.currentAuthenticatedUser().then((user) => {
-                                        history.push('/');
-                                        console.log("click");
-                                        })
-                                    }}>
-                        マイページに戻る
-                      </Button>
-                    </div>
-                    <div class="input">
-                      <label>
-                        授業名：
-                        <input type="text"
-                          name="classname"
-                          value={text.classname}
-                          onChange={(e) => setText({...text, classname: e.target.value})}/>
-                      </label>
-                    </div>
-                    <div class="input">
-                      <label>
-                        説明　：
-                        <textarea placeholder="説明を入力"></textarea>
-                      </label>
-                    </div>
-                    <div>
-                      
-                    </div>
-                    <div>
-                    <Button
-                      variant="outlined"
-                      onClick={handleSubmit}>
-                      部屋作成
-                    </Button>
-                    </div>
+            <div className={rooms.root}>
+              makeroom</div>    
+            <div>
+            <Button
+                variant="outlined"
+                onClick={() => {
+                                Auth.currentAuthenticatedUser().then((user) => {
+                                history.push('/');
+                                console.log("click");
+                                })
+                            }}>
+                マイページに戻る
+              </Button>
 
-                  {/* <Button
-                      variant="outlined"
-                      onClick={() => {
-                                      Auth.currentAuthenticatedUser().then((user) => {
-                                      //history.push('/shareroom');
-                                      console.log("click");
-                                      })
-                                  }}>
-                      部屋作成！
-                      </Button> */}
-                    {/* <form onSubmit={handleSubmit}>
-                      <label>
-                      授業名：
-                      <input type="text"
-                        name="classname"
-                        value={text.classname}
-                        onChange={handleChange}
-                      />
-                      </label>
-                      <label>
-                      説明：
-                      <input type="text"
-                        name="comment"
-                        value={text.comment}
-                        onChange={handleChange}
-                      />
-                      </label>
-                      <input type="submit" value="Submit" />
-                    </form> */}
-                  </div>
-              </div>
+              <label>
+                第何回：
+                <input type="text"
+                  name="roomname"
+                  value={text.roomname}
+                  onChange={(e) => setText({...text, roomname: e.target.value})}/>
+              </label>
+              <br></br>
+              <label>
+                説明：
+                <input type="text"
+                  name="comment"
+                  value={text.comment}
+                  onChange={(e) => setText({...text, comment: e.target.value})}/>
+              </label>
+                  <Button
+                    variant="outlined"
+                    onClick={handleSubmit}>
+                    部屋作成
+                </Button>
             </div>
           </main>
         </body>
