@@ -69,6 +69,7 @@ export default function Sidebar({activeListItem}) {
                         } />
                     </ListItem>
                     
+                    {/*
                     <ListItem
                         button
                         selected={activeListItem === 'mypage'}
@@ -82,6 +83,7 @@ export default function Sidebar({activeListItem}) {
                     >
                         <ListItemText primary="selectfile" />
                     </ListItem>
+                    */}
 
                     <ListItem
                         button
@@ -94,7 +96,21 @@ export default function Sidebar({activeListItem}) {
                         }}
                         key='selectfile'
                     >
-                        <ListItemText primary="mypage" />
+                        <ListItemText primary="My Page" />
+                    </ListItem>
+
+                    <ListItem
+                        button
+                        selected={activeListItem === 'selectfile'}
+                        onClick={() => {
+                            Auth.currentAuthenticatedUser().then((user) => {
+                            history.push('/makeroom');
+                            console.log("click");
+                            })
+                        }}
+                        key='selectfile'
+                    >
+                        <ListItemText primary="Make Class" />
                     </ListItem>
                 </List>
         </Drawer>
