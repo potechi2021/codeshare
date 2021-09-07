@@ -16,6 +16,7 @@ import {
 import {Auth, API, graphqlOperation } from 'aws-amplify';
 import { useHistory } from 'react-router';
 import {createRoomTable} from '../graphql/mutations' //変更
+import Sidebar2 from '../Sidebar2';
 
 
 const drawerWidth = 240;
@@ -70,63 +71,78 @@ export default function Class() {
     };
     return (
         <React.Fragment>
-        <div className={classes.root}>
-          class</div>    
-        <div>
-        <Button
-            variant="outlined"
-            onClick={() => {
-                            Auth.currentAuthenticatedUser().then((user) => {
-                            history.push('/');
-                            console.log("click");
-                            })
-                        }}>
-            マイページに戻る
-          </Button>
+          <body>
+            <header>
+              <h1>サービス名</h1>
+            </header>
+            <main>
+              <div class="classMain">
+                <div class="side">
+                  <Sidebar2 activeListItem = "mypage"></Sidebar2>
+                </div>
+                <div class="content">
+                  {/*
+                  <div className={classes.root}>
+                    class</div>    
+                  <div>
+                  */}
+                  <Button
+                    variant="outlined"
+                    onClick={() => {
+                                    Auth.currentAuthenticatedUser().then((user) => {
+                                    history.push('/');
+                                    console.log("click");
+                                    })
+                                }}>
+                    マイページに戻る
+                  </Button>
 
-          <label>
-            第何回：
-            <input type="text"
-              name="roomname"
-              value={text.roomname}
-              onChange={(e) => setText({...text, roomname: e.target.value})}/>
-          </label>
-          <br></br>
-          <label>
-            説明：
-            <input type="text"
-              name="comment"
-              value={text.comment}
-              onChange={(e) => setText({...text, comment: e.target.value})}/>
-          </label>
-          <br></br>
-          <Button
-            variant="outlined"
-            onClick={handleSubmit}>
-            部屋作成
-            </Button>
-            <br></br>
-        <Button
-            variant="outlined"
-            onClick={() => {
-                            Auth.currentAuthenticatedUser().then((user) => {
-                            history.push('/room');
-                            console.log("click");
-                            })
-                        }}>
-            第１回
-          </Button>
-        <Button
-            variant="outlined"
-            onClick={() => {
-                            Auth.currentAuthenticatedUser().then((user) => {
-                            history.push('/room');
-                            console.log("click");
-                            })
-                        }}>
-            第２回
-          </Button>
-        </div>
+                  <label>
+                    第何回：
+                    <input type="text"
+                      name="roomname"
+                      value={text.roomname}
+                      onChange={(e) => setText({...text, roomname: e.target.value})}/>
+                  </label>
+                  <br></br>
+                  <label>
+                    説明：
+                    <input type="text"
+                      name="comment"
+                      value={text.comment}
+                      onChange={(e) => setText({...text, comment: e.target.value})}/>
+                  </label>
+                  <br></br>
+                  <Button
+                    variant="outlined"
+                    onClick={handleSubmit}>
+                    部屋作成
+                  </Button>
+                  <br></br>
+                  <Button
+                    variant="outlined"
+                    onClick={() => {
+                                    Auth.currentAuthenticatedUser().then((user) => {
+                                    history.push('/room');
+                                    console.log("click");
+                                    })
+                                }}>
+                    第１回
+                  </Button>
+                  <Button
+                    variant="outlined"
+                    onClick={() => {
+                                    Auth.currentAuthenticatedUser().then((user) => {
+                                    history.push('/room');
+                                    console.log("click");
+                                    })
+                                }}>
+                    第２回
+                  </Button>
+                </div>
+              </div>
+            </main>
+          </body>
         </React.Fragment>
     )
 }
