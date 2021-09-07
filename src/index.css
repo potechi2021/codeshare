@@ -66,6 +66,11 @@ main {
   min-height: calc(100vh - 80px);
 }
 
+.classMain {
+  display: flex;
+  height: 100%;
+}
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
