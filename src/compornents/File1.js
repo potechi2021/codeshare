@@ -3,7 +3,7 @@ import RoomSidebar from './RoomSidebar';
 import { AmplifyAuthenticator, AmplifySignUp, AmplifySignOut, AmplifyS3Text } from '@aws-amplify/ui-react';
 import { AuthState, onAuthUIStateChange } from '@aws-amplify/ui-components';
 import awsconfig from '../aws-exports';
-import { makeStyles, createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
+import { makeStyles, createTheme, ThemeProvider } from '@material-ui/core/styles';
 import {
   Button,
   Drawer,
@@ -50,10 +50,15 @@ const useStyles = makeStyles(theme => ({
     },
   }));
   
-export default function File1() {
-    const [user] = React.useState();
+export default function File1(props) {
+    const [user, setUser] = React.useState();
+    const [AuthState, setAuthState] = React.useState();
     const classes = useStyles();
     const history = useHistory();
+  
+  async function isUser(e){
+    history.push({pathname:'/file2', state:{id:"hey"}})
+  }
 
         //ファイルをアップロード
         async function onChange(e) {
@@ -74,6 +79,12 @@ export default function File1() {
           }  
         }
 
+        
+
+        //classid
+
+        //roomid
+
     return (
       <React.Fragment>
         <header>
@@ -82,10 +93,17 @@ export default function File1() {
         <main>
           <RoomSidebar activeListItem = "file1"></RoomSidebar>
           <div className={classes.root}>
-            file1
+            file1{user}
           <input type="file" onChange={onChange}/>
+
           </div>
+          <Button
+            variant="outlined"
+            onClick={isUser}>
+            テストボタン
+            </Button>
           <AmplifyS3Text textKey="exAL-1.py" />
+          
         </main>
       </React.Fragment>
     )
