@@ -48,10 +48,19 @@ const useStyles = makeStyles(theme => ({
     },
   }));
   
-export default function File2() {
+export default function File2(prop) {
     const [user] = React.useState();
     const classes = useStyles();
     const history = useHistory();
+    // const [count, setCount] = useState(initCount);
+    // const [square, setSquare] = useState(initCount * initCount);
+    
+    React.useEffect(() => {
+      let currentState = history.state;
+      console.log("hey")
+      console.log(currentState);
+      console.log(window.location.state);
+    }, []);
 
     return (
       <React.Fragment>
