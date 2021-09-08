@@ -16,6 +16,8 @@ import {
 import {Auth, API, graphqlOperation } from 'aws-amplify';
 import { useHistory } from 'react-router';
 import {createRoomTable} from '../graphql/mutations' //変更
+import {listRoomTables} from '../graphql/queries';
+import * as mutations from '../graphql/mutations';
 import Sidebar2 from '../Sidebar2';
 
 
@@ -52,6 +54,7 @@ export default function Class() {
     const [text, setText] = React.useState('Please write.');
     const classes = useStyles();
     const history = useHistory();
+    const [roomState, roomSet] = React.useState([]);
     const handleSubmit = (event) => {
       const target = event.target;
       event.preventDefault();
@@ -69,6 +72,19 @@ export default function Class() {
       //const roomData = newroom.data.createRoomTable; // createしたクラス情報
       //console.log(roomData);
     };
+
+    React.useEffect(() =>{
+      ;(async () => {
+        console.log("初め")
+        const res = await API.graphql(graphqlOperation(listRoomTables)); //非同期 async await
+        roomSet(res.data.listRoomTables.items)
+        console.log(roomState)
+      })()
+      return () => {
+        console.log("hey")
+      }
+    })
+
     return (
         <React.Fragment>
           <body>
@@ -86,59 +102,26 @@ export default function Class() {
                     class</div>    
                   <div>
                   */}
-                  <Button
-                    variant="outlined"
-                    onClick={() => {
-                                    Auth.currentAuthenticatedUser().then((user) => {
-                                    history.push('/');
-                                    console.log("click");
-                                    })
-                                }}>
-                    マイページに戻る
-                  </Button>
-
-                  <label>
-                    第何回：
-                    <input type="text"
-                      name="roomname"
-                      value={text.roomname}
-                      onChange={(e) => setText({...text, roomname: e.target.value})}/>
-                  </label>
-                  <br></br>
-                  <label>
-                    説明：
-                    <input type="text"
-                      name="comment"
-                      value={text.comment}
-                      onChange={(e) => setText({...text, comment: e.target.value})}/>
-                  </label>
-                  <br></br>
-                  <Button
-                    variant="outlined"
-                    onClick={handleSubmit}>
-                    部屋作成
-                  </Button>
-                  <br></br>
-                  <Button
-                    variant="outlined"
-                    onClick={() => {
-                                    Auth.currentAuthenticatedUser().then((user) => {
-                                    history.push('/room');
-                                    console.log("click");
-                                    })
-                                }}>
-                    第１回
-                  </Button>
-                  <Button
-                    variant="outlined"
-                    onClick={() => {
-                                    Auth.currentAuthenticatedUser().then((user) => {
-                                    history.push('/room');
-                                    console.log("click");
-                                    })
-                                }}>
-                    第２回
-                  </Button>
+                  <div class="largeRoomList">
+                    <h2>Room一覧</h2>
+                    <ul class="largeRoomList2">
+                      {roomState.map((data) => {
+                        return <a href="link" class="aLargeRoom">
+                          <div class="largeRoomBox">
+                            <img src="https://loosedrawing.com/wp/wp-content/uploads/2020/07/0487.png" />
+                            <p class="largeRoomName">{data.RoomName}</p>
+                          </div>
+                          <div class="comment">
+                            <ul>
+                              <li>ルーム名：{data.RoomName}</li>
+                              <li>説明　　：{data.Comment}</li>
+                            </ul>
+                          </div>
+                        </a>;
+                        
+                      })}
+                    </ul>
+                  </div>
                 </div>
               </div>
             </main>
