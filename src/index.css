@@ -50,6 +50,7 @@ main {
   color: black;
   height: 100%;
   min-height: calc(100vh - 80px);
+  display: flex;
 }
 
 .myPageMain {
@@ -70,6 +71,10 @@ main {
   display: flex;
   height: auto;
   min-height: calc(100vh - 80px);
+}
+
+.file1Main {
+  display: flex;
 }
 
 code {
@@ -165,7 +170,15 @@ img {
   color: black !important;
 }
 
+.MuiDrawer-root {
+  height: 100%;
+}
+
 .MuiButton-outlinedPrimary {
   background-color: #A1B6EC !important;
   color: white !important;
+}
+
+.makeStyles-root-3 {
+  height: 100px !important;
 }
