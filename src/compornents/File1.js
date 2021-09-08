@@ -87,24 +87,28 @@ export default function File1(props) {
 
     return (
       <React.Fragment>
-        <header>
-          <h1>File1</h1>
-        </header>
-        <main>
-          <RoomSidebar activeListItem = "file1"></RoomSidebar>
-          <div className={classes.root}>
-            file1{user}
-          <input type="file" onChange={onChange}/>
-
-          </div>
-          <Button
-            variant="outlined"
-            onClick={isUser}>
-            テストボタン
-            </Button>
-          <AmplifyS3Text textKey="exAL-1.py" />
-          
-        </main>
+        <body>
+          <header>
+            <h1>サービス名</h1>
+          </header>
+          <main>
+            <div class="side">
+              <RoomSidebar activeListItem = "file1"></RoomSidebar>
+            </div>
+            <div class="content">
+              <div className={classes.root}>
+                file1{user}
+                <input type="file" onChange={onChange}/>
+              </div>
+              <Button
+                variant="outlined"
+                onClick={isUser}>
+                テストボタン
+                </Button>
+              <AmplifyS3Text textKey="exAL-1.py" />
+            </div>
+          </main>
+        </body>
       </React.Fragment>
     )
 }
