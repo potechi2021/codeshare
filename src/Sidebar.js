@@ -87,28 +87,28 @@ export default function Sidebar({activeListItem}) {
 
                     <ListItem
                         button
-                        selected={activeListItem === 'selectfile'}
+                        selected={activeListItem === 'mypage'}
                         onClick={() => {
                             Auth.currentAuthenticatedUser().then((user) => {
                             history.push('/mypage');
                             console.log("click");
                             })
                         }}
-                        key='selectfile'
+                        key='mypage'
                     >
                         <ListItemText primary="My Page" />
                     </ListItem>
 
                     <ListItem
                         button
-                        selected={activeListItem === 'selectfile'}
+                        selected={activeListItem === 'makeclass'}
                         onClick={() => {
                             Auth.currentAuthenticatedUser().then((user) => {
                             history.push('/makeclass');
                             console.log("click");
                             })
                         }}
-                        key='selectfile'
+                        key='makeclass'
                     >
                         <ListItemText primary="Make Class" />
                     </ListItem>

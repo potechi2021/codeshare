@@ -93,6 +93,7 @@ const App = () => {
           <Route exact path='/' component={MyPage} />
           <Route exact path='/mypage' component={MyPage} />
           <Route exact path='/selectfile' component={SelectFile} />
+          <Route exact path='/makeclass' component={MakeClass} />
           <Route exact path='/makeroom' component={MakeRoom} />
           <Route exact path='/shareroom' component={ShareRoom} />
           <Route exact path='/class/:id' component={Class} />

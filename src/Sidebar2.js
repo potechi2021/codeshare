@@ -71,42 +71,42 @@ export default function Sidebar({activeListItem}) {
 
                     <ListItem
                         button
-                        selected={activeListItem === 'selectfile'}
+                        selected={activeListItem === 'mypage'}
                         onClick={() => {
                             Auth.currentAuthenticatedUser().then((user) => {
                             history.push('/mypage');
                             console.log("click");
                             })
                         }}
-                        key='selectfile'
+                        key='mypage'
                     >
                         <ListItemText primary="My Page" />
                     </ListItem>
 
                     <ListItem
                         button
-                        selected={activeListItem === 'selectfile'}
+                        selected={activeListItem === 'class'}
                         onClick={() => {
                             Auth.currentAuthenticatedUser().then((user) => {
                             history.push('/class');
                             console.log("click");
                             })
                         }}
-                        key='selectfile'
+                        key='class'
                     >
                         <ListItemText primary="Class" />
                     </ListItem>
 
                     <ListItem
                         button
-                        selected={activeListItem === 'selectfile'}
+                        selected={activeListItem === 'makeroom'}
                         onClick={() => {
                             Auth.currentAuthenticatedUser().then((user) => {
                             history.push('/makeroom');
                             console.log("click");
                             })
                         }}
-                        key='selectfile'
+                        key='makeroom'
                     >
                         <ListItemText primary="Make Room" />
                     </ListItem>
