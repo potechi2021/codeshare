@@ -46,7 +46,7 @@ const useStyles = makeStyles(theme => ({
     },
   }));
   
-export default function MakeRoom() {
+export default function MakeClass() {
     const [user] = React.useState();
     const [text, setText] = React.useState('Please write.');
     const classes = useStyles();
@@ -95,7 +95,7 @@ export default function MakeRoom() {
                         variant="outlined"
                         onClick={() => {
                                         Auth.currentAuthenticatedUser().then((user) => {
-                                        history.push('/');
+                                        history.push('/mypage');
                                         console.log("click");
                                         })
                                     }}>
