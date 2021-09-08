@@ -95,8 +95,8 @@ const App = () => {
           <Route exact path='/selectfile' component={SelectFile} />
           <Route exact path='/makeroom' component={MakeRoom} />
           <Route exact path='/shareroom' component={ShareRoom} />
-          <Route exact path='/class' component={Class} />
-          <Route exact path='/room' component={Room} />
+          <Route exact path='/class/:id' component={Class} />
+          <Route exact path='/room/:id' component={Room} />
           <Route exact path='/file1' component={File1} />
           <Route exact path='/file2' component={File2} />
           <Route exact path='/makeclass' component={MakeClass}/>
