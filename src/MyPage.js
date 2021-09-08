@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useCallback }  from 'react';
 import Sidebar from './Sidebar';
 import Amplify from 'aws-amplify';
 import { AmplifyAuthenticator, AmplifySignUp, AmplifySignOut } from '@aws-amplify/ui-react';
@@ -18,6 +18,7 @@ import {Auth, API, graphqlOperation } from 'aws-amplify';
 import { useHistory } from 'react-router';
 import {listClassTables} from './graphql/queries' //変更
 import * as mutations from './graphql/mutations';
+import { withRouter } from 'react-router-dom';
 
 const drawerWidth = 240;
 
@@ -51,24 +52,35 @@ const useStyles = makeStyles(theme => ({
     },
   }));
   
-export default function MyPage() {
+function MyPage() {
     // const [user] = React.useState();
     const classes = useStyles();
     const history = useHistory();
     const [classState, classSet] = React.useState();
+    const [classId, classIdSet] = React.useState('');
 
     React.useEffect(() =>{
       ;(async () => {
-        console.log("初め")
+        //console.log("初め")
         const res = await API.graphql(graphqlOperation(listClassTables)); //非同期 async await
         classSet(res.data.listClassTables.items)
-        console.log(classState)
+        //console.log(classState)
       })()
       return () => {
-        console.log("hey")
+        console.log(classId)
       }
-    })
-
+    },[])
+    React.useEffect(() =>{
+      return () => {
+        //console.log(classId);
+        //console.log("遷移");
+        history.push({pathname:'/class/' + classId});
+      }
+    }, [classId])
+    const handleSelected = useCallback((id) => {
+      classIdSet(id);
+      console.log(id);
+    }, []);
     if (classState) {
       return (
         <React.Fragment>
@@ -114,7 +126,7 @@ export default function MyPage() {
                     <h2>大部屋一覧</h2>
                     <ul class="largeRoomList2">
                       {classState.map((data) => {
-                        return <a href="link" class="aLargeRoom">
+                        return <a class="aLargeRoom" onClick={(e) => {handleSelected(data.id, e);}}>
                           <div class="largeRoomBox">
                             <img src="https://loosedrawing.com/wp/wp-content/uploads/2020/07/0487.png" />
                             <p class="largeRoomName">{data.ClassName}</p>
@@ -191,3 +203,5 @@ export default function MyPage() {
       );
     }
 }
+
+export default withRouter(MyPage);
