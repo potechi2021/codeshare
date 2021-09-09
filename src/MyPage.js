@@ -86,7 +86,7 @@ function MyPage() {
         <React.Fragment>
           <body>
             <header>
-              <h1>サービス名</h1>
+              <h1>Code House</h1>
             </header>
             <main>
               <div class="myPageMain">
@@ -123,7 +123,7 @@ function MyPage() {
                   */}
                   
                   <div class="largeRoomList">
-                    <h2>大部屋一覧</h2>
+                    <h2>参加している授業一覧</h2>
                     <ul class="largeRoomList2">
                       {classState.map((data) => {
                         return <a class="aLargeRoom" onClick={(e) => {handleSelected(data.id, e);}}>
@@ -148,23 +148,19 @@ function MyPage() {
         </React.Fragment>
       );
     }else{
-      
       return (
         <React.Fragment>
           <body>
             <header>
-              <h1>サービス名</h1>
+              <h1>Code House</h1>
             </header>
             <main>
               <div class="side">
                 <Sidebar activeListItem = "mypage"></Sidebar>
               </div>
               <div class="content">
-                <div className={classes.root} class="mypage">
-                  mypage
-                </div>
                 <div>
-                  <Button
+                  {/* <Button
                     color = "primary"
                     variant="outlined"
                     onClick={() => {
@@ -185,10 +181,11 @@ function MyPage() {
                                       })
                                   }}>
                     関数型言語
-                  </Button>
+                  </Button> */}
                 </div>
                 <div class="largeRoomList">
-                  <h2>大部屋一覧</h2>
+                  <h2>参加している授業一覧</h2>
+                  <p>参加している授業がありません。</p>
                 </div>
                 <a href="https://www.sixtones.jp/">
                   <div class="largeRoomBox">
