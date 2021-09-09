@@ -6,25 +6,29 @@ import { AuthState, onAuthUIStateChange } from '@aws-amplify/ui-components';
 import awsconfig from '../aws-exports';
 import { makeStyles, createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 import {
-    Button,
-    Drawer,
-    List,
-    ListItem,
-    ListItemText,
-    TextField,
-    ListItemIcon,
-    Card,
-    CardActions,
-    CardContent,
-    Typography,
-    Grid,
-  } from '@material-ui/core';
+  Button,
+  Drawer,
+  List,
+  ListItem,
+  ListItemText,
+  TextField,
+  ListItemIcon,
+} from '@material-ui/core';
 import {Auth, API, graphqlOperation } from 'aws-amplify';
-import {useHistory, useLocation, useParams, withRouter } from 'react-router';
+import {useHistory, useParams, withRouter } from 'react-router-dom';
+import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
+import 'react-tabs/style/react-tabs.css';
+import File3 from './File3'
+import {showFileByRoom} from '../graphql/queries' //変更
+import * as queries from '../graphql/queries';
+
 
 const drawerWidth = 240;
 
 const useStyles = makeStyles(theme => ({
+    header: {
+      width: '100%',
+    },
     root: {
       display: 'flex',
       height: '100%',
@@ -50,82 +54,107 @@ const useStyles = makeStyles(theme => ({
     },
   }));
 
-function Nametag(){
-  return (
-      <Button
-          size="small"
-          variant="outlined"
-      >
-          file名
-      </Button>
-  )
-}
-
-function FileCard() {
-  return (
-      <div>
-          <Nametag />
-          <Card variant="outlined">
-              <CardContent>
-                  <Typography>
-                      fileの中身(コード)
-                  </Typography>
-              </CardContent>
-          </Card>
-      </div>
-  );
-}
-
-function Room() {
-    const [user] = React.useState();
+  //1. タブ(File3)にファイルのidを渡す -> ファイルの表示
+  //2. ルーム内のファイルとtabをリンクさせる -> 部屋のIDを受け取ってfileを表示
+  //3. サイドバーのファイルをリンクさせる
+  //3. サイドバーにファイルのupボタンを作る
+  //4. ルーティングをする
+  
+export default function Room(prop) {
     const classes = useStyles();
     const history = useHistory();
-    const location = useLocation();
+    const [value, setValue] = React.useState("hey")
+    let filename = 'Hello Function Component!';
+    const tmpRoomId = "10591538-5c32-4605-914d-9918c58aed0f";
+    const { Roomid } = useParams();
+    var fileArray = []
+    const [roomState, roomSet] = React.useState([]);
 
-    const { roomId } = useParams();
-    console.log(roomId);
-    console.log("room");
+    React.useEffect(() =>{
+      ;(async () => {
+        console.log(Roomid)
+        const rest = await API.graphql({ query: queries.showFileByRoom, variables: { RoomID: tmpRoomId }});
+        console.log(rest.data.showFileByRoom.items[0].FileName)
+        roomSet(rest.data.showFileByRoom.items);
+        console.log(roomState)
+      })()
+      return () => {
+      }
+    },[])
+  
+    function handleSelect(index, last){
+      console.log('Selected tab: ' + index + ', Last tab: ' + last);
+    }
+
+    function selectTab(index){
+      filename = index;
+      return filename
+    }
+
+    function tabElement(name){
+      return <File3 value = {name} /> 
+    }
+
+   
     return (
-        <React.Fragment>
-        <RoomSidebar activeListItem = "file1"></RoomSidebar>
 
-        <div>
-            <Button
-                variant="outlined"
-                onClick={() => {
-                                Auth.currentAuthenticatedUser().then((user) => {
-                                history.push('/shareroom');
-                                console.log("click");
-                                })
-                            }}>
-                シェア
-            </Button>
-        </div>
+      <React.Fragment>
+        <body>
+          <header>
+            <h1>CodeHouse</h1>
+          </header>
+          <main>
+            <div class="side">
+              <RoomSidebar activeListItem = "file1"></RoomSidebar>
+            </div>
+      
+      {/* <Tabs
+        onSelect={handleSelect}
+      >
 
-        <div className={classes.root}>
-          room</div>
-        <div>
-        <Button
-            variant="outlined"
-            onClick={() => {
-                            Auth.currentAuthenticatedUser().then((user) => {
-                            history.push('/mypage');
-                            console.log("click");
-                            })
-                        }}>
-            マイページに戻る
-          </Button>
+        <TabList>
+          <Tab>1</Tab>
+          <Tab>Foo</Tab>
+          <Tab>Bar</Tab>
+          <Tab>Baz</Tab>
+        </TabList> */}
 
-          <Button
-              variant="outlined">
-              追加
-          </Button>
-        </div>
-        <Grid container>
-            <FileCard />
-        </Grid>
-        </React.Fragment>
-    )
+      
+
+          {/* <TabPanel>
+          <h2>Hello from Foo</h2>
+          <File3 value = {selectTab("GammaCorrection.java")} />
+        </TabPanel>
+        <TabPanel>
+          <h2>Hello from Bar</h2>
+            <File3 value = {selectTab("repAL-A.py")} />
+          </TabPanel> */}
+        
+
+      <Tabs>
+
+     
+      <TabList>
+      {roomState.map((data) => {
+        return <Tab>{data.FileName}</Tab>
+       })}
+      </TabList>
+
+      
+      {roomState.map((data) => {
+        return <TabPanel>
+        <h2>{data.UserID}</h2>
+        <h4>{data.Comment}</h4>
+            {tabElement(data.FileName)}
+          </TabPanel> 
+       })}
+
+      </Tabs> 
+          </main>
+        </body>
+      </React.Fragment>
+    );
 }
 
-export default withRouter(Room);
+
+

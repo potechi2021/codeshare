@@ -96,7 +96,7 @@ export default function File3(props) {
 
           <main>
               <div className={classes.root}>
-                <input type="file" onChange={onChange}/>
+                {/* <input type="file" onChange={onChange}/> */}
                 <br />
 
                 {/* {reactElement} */}
