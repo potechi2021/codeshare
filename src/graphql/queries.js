@@ -74,6 +74,7 @@ export const getFileTable = /* GraphQL */ `
     getFileTable(id: $id) {
       id
       UserID
+      RoomID
       FileName
       Comment
       createdAt
@@ -92,6 +93,7 @@ export const listFileTables = /* GraphQL */ `
       items {
         id
         UserID
+        RoomID
         FileName
         Comment
         createdAt
@@ -208,6 +210,36 @@ export const showFileByOwner = /* GraphQL */ `
       items {
         id
         UserID
+        RoomID
+        FileName
+        Comment
+        createdAt
+        updatedAt
+        ownerUserID
+      }
+      nextToken
+    }
+  }
+`;
+export const showFileByRoom = /* GraphQL */ `
+  query ShowFileByRoom(
+    $RoomID: ID
+    $sortDirection: ModelSortDirection
+    $filter: ModelFileTableFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    showFileByRoom(
+      RoomID: $RoomID
+      sortDirection: $sortDirection
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+    ) {
+      items {
+        id
+        UserID
+        RoomID
         FileName
         Comment
         createdAt

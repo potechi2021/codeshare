@@ -60,6 +60,7 @@ export const onCreateFileTable = /* GraphQL */ `
     onCreateFileTable {
       id
       UserID
+      RoomID
       FileName
       Comment
       createdAt
@@ -73,6 +74,7 @@ export const onUpdateFileTable = /* GraphQL */ `
     onUpdateFileTable {
       id
       UserID
+      RoomID
       FileName
       Comment
       createdAt
@@ -86,6 +88,7 @@ export const onDeleteFileTable = /* GraphQL */ `
     onDeleteFileTable {
       id
       UserID
+      RoomID
       FileName
       Comment
       createdAt

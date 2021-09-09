@@ -44,8 +44,10 @@ type FileTable @model (
               {allow: groups, groups: ["Admin"] },
               {allow: private , operations:[read, create, delete]}])
 @key(name: "userID", fields:["UserID"], queryField: "showFileByOwner")
+@key(name: "RoomID", fields:["RoomID"], queryField: "showFileByRoom")
 {
   UserID: ID!
+  RoomID: ID!
   FileName: String!
   # FileID: String!
   Comment: String!
