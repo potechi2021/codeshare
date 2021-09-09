@@ -75,6 +75,7 @@ export const createFileTable = /* GraphQL */ `
     createFileTable(input: $input, condition: $condition) {
       id
       UserID
+      RoomID
       FileName
       Comment
       createdAt
@@ -91,6 +92,7 @@ export const updateFileTable = /* GraphQL */ `
     updateFileTable(input: $input, condition: $condition) {
       id
       UserID
+      RoomID
       FileName
       Comment
       createdAt
@@ -107,6 +109,7 @@ export const deleteFileTable = /* GraphQL */ `
     deleteFileTable(input: $input, condition: $condition) {
       id
       UserID
+      RoomID
       FileName
       Comment
       createdAt

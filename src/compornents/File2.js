@@ -16,6 +16,9 @@ import {
 } from '@material-ui/core';
 import {Auth, API, graphqlOperation } from 'aws-amplify';
 import { useHistory } from 'react-router';
+import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
+import 'react-tabs/style/react-tabs.css';
+import File3 from './File3'
 
 const drawerWidth = 240;
 
@@ -47,32 +50,81 @@ const useStyles = makeStyles(theme => ({
       padding: theme.spacing(3),
     },
   }));
+
+  //1. タブ(File3)にファイルのidを渡す -> ファイルの表示
+  //2. ルーム内のファイルとtabをリンクさせる
+  //3. サイドバーのファイルをリンクさせる
+  //3. サイドバーにファイルのupボタンを作る
+  //4. ルーティングをする
   
 export default function File2(prop) {
-    const [user] = React.useState();
     const classes = useStyles();
     const history = useHistory();
-    // const [count, setCount] = useState(initCount);
-    // const [square, setSquare] = useState(initCount * initCount);
-    
+    const [value, setValue] = React.useState("hey")
+    let filename = 'Hello Function Component!';
+
+    function handleSelect(index, last){
+      console.log('Selected tab: ' + index + ', Last tab: ' + last);
+    }
+
+    function selectTab(index){
+      filename = index;
+      return filename
+    }
+  
     React.useEffect(() => {
-      let currentState = history.state;
-      console.log("hey")
-      console.log(currentState);
-      console.log(window.location.state);
+      setValue("wow")
     }, []);
 
-    return (
-      <React.Fragment>
-        <header>
-          <h1>File2</h1>
-        </header>
-        <main>
-          <RoomSidebar activeListItem = "file2"></RoomSidebar>
-          <div className={classes.root}>
-            file2
-          </div>
-        </main>
-      </React.Fragment>
+    const reactElement = (
+      <div>
+        <h2>title</h2>
+        <p>body</p>
+        <p>{File3('これが渡した引数です')}</p>
+      </div>
     )
+
+   
+    return (
+
+      <React.Fragment>
+        <body>
+          <header>
+            <h1>CodeHouse</h1>
+          </header>
+          <main>
+            <div class="side">
+              <RoomSidebar activeListItem = "file1"></RoomSidebar>
+            </div>
+      <div >
+      <Tabs
+        onSelect={handleSelect}
+      >
+
+        <TabList>
+          <Tab>Foo</Tab>
+          <Tab>Bar</Tab>
+          <Tab>Baz</Tab>
+        </TabList>
+
+        <TabPanel>
+          <h2>Hello from Foo</h2>
+          <File3 value = {selectTab("GammaCorrection.java")} />
+        </TabPanel>
+        <TabPanel>
+          <h2>Hello from Bar</h2>
+            <File3 value = {selectTab("repAL-A.py")} />
+        </TabPanel>
+        <TabPanel>
+          <h2>Hello from Baz</h2>
+            <File3 value = {selectTab("repAL-A.py")} />
+        </TabPanel>
+
+      </Tabs>
+      </div>
+      
+          </main>
+        </body>
+      </React.Fragment>
+    );
 }
