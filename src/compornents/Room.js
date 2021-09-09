@@ -20,7 +20,7 @@ import {
     Grid,
   } from '@material-ui/core';
 import {Auth, API, graphqlOperation } from 'aws-amplify';
-import { useHistory } from 'react-router';
+import {useHistory, useLocation, useParams, withRouter } from 'react-router';
 
 const drawerWidth = 240;
 
@@ -76,10 +76,15 @@ function FileCard() {
   );
 }
 
-export default function Room() {
+function Room() {
     const [user] = React.useState();
     const classes = useStyles();
     const history = useHistory();
+    const location = useLocation();
+
+    const { roomId } = useParams();
+    console.log(roomId);
+    console.log("room");
     return (
         <React.Fragment>
         <RoomSidebar activeListItem = "file1"></RoomSidebar>
@@ -122,3 +127,5 @@ export default function Room() {
         </React.Fragment>
     )
 }
+
+export default withRouter(Room);

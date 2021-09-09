@@ -15,8 +15,9 @@ import {
     ListItemIcon,
   } from '@material-ui/core';
 import {Auth, API, graphqlOperation } from 'aws-amplify';
-import { useHistory } from 'react-router';
+import {useHistory, useLocation, useParams, withRouter } from 'react-router';
 import {createRoomTable} from '../graphql/mutations' //変更
+import Class from './Class'
 
 const drawerWidth = 150;
 
@@ -46,11 +47,21 @@ const useStyles = makeStyles(theme => ({
     },
   }));
   
-export default function MakeRoom() {
+function MakeRoom() {
     const [user] = React.useState();
     const [text, setText] = React.useState('Please write.');
     const rooms = useStyles();
     const history = useHistory();
+    const location = useLocation();   
+    const classId = location.state.classId;
+    // const { id } = useParams();
+    // console.log(id);
+    // const classId = id;
+    // const classId = props.value;
+    //const classId = props.classId;
+    console.log("makeroom");
+    console.log(location);
+    console.log(classId);
     const handleChange = (event) => {
       const target = event.target;
       const name = target.name;
@@ -63,7 +74,7 @@ export default function MakeRoom() {
       const newroom = API.graphql(
         graphqlOperation(createRoomTable, {
           input: {
-            ClassID: 'a8e5f441-4737-402e-a550-b4bc1fce5a2d',
+            ClassID: classId,
             RoomName: text.roomname,
             OwnerUserID: '0003',
             Comment: text.comment,
@@ -76,9 +87,9 @@ export default function MakeRoom() {
     return (
       <React.Fragment>
         <body>
-          <header>
-            <h1>サービス名</h1>
-          </header>
+          {/* <header>
+            <h1>Code House</h1>
+          </header> */}
           <main>
             <div className={rooms.root}>
               makeroom</div>    
@@ -93,7 +104,7 @@ export default function MakeRoom() {
                             }}>
                 マイページに戻る
               </Button>
-
+              {/* <p>state：{location.state.classid}</p> */}
               <label>
                 第何回：
                 <input type="text"
@@ -120,3 +131,5 @@ export default function MakeRoom() {
       </React.Fragment>
     )
 }
+
+export default withRouter(MakeRoom);
