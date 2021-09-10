@@ -22,6 +22,9 @@ import File3 from './File3'
 import {showFileByRoom} from '../graphql/queries' //変更
 import * as queries from '../graphql/queries';
 import * as mutations from '../graphql/mutations';
+import { Picker } from 'emoji-mart';
+import 'emoji-mart/css/emoji-mart.css';
+import { Emoji } from 'emoji-mart';
 
 Amplify.configure(awsconfig);
 
@@ -70,8 +73,7 @@ export default function Room(prop) {
     const { id } = useParams();
     const [roomState, roomSet] = React.useState([]);
     const [roomIDState, roomIDSet] = React.useState([]);
-    const comments = ["good", "nice"];
-
+    const [comments, commentsSet] = React.useState("");
     React.useEffect(() =>{
       ;(async () => {
         console.log("Room ID : ", id)
@@ -95,6 +97,23 @@ export default function Room(prop) {
       return <File3 value = {name} /> 
     }
 
+    // const handleChange = (event) => {
+    //     const target = event.target;
+    //     const name = target.name;
+    //     commentsSet(target[name].value);
+    // };
+    // const handleSubmit = useCallback((event, comments) => {
+    //   const target = event.target;
+    //   event.preventDefault();
+    //   console.log("Room handleSubmit");
+    //   const newcomment = API.graphql(
+    //     graphqlOperation(updateClassTable, {
+    //       input: {
+    //         Comment: comments+target,
+    //       }
+    //     }))
+    //   console.log(newcomment);
+    // });
 
      //ファイルをアップロード
     async function onChange(e) {
@@ -128,7 +147,6 @@ export default function Room(prop) {
         }))
         console.log(newfiletable)
     }
-
    
     return (
       <React.Fragment>
@@ -154,22 +172,24 @@ export default function Room(prop) {
       {roomState.map((data) => {
         return <TabPanel>
         <h2>{data.UserID}</h2>
-        
-        {/* <h4>{data.Comment[1]}</h4>
-        {data.Comment.map((comment) => {
-              return <p>{comment}</p>
-            })} */}
             {tabElement(data.FileName)}
-            {/* コメント一覧 */}
+            {/* コメント一覧
+            <form onSubmit={handleSubmit}>
+              <label>
+                コメント:
+                <textarea value={value} onChange={handleChange(data.Comment)} />
+              </label>
+              <input type="submit" value="コメントを追加する" />
+            </form>
             <ul>
               {data.Comment.length < 1 ? (
                 <div>コメントはありません</div>
               ) : (
                 data.Comment.map(comment => <li>{comment}</li>)
               )}
-            </ul>
-            
-          </TabPanel> 
+            </ul> */}
+            <EmojiStamp />
+            </TabPanel> 
        })}
 
       </Tabs> 
@@ -188,14 +208,14 @@ export default function Room(prop) {
         return <TabPanel>
         <h2>{data.UserID}</h2>
             {tabElement(data.FileName)}
-            {/* コメント一覧 */}
+            {/* コメント一覧
             <ul>
               {data.Comment.length < 1 ? (
                 <div>コメントはありません</div>
               ) : (
                 data.Comment.map(comment => <li>{comment}</li>)
               )}
-            </ul>
+            </ul> */}
           </TabPanel> 
        })}
 
@@ -206,6 +226,57 @@ export default function Room(prop) {
         </body>
       </React.Fragment>
     );
+}
+
+function EmojiStamp(){
+  const [emojiList, setEmojiList] = React.useState([]);
+
+  // const onSelect = emoji => {
+  //   console.log({ emoji });
+  //   setEmojiList([...emojiList, emoji]);
+  // };
+  return (
+    <>
+        {emojiList.length
+          ? emojiList.map(({id}, i) => (
+              <Emoji
+                emoji={id}
+                size={32}
+                key={i}
+              />
+            ))
+          : null}
+        {/* 絵文字一覧 */}
+        {<Picker
+            onSelect={emoji => {
+              console.log({ emoji });
+              setEmojiList([...emojiList, emoji]);
+            }}
+            native
+            i18n={{
+              search: '検索',
+              categories: {
+                search: '検索結果',
+                recent: 'よく使う絵文字',
+                people: '顔 & 人',
+                nature: '動物 & 自然',
+                foods: '食べ物 & 飲み物',
+                activity: 'アクティビティ',
+                places: '旅行 & 場所',
+                objects: 'オブジェクト',
+                symbols: '記号',
+                flags: '旗',
+                custom: 'カスタム',
+              },
+            }}
+            style={{
+              position: 'absolute',
+              zIndex: '1',
+            }}
+          />}
+      </>
+      
+  );
 }
 
 
