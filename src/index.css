@@ -9,11 +9,17 @@ header {
   padding-left: 50px;
   padding-top: 0px;
   width: 100%;
+  height: 80px;
   top: 0;
   left: 0;
   position: fixed;
   font-size: 30px;
   z-index: 10000;
+  display: flex;
+}
+
+.side {
+  border-right: 1px black solid;
 }
 
 button {
@@ -32,6 +38,31 @@ textarea {
 
 .input {
   margin: 10px;
+}
+
+.displayURL {
+  position: relative;
+  display: inline-block;
+  margin-top: 25px;
+  margin-left: 50px;
+}
+
+.copyURL {
+  display: inline-block;
+  overflow: hidden;
+  min-width: 100px;
+  padding: 3px 5px;
+  white-space: nowrap;
+  opacity: 0;
+}
+
+.inputURL {
+  position: absolute;
+  top: 0;
+  left: 0;
+  box-sizing: border-box;
+  width: 100%;
+  padding: 2px 4px;
 }
 
 body {
