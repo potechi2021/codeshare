@@ -53,6 +53,30 @@ main {
   display: flex;
 }
 
+input[type="file"] {
+  display: none;
+}
+
+.fileUpload {
+  height: 100px;
+  padding: 30px;
+}
+
+label[for="fileUpload"] {
+  color: white;
+  background-color: #A1B6EC;
+  padding: 10px;
+  border: double 4px white;
+  width: 200px;
+  height: 100px;
+  border-radius: 10px;
+}
+
+.roomTabs {
+  display: flex;
+  margin-left: 10px;
+}
+
 .myPageMain {
   display: flex;
 }

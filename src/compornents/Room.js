@@ -147,7 +147,7 @@ export default function Room(prop) {
         }))
         console.log(newfiletable)
     }
-   
+
     return (
       <React.Fragment>
         <body>
@@ -158,68 +158,78 @@ export default function Room(prop) {
             <div class="side">
               <RoomSidebar activeListItem = "file1"></RoomSidebar>
             </div>
+            <div>
+              <div class="fileUpload">
+                <label for="fileUpload">
+                  ファイルを選択して下さい
+                  <input type="file" onChange={onChange}/>
+                </label>
+              </div>
+              <div class="roomTabs">
+                <Tabs>
 
-      <Tabs>
-      <input type="file" onChange={onChange}/>
-     
-      <TabList>
-      {roomState.map((data) => {
-        return <Tab>{data.FileName}</Tab>
-       })}
-      </TabList>
+                  
 
-      
-      {roomState.map((data) => {
-        return <TabPanel>
-        <h2>{data.UserID}</h2>
-            {tabElement(data.FileName)}
-            {/* コメント一覧
-            <form onSubmit={handleSubmit}>
-              <label>
-                コメント:
-                <textarea value={value} onChange={handleChange(data.Comment)} />
-              </label>
-              <input type="submit" value="コメントを追加する" />
-            </form>
-            <ul>
-              {data.Comment.length < 1 ? (
-                <div>コメントはありません</div>
-              ) : (
-                data.Comment.map(comment => <li>{comment}</li>)
-              )}
-            </ul> */}
-            <EmojiStamp />
-            </TabPanel> 
-       })}
+                  <TabList>
+                  {roomState.map((data) => {
+                    return <Tab>{data.FileName}</Tab>
+                  })}
+                  </TabList>
 
-      </Tabs> 
-      <Tabs>
-      {/* <input type="file" onChange={onChange}/> */}
-      <br></br>
-     
-      <TabList>
-      {roomState.map((data) => {
-        return <Tab>{data.FileName}</Tab>
-       })}
-      </TabList>
+                  
+                  {roomState.map((data) => {
+                    return <TabPanel>
+                    <h2>{data.UserID}</h2>
+                        {tabElement(data.FileName)}
+                        {/* コメント一覧
+                        <form onSubmit={handleSubmit}>
+                          <label>
+                            コメント:
+                            <textarea value={value} onChange={handleChange(data.Comment)} />
+                          </label>
+                          <input type="submit" value="コメントを追加する" />
+                        </form>
+                        <ul>
+                          {data.Comment.length < 1 ? (
+                            <div>コメントはありません</div>
+                          ) : (
+                            data.Comment.map(comment => <li>{comment}</li>)
+                          )}
+                        </ul> */}
+                        <EmojiStamp />
+                        </TabPanel> 
+                  })}
 
-      
-      {roomState.map((data) => {
-        return <TabPanel>
-        <h2>{data.UserID}</h2>
-            {tabElement(data.FileName)}
-            {/* コメント一覧
-            <ul>
-              {data.Comment.length < 1 ? (
-                <div>コメントはありません</div>
-              ) : (
-                data.Comment.map(comment => <li>{comment}</li>)
-              )}
-            </ul> */}
-          </TabPanel> 
-       })}
+                </Tabs> 
+                <Tabs>
+                  {/* <input type="file" onChange={onChange}/> 
+                  <br></br> */}
 
-      </Tabs> 
+                  <TabList>
+                  {roomState.map((data) => {
+                    return <Tab>{data.FileName}</Tab>
+                  })}
+                  </TabList>
+
+                  
+                  {roomState.map((data) => {
+                    return <TabPanel>
+                    <h2>{data.UserID}</h2>
+                        {tabElement(data.FileName)}
+                        {/* コメント一覧
+                        <ul>
+                          {data.Comment.length < 1 ? (
+                            <div>コメントはありません</div>
+                          ) : (
+                            data.Comment.map(comment => <li>{comment}</li>)
+                          )}
+                        </ul> */}
+                      </TabPanel> 
+                  })}
+
+                </Tabs> 
+              </div>
+            </div>
 
 
           </main>
