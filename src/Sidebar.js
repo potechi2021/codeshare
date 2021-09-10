@@ -14,7 +14,7 @@ import {Auth, API, graphqlOperation } from 'aws-amplify';
 import { useHistory } from 'react-router';
 
 
-const drawerWidth = 150;
+const drawerWidth = 200;
 const MAX_POST_CONTENT_LENGTH = 140;
 
 const useStyles = makeStyles(theme => ({
@@ -30,6 +30,7 @@ const useStyles = makeStyles(theme => ({
   toolbar: theme.mixins.toolbar,
   textField: {
     width: drawerWidth,
+    position: 'relative'
   },
   list: {
     width: 100,
@@ -55,12 +56,10 @@ export default function Sidebar({activeListItem}) {
             }}
             anchor="left"
         >
-            <div className={classes.toolbar} />
                 <List>
                     <ListItem key='logout'>
                         <ListItemText primary={
                             <Button
-                            variant="outlined"
                             onClick={signOut}
                             fullWidth
                             >

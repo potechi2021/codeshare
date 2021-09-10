@@ -84,7 +84,13 @@ function MyPage() {
       console.log(id);
       console.log(classId);
     }, [classId]);
-    
+    const returnTop = () => {
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
+    };
+
     if (classState) {
       return (
         <React.Fragment>
@@ -99,9 +105,8 @@ function MyPage() {
                 </div>
                 <div class="content">
                   
-                  <div>
+                  {/* <div>
                     <Button
-                      variant="outlined"
                       onClick={() => {
                                         Auth.currentAuthenticatedUser().then((user) => {
                                           history.push('/makeroom');
@@ -110,7 +115,7 @@ function MyPage() {
                                     }}>
                       部屋を作る
                     </Button>
-                  </div>
+                  </div> */}
                     {/*
                     <Button
                       variant="outlined"
@@ -142,9 +147,11 @@ function MyPage() {
                         </a>;
                       })}
                     </ul>
+                    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.4/css/all.css" />
+                    <div id="page_top"><a href="#"></a></div>
                   </div>
                 </div>
-              </div>
+                </div>
             </main>
           </body>
         </React.Fragment>
@@ -161,30 +168,6 @@ function MyPage() {
                 <Sidebar activeListItem = "mypage"></Sidebar>
               </div>
               <div class="content">
-                <div>
-                  {/* <Button
-                    color = "primary"
-                    variant="outlined"
-                    onClick={() => {
-                                      Auth.currentAuthenticatedUser().then((user) => {
-                                        history.push('/makeroom');
-                                        console.log("click");
-                                      })
-                                  }}>
-                    部屋を作る
-                  </Button>
-                  <Button
-                    color = "primary"
-                    variant="outlined"
-                    onClick={() => {
-                                      Auth.currentAuthenticatedUser().then((user) => {
-                                        history.push('/class');
-                                        console.log("click");
-                                      })
-                                  }}>
-                    関数型言語
-                  </Button> */}
-                </div>
                 <div class="largeRoomList">
                   <h2>参加している授業一覧</h2>
                   <p>参加している授業がありません。</p>

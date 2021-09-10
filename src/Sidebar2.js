@@ -55,12 +55,10 @@ export default function Sidebar({activeListItem}) {
             }}
             anchor="left"
         >
-            <div className={classes.toolbar} />
                 <List>
                     <ListItem key='logout'>
                         <ListItemText primary={
                             <Button
-                            variant="outlined"
                             onClick={signOut}
                             fullWidth
                             >

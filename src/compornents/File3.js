@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useCallback }  from 'react';
 import RoomSidebar from './RoomSidebar';
 import { AmplifyAuthenticator, AmplifySignUp, AmplifySignOut, AmplifyS3Text } from '@aws-amplify/ui-react';
 import { AuthState, onAuthUIStateChange } from '@aws-amplify/ui-components';
@@ -69,6 +69,7 @@ export default function File3(props) {
     const history = useHistory();
     const [badgeCode, setBadgeCode] = React.useState('nikaera');
     const [Comment, setComment] = React.useState([]);
+    const [Form, setForm] = React.useState([]);
 
     //user auth
     React.useEffect(() => {
@@ -125,6 +126,19 @@ export default function File3(props) {
         console.log(newComment)
     }
 
+    const handleSubmit = useCallback((event, comments) => {
+        const target = event.target;
+        event.preventDefault();
+        console.log("Room handleSubmit");
+        //コメントを追加
+        addComment(Form)
+    });
+    //コメント投稿
+    const handleChange = (event) => {
+          console.log(event)
+          setForm(event.target.value);
+    };
+
     //ファイルID -> コメントを表示 
     async function showComment(){
       const newComment = await API.graphql({ query: queries.showCommentByFileId, variables: { FileID: props.value.id }});
@@ -132,7 +146,7 @@ export default function File3(props) {
       return newComment.data.showCommentByFileID.items;
     }
 
-        //ファイルをアップロード
+    //ファイルをアップロード
     async function onChange(e) {
       console.log()
       const file = e.target.files[0];
@@ -146,6 +160,9 @@ export default function File3(props) {
         console.log('Error uploading file: ', error);
       }  
     }
+
+    //Emoji read
+    //Emoji add
 
     return (
       <React.Fragment>
@@ -171,6 +188,8 @@ export default function File3(props) {
             </code>
           </pre>
           <br></br>
+
+        {/* コメント表示 */}
           <List>
           {Comment.map((data) => {
             return <ListItem>
@@ -180,6 +199,17 @@ export default function File3(props) {
             </ListItem>
           })}
           </List>
+
+          {/* コメント送信 */}
+
+          <form onSubmit={handleSubmit}>
+              <label>
+                コメント:
+                <textarea value={Form} onChange={handleChange}/>
+              </label>
+              <input type="submit" value="コメントを追加する"  />
+          </form>
+
               </div>
             
           </main>
