@@ -18,11 +18,13 @@ import { useHistory } from 'react-router';
 import hljs from '../highlight.js/lib/core';
 import python from '../highlight.js/lib/languages/python';
 import java from '../highlight.js/lib/languages/java';
+import javascript from '../highlight.js/lib/languages/javascript';
 import '../highlight.js/styles/github.css';
 
 
 hljs.registerLanguage('python', python);
 hljs.registerLanguage('java', java);
+hljs.registerLanguage('javascriptt', javascript);
 
 
 
@@ -66,6 +68,7 @@ export default function File3(props) {
     const classes = useStyles();
     const history = useHistory();
     const [badgeCode, setBadgeCode] = React.useState('nikaera');
+    const [SourceType, setSourceType] = React.useState('python');
 
     React.useEffect(() => {
         return onAuthUIStateChange((nextAuthState, authData) => {
@@ -85,8 +88,9 @@ export default function File3(props) {
         const result = await Storage.get( props.value , { download: true });
         console.log("result : ", result.Body)
         result.Body.text().then(text => setFileObject(text)); 
-        // console.log("result!!! :", FileObject);
         setBadgeCode(FileObject, []);
+        selectType(props.value)
+        // console.log()
         })()
       });
 
@@ -107,6 +111,23 @@ export default function File3(props) {
           }  
         }
 
+      function selectType(word){
+        const kakuchosi = word.split('.');
+        console.log("kokusaika", kakuchosi[1]);
+        
+        if(kakuchosi[1] == "js"){
+          setSourceType("javascript")
+        }
+        else if(kakuchosi[1] == "java"){
+          setSourceType("java")
+        }
+        else{
+          setSourceType("python")
+        }
+
+        console.log(SourceType);
+      }
+
     return (
       <React.Fragment>
         <body>
@@ -116,7 +137,7 @@ export default function File3(props) {
                 <br />
                 {/* <AmplifyS3Text textKey={props.value} /> */}
                  <pre style={{ width: '80vw' }}>
-            <code className="java">
+            <code className={SourceType}>
               {badgeCode}
             </code>
           </pre>
