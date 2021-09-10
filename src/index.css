@@ -41,8 +41,13 @@ textarea {
 }
 
 .displayURL {
+  margin-left: 20px;
   position: relative;
   display: inline-block;
+}
+
+.copyURLbutton:hover {
+  cursor: pointer;
 }
 
 .copyURL {
@@ -65,7 +70,6 @@ textarea {
   padding: 2px 4px;
   position: absolute;
   margin: auto;
-  margin-left: 20px;
   height: 30px;
 }
 

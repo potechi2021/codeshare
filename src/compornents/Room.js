@@ -106,6 +106,17 @@ export default function Room(prop) {
       return url;
     }
 
+    function copyURL() {
+      console.log("location:", location);
+      console.log("location pathname:", location.pathname);
+      console.log("https://master.d3t4uee5vnvism.amplifyapp.com/#" + location.pathname)
+      const url = "https://master.d3t4uee5vnvism.amplifyapp.com/#" + location.pathname;
+      navigator.clipboard.writeText(url);
+      if (window.clipboardData){
+        window.clipboardData.setData(url);
+      }
+    }
+
      //ファイルをアップロード
     async function onChange(e) {
       console.log()
@@ -179,6 +190,7 @@ export default function Room(prop) {
           <header>
             <h1>CodeHouse</h1>
             <div class="displayURL">
+              <input class="copyURLbutton" type="button" value="Copy" onclick={copyURL()}></input>
               <div class="copyURL">{testClick()}</div>
               <input id="copyTarget" class="inputURL" type="text" value={testClick()} readonly></input>
             </div>
