@@ -14,14 +14,16 @@ import {
   TextField,
   ListItemIcon,
 } from '@material-ui/core';
-import {Auth, API, graphqlOperation } from 'aws-amplify';
+import {Auth, API, graphqlOperation, Storage } from 'aws-amplify';
 import {useHistory, useParams, withRouter } from 'react-router-dom';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
 import File3 from './File3'
 import {showFileByRoom} from '../graphql/queries' //変更
 import * as queries from '../graphql/queries';
+import * as mutations from '../graphql/mutations';
 
+Amplify.configure(awsconfig);
 
 const drawerWidth = 240;
 
@@ -64,35 +66,75 @@ export default function Room(prop) {
     const classes = useStyles();
     const history = useHistory();
     const [value, setValue] = React.useState("hey")
-    let filename = 'Hello Function Component!';
-    const tmpRoomId = "10591538-5c32-4605-914d-9918c58aed0f";
-    const { Roomid } = useParams();
-    var fileArray = []
+    const tmpRoomid = "10591538-5c32-4605-914d-9918c58aed0f";
+    const { id } = useParams();
     const [roomState, roomSet] = React.useState([]);
+    const [roomIDState, roomIDSet] = React.useState([]);
 
     React.useEffect(() =>{
       ;(async () => {
-        console.log(Roomid)
-        const rest = await API.graphql({ query: queries.showFileByRoom, variables: { RoomID: tmpRoomId }});
-        console.log(rest.data.showFileByRoom.items[0].FileName)
+        console.log("Room ID : ", id)
+        await setroomid(id)
+        console.log(roomIDState)
+        const rest = await API.graphql({ query: queries.showFileByRoom, variables: { RoomID: id }});
         roomSet(rest.data.showFileByRoom.items);
-        console.log(roomState)
       })()
       return () => {
       }
-    },[])
-  
-    function handleSelect(index, last){
-      console.log('Selected tab: ' + index + ', Last tab: ' + last);
-    }
+    },[roomIDState])
 
-    function selectTab(index){
-      filename = index;
-      return filename
+    function setroomid(id){
+      roomIDSet(id)
     }
 
     function tabElement(name){
       return <File3 value = {name} /> 
+    }
+
+
+     //ファイルをアップロード
+    async function onChange(e) {
+      console.log()
+      const file = e.target.files[0];
+      console.log(file.name)
+
+ 
+      
+      try {
+        
+        await addFile(file.name);
+        await Storage.put(file.name, file, {
+          // contentType: 'image/' // contentType is optional
+          contentType: 'text/plain'
+        });
+
+
+        // await API.graphql({ query: mutations.createFileTable , variables: {input: fileDetails}});
+
+      } catch (error) {
+        console.log('Error uploading file: ', error);
+      }  
+    }
+
+    //ファイルを追加
+
+    async function addFile(filename){
+
+      const newfiletable = await API.graphql(
+        graphqlOperation(mutations.createFileTable, {
+          input: {
+            // id: 1,
+            UserID: 100,
+            RoomID: id,
+            FileName: filename,
+            Comment: "comment",
+            // createdAt: "2021-09-09T03:37:52.578Z",
+            // updatedAt: "2021-09-09T03:37:52.578Z",
+            // ownerUserID: 100,
+          }
+        }))
+
+        console.log(newfiletable)
     }
 
    
@@ -107,32 +149,9 @@ export default function Room(prop) {
             <div class="side">
               <RoomSidebar activeListItem = "file1"></RoomSidebar>
             </div>
-      
-      {/* <Tabs
-        onSelect={handleSelect}
-      >
-
-        <TabList>
-          <Tab>1</Tab>
-          <Tab>Foo</Tab>
-          <Tab>Bar</Tab>
-          <Tab>Baz</Tab>
-        </TabList> */}
-
-      
-
-          {/* <TabPanel>
-          <h2>Hello from Foo</h2>
-          <File3 value = {selectTab("GammaCorrection.java")} />
-        </TabPanel>
-        <TabPanel>
-          <h2>Hello from Bar</h2>
-            <File3 value = {selectTab("repAL-A.py")} />
-          </TabPanel> */}
-        
 
       <Tabs>
-
+      <input type="file" onChange={onChange}/>
      
       <TabList>
       {roomState.map((data) => {
@@ -150,6 +169,28 @@ export default function Room(prop) {
        })}
 
       </Tabs> 
+      <Tabs>
+      {/* <input type="file" onChange={onChange}/> */}
+      <br></br>
+     
+      <TabList>
+      {roomState.map((data) => {
+        return <Tab>{data.FileName}</Tab>
+       })}
+      </TabList>
+
+      
+      {roomState.map((data) => {
+        return <TabPanel>
+        <h2>{data.UserID}</h2>
+        <h4>{data.Comment}</h4>
+            {tabElement(data.FileName)}
+          </TabPanel> 
+       })}
+
+      </Tabs> 
+
+
           </main>
         </body>
       </React.Fragment>
