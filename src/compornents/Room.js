@@ -15,7 +15,7 @@ import {
   ListItemIcon,
 } from '@material-ui/core';
 import {Auth, API, graphqlOperation, Storage } from 'aws-amplify';
-import {useHistory, useParams, withRouter } from 'react-router-dom';
+import {useHistory, useParams, withRouter, useLocation } from 'react-router-dom';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
 import File3 from './File3'
@@ -74,6 +74,7 @@ export default function Room(prop) {
     const [roomIDState, roomIDSet] = React.useState([]);
     const [comments, commentsSet] = React.useState("");
     const [Comment, setComment] = React.useState([]);
+    const location = useLocation();
 
     //RoomID
     React.useEffect(() =>{
@@ -94,6 +95,15 @@ export default function Room(prop) {
 
     function tabElement(filedata){
       return <File3 value = {filedata}/> 
+    }
+
+    //URLを取得
+    function testClick(){
+      console.log("location:", location);
+      console.log("location pathname:", location.pathname);
+      console.log("https://master.d3t4uee5vnvism.amplifyapp.com/#" + location.pathname)
+      const url = "https://master.d3t4uee5vnvism.amplifyapp.com/#" + location.pathname;
+      return url;
     }
 
      //ファイルをアップロード
@@ -168,6 +178,10 @@ export default function Room(prop) {
         <body>
           <header>
             <h1>CodeHouse</h1>
+            <div class="displayURL">
+              <div class="copyURL">{testClick()}</div>
+              <input id="copyTarget" class="inputURL" type="text" value={testClick()} readonly></input>
+            </div>
           </header>
           <main>
             <div class="side">

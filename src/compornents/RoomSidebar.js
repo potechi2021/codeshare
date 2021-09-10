@@ -119,53 +119,57 @@ export default function RoomSidebar({activeListItem}) {
                     </ListItem>
 
                     <div>
-                         <span>
-                             <ListItem>
-                                 <ListItemText primary={
-                                     <Button
-                                     onClick={testClick()}
-                                     >
-                                         test
-                                     </Button>
-                                 } />
+                        <span>
+                            <ListItem>
+                                <ListItemText primary={
+                                    <Button
+                                    onClick={testClick()}
+                                    >
+                                        test
+                                    </Button>
+                                } />
 
-                             </ListItem>
-                         </span>
-                         <span>
-                             <ListItem>
-                                 <ListItemText primary={
+                            </ListItem>
+                        </span>
+
+                        {/*
+                        <span>
+                            <ListItem>
+                                <ListItemText primary={
                                     <input id="copyTarget" type="text" value={testClick()} readonly></input>
                                     // <Button
                                     //  onClick={testClick()}
                                     //  >
                                     //      test
                                     //  </Button>
-                                 } />
+                                } />
 
-                             </ListItem>
-                         </span>
-                         <span>
-                             <ListItem>
-                                 <ListItemText primary={
-                                     <Button
-                                     onClick={() => setIsOpen1(!isOpen1)}
-                                     >
-                                     課題1
-                                     </Button>
-                                 } />
-                             </ListItem>
-                         </span>
-                     {isOpen1 && (
-                         <div>
-                             <div>
-                                 <Button onClick={() => setIsOpen1_1(!isOpen1_1)}>
-                                 名前1
-                                 </Button>
+                            </ListItem>
+                        </span>
+                        */}
+                        
+                        <span>
+                            <ListItem>
+                                <ListItemText primary={
+                                    <Button
+                                    onClick={() => setIsOpen1(!isOpen1)}
+                                    >
+                                    課題1
+                                    </Button>
+                                } />
+                            </ListItem>
+                        </span>
+                    {isOpen1 && (
+                        <div>
+                            <div>
+                                <Button onClick={() => setIsOpen1_1(!isOpen1_1)}>
+                                名前1
+                                </Button>
 
-                                 {isOpen1_1 && (
-                                     <div>
-                                         <div>
-                                             <Button
+                                {isOpen1_1 && (
+                                    <div>
+                                        <div>
+                                            <Button
                                                 selected={activeListItem === 'file1'}
                                                 onClick={() => {
                                                     Auth.currentAuthenticatedUser().then((user) => {
@@ -177,8 +181,8 @@ export default function RoomSidebar({activeListItem}) {
                                             >
                                                   file1
                                               </Button>
-                                         </div>
-                                         <div>
+                                        </div>
+                                        <div>
                                             <Button
                                                 selected={activeListItem === 'file2'}
                                                 onClick={() => {
@@ -189,155 +193,155 @@ export default function RoomSidebar({activeListItem}) {
                                                 }}
                                                 key='file2'
                                             >
-                                               file2
+                                              file2
                                               </Button>
-                                         </div>
-                                         <div>
-                                             <Button>ファイル3</Button>
-                                         </div>
-                                     </div>
-                                 )}
-                             </div>
+                                        </div>
+                                        <div>
+                                            <Button>ファイル3</Button>
+                                        </div>
+                                    </div>
+                                )}
+                            </div>
 
-                             <div>
-                                 <Button onClick={() => setIsOpen1_2(!isOpen1_2)}>
-                                 名前2
-                                 </Button>
+                            <div>
+                                <Button onClick={() => setIsOpen1_2(!isOpen1_2)}>
+                                名前2
+                                </Button>
 
-                                 {isOpen1_2 && (
-                                     <div>
-                                         <div>
-                                             <Button>ファイル1</Button>
-                                         </div>
-                                         <div>
-                                             <Button>ファイル2</Button>
-                                         </div>
-                                         <div>
-                                             <Button>ファイル3</Button>
-                                         </div>
-                                     </div>
-                                 )}
-                             </div>
-                         </div>
-                     )}
-                 </div>
+                                {isOpen1_2 && (
+                                    <div>
+                                        <div>
+                                            <Button>ファイル1</Button>
+                                        </div>
+                                        <div>
+                                            <Button>ファイル2</Button>
+                                        </div>
+                                        <div>
+                                            <Button>ファイル3</Button>
+                                        </div>
+                                    </div>
+                                )}
+                            </div>
+                        </div>
+                    )}
+                </div>
 
-                 <div>
-                     <span>
-                         <ListItem>
-                             <ListItemText primary={
-                                 <Button
-                                 onClick={() => setIsOpen2(!isOpen2)}
-                                 >
-                                 課題2
-                                 </Button>
-                             } />
-                         </ListItem>
-                     </span>
+                <div>
+                    <span>
+                        <ListItem>
+                            <ListItemText primary={
+                                <Button
+                                onClick={() => setIsOpen2(!isOpen2)}
+                                >
+                                課題2
+                                </Button>
+                            } />
+                        </ListItem>
+                    </span>
 
-                     {isOpen2 && (
-                         <div>
-                             <div>
-                                 <Button onClick={() => setIsOpen2_1(!isOpen2_1)}>
-                                 名前1
-                                 </Button>
+                    {isOpen2 && (
+                        <div>
+                            <div>
+                                <Button onClick={() => setIsOpen2_1(!isOpen2_1)}>
+                                名前1
+                                </Button>
 
-                                 {isOpen2_1 && (
-                                     <div>
-                                         <div>
-                                             <Button>ファイル1</Button>
-                                         </div>
-                                         <div>
-                                             <Button>ファイル2</Button>
-                                         </div>
-                                         <div>
-                                             <Button>ファイル3</Button>
-                                         </div>
-                                     </div>
-                                 )}
-                             </div>
+                                {isOpen2_1 && (
+                                    <div>
+                                        <div>
+                                            <Button>ファイル1</Button>
+                                        </div>
+                                        <div>
+                                            <Button>ファイル2</Button>
+                                        </div>
+                                        <div>
+                                            <Button>ファイル3</Button>
+                                        </div>
+                                    </div>
+                                )}
+                            </div>
 
-                             <div>
-                                 <Button onClick={() => setIsOpen2_2(!isOpen2_2)}>
-                                 名前2
-                                 </Button>
+                            <div>
+                                <Button onClick={() => setIsOpen2_2(!isOpen2_2)}>
+                                名前2
+                                </Button>
 
-                                 {isOpen2_2 && (
-                                     <div>
-                                         <div>
-                                             <Button>ファイル1</Button>
-                                         </div>
-                                         <div>
-                                             <Button>ファイル2</Button>
-                                         </div>
-                                         <div>
-                                             <Button>ファイル3</Button>
-                                         </div>
-                                     </div>
-                                 )}
-                             </div>
-                         </div>
-                     )}
-                 </div>
+                                {isOpen2_2 && (
+                                    <div>
+                                        <div>
+                                            <Button>ファイル1</Button>
+                                        </div>
+                                        <div>
+                                            <Button>ファイル2</Button>
+                                        </div>
+                                        <div>
+                                            <Button>ファイル3</Button>
+                                        </div>
+                                    </div>
+                                )}
+                            </div>
+                        </div>
+                    )}
+                </div>
 
-                 <div>
-                     <span>
-                         <ListItem>
-                             <ListItemText primary={
-                                 <Button
-                                 onClick={() => setIsOpen3(!isOpen3)}
-                                 >
-                                 課題3
-                                 </Button>
-                             } />
-                         </ListItem>
-                     </span>
+                <div>
+                    <span>
+                        <ListItem>
+                            <ListItemText primary={
+                                <Button
+                                onClick={() => setIsOpen3(!isOpen3)}
+                                >
+                                課題3
+                                </Button>
+                            } />
+                        </ListItem>
+                    </span>
 
-                     {isOpen3 && (
-                         <div>
-                             <div>
-                                 <Button onClick={() => setIsOpen3_1(!isOpen3_1)}>
-                                 名前1
-                                 </Button>
+                    {isOpen3 && (
+                        <div>
+                            <div>
+                                <Button onClick={() => setIsOpen3_1(!isOpen3_1)}>
+                                名前1
+                                </Button>
 
-                                 {isOpen3_1 && (
-                                     <div>
-                                         <div>
-                                             <Button>ファイル1</Button>
-                                         </div>
-                                         <div>
-                                             <Button>ファイル2</Button>
-                                         </div>
-                                         <div>
-                                             <Button>ファイル3</Button>
-                                         </div>
-                                     </div>
-                                 )}
-                             </div>
+                                {isOpen3_1 && (
+                                    <div>
+                                        <div>
+                                            <Button>ファイル1</Button>
+                                        </div>
+                                        <div>
+                                            <Button>ファイル2</Button>
+                                        </div>
+                                        <div>
+                                            <Button>ファイル3</Button>
+                                        </div>
+                                    </div>
+                                )}
+                            </div>
 
-                             <div>
-                                 <Button onClick={() => setIsOpen3_2(!isOpen3_2)}>
-                                 名前2
-                                 </Button>
+                            <div>
+                                <Button onClick={() => setIsOpen3_2(!isOpen3_2)}>
+                                名前2
+                                </Button>
 
-                                 {isOpen3_2 && (
-                                     <div>
-                                         <div>
-                                             <Button>ファイル1</Button>
-                                         </div>
-                                         <div>
-                                             <Button>ファイル2</Button>
-                                         </div>
-                                         <div>
-                                             <Button>ファイル3</Button>
-                                         </div>
-                                     </div>
-                                 )}
-                             </div>
-                         </div>
-                     )}
-                 </div>
-                 
+                                {isOpen3_2 && (
+                                    <div>
+                                        <div>
+                                            <Button>ファイル1</Button>
+                                        </div>
+                                        <div>
+                                            <Button>ファイル2</Button>
+                                        </div>
+                                        <div>
+                                            <Button>ファイル3</Button>
+                                        </div>
+                                    </div>
+                                )}
+                            </div>
+                        </div>
+                    )}
+                </div>
+                
                 </List>
         </Drawer>
         )
