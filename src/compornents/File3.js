@@ -37,7 +37,7 @@ const useStyles = makeStyles(theme => ({
       width: '100%',
     },
     root: {
-      display: 'flex',
+      display: 'block',
       height: '100%',
       width: 500,
       marginLeft: 'auto',
@@ -88,68 +88,64 @@ export default function File3(props) {
     //file
     React.useEffect(() =>{
         ;(async () => {
-        const result = await Storage.get( props.value , { download: true });
-        console.log("result : ", result)
+        console.log(props.value.FileName)
+        const result = await Storage.get( props.value.FileName , { download: true });
+        
         result.Body.text().then(text => setFileObject(text)); 
+        result.Body.text().then(text => console.log("result : ", text)); 
         setBadgeCode(FileObject, []);
         })()
-    });
+    },[props.value.id]);
     
     //comment
     React.useEffect(() =>{
         ;(async () => {
-          const newComment = await API.graphql({ query: queries.showCommentByFileId, variables: { FileID: "3c460c8e-f999-4204-9c68-e8ffe9cae98f" }});
+          const newComment = await API.graphql({ query: queries.showCommentByFileId, variables: { FileID: props.value.id }});
           console.log("comment:", newComment.data.showCommentByFileID.items);
           const comments =  newComment.data.showCommentByFileID.items;
           setComment(comments)
           console.log("comment！:", Comment);
         })()
-    });
+    }, []);
 
     //コメントを追加
-    async function addComment(){
+    async function addComment(comment){
 
-      console.log(Auth.currentAuthenticatedUser());
-      const user1 = await Auth.currentAuthenticatedUser();
-
-      console.log("user : ", user1.username)
+      const user = await Auth.currentAuthenticatedUser();
+      console.log("user : ", user.username)
 
       const newComment = await API.graphql(
         graphqlOperation(mutations.createCommentTable, {
           input: {
-            FileID: "3c460c8e-f999-4204-9c68-e8ffe9cae98f",
-            Comment: "wow!",
-            UserID: user1.username,
+            FileID: props.value.id,
+            Comment: comment,
+            UserID: user.username,
           }
         }))
         console.log(newComment)
-      }
+    }
 
-      //ファイルID -> コメントを表示 
-      async function showComment(){
-        const newComment = await API.graphql({ query: queries.showCommentByFileId, variables: { FileID: "3c460c8e-f999-4204-9c68-e8ffe9cae98f" }});
-        return newComment.data.showCommentByFileID.items;
-      }
-
-      
-
+    //ファイルID -> コメントを表示 
+    async function showComment(){
+      const newComment = await API.graphql({ query: queries.showCommentByFileId, variables: { FileID: props.value.id }});
+      console.log("how :", newComment.data.showCommentByFileID.items)
+      return newComment.data.showCommentByFileID.items;
+    }
 
         //ファイルをアップロード
-        async function onChange(e) {
-          console.log()
-          const file = e.target.files[0];
-          // console.log(file.name)
+    async function onChange(e) {
+      console.log()
+      const file = e.target.files[0];
+
+      try {
+        await Storage.put(file.name, file, {
+          contentType: 'image/png' // contentType is optional
+        });
     
-          try {
-            // console.log("1")
-            await Storage.put(file.name, file, {
-              contentType: 'image/png' // contentType is optional
-            });
-       
-          } catch (error) {
-            console.log('Error uploading file: ', error);
-          }  
-        }
+      } catch (error) {
+        console.log('Error uploading file: ', error);
+      }  
+    }
 
     return (
       <React.Fragment>
@@ -167,16 +163,27 @@ export default function File3(props) {
         </Button>
 
           <main>
-              <div className={classes.root}>
-                <br />
-                 <pre style={{ width: '60vw' }}>
+          <div className={classes.root}>
+              <br />
+          <pre style={{ width: '60vw' }}>
             <code className="java"> 
               {badgeCode}
             </code>
           </pre>
+          <br></br>
+          <List>
+          {Comment.map((data) => {
+            return <ListItem>
+              <ListItemText>
+              {data.UserID} : {data.Comment}
+              </ListItemText>
+            </ListItem>
+          })}
+          </List>
               </div>
             
           </main>
+
         </body>
       </React.Fragment>
     )
