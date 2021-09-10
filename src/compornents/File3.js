@@ -21,6 +21,9 @@ import java from '../highlight.js/lib/languages/java';
 import '../highlight.js/styles/github.css';
 import * as queries from '../graphql/queries';
 import * as mutations from '../graphql/mutations';
+import { Picker } from 'emoji-mart';
+import 'emoji-mart/css/emoji-mart.css';
+import { Emoji } from 'emoji-mart';
 
 
 hljs.registerLanguage('python', python);
@@ -67,7 +70,7 @@ export default function File3(props) {
     const [FileObject, setFileObject] = React.useState();
     const classes = useStyles();
     const history = useHistory();
-    const [badgeCode, setBadgeCode] = React.useState('nikaera');
+    const [badgeCode, setBadgeCode] = React.useState('mada');
     const [Comment, setComment] = React.useState([]);
     const [Form, setForm] = React.useState([]);
 
@@ -95,8 +98,10 @@ export default function File3(props) {
         result.Body.text().then(text => setFileObject(text)); 
         result.Body.text().then(text => console.log("result : ", text)); 
         setBadgeCode(FileObject, []);
+        console.log("セットできてる？", FileObject)
         })()
-    },[props.value.id]);
+    },[]);
+
     
     //comment
     React.useEffect(() =>{
@@ -161,8 +166,25 @@ export default function File3(props) {
       }  
     }
 
-    //Emoji read
+
+
+
     //Emoji add
+
+    async function addEmoji(emojiID){
+      const user = await Auth.currentAuthenticatedUser();
+      console.log("user : ", user.username)
+
+      const newComment = await API.graphql(
+        graphqlOperation(mutations.createEmojiTable, {
+          input: {
+            FileID: props.value.id,
+            Emoji: emojiID,
+            UserID: user.username,
+          }
+        }))
+        console.log(newComment)
+    }
 
     return (
       <React.Fragment>
@@ -178,13 +200,18 @@ export default function File3(props) {
             onClick={showComment}>
             test show
         </Button>
+        {/* <Button
+            variant="outlined"
+            onClick={addEmoji}>
+            test add emoji
+        </Button> */}
 
           <main>
           <div className={classes.root}>
               <br />
           <pre style={{ width: '60vw' }}>
             <code className="java"> 
-              {badgeCode}
+              {badgeCode} 
             </code>
           </pre>
           <br></br>
@@ -211,10 +238,102 @@ export default function File3(props) {
           </form>
 
               </div>
+              
+          <EmojiStamp value = {props.value}/>
             
           </main>
+
 
         </body>
       </React.Fragment>
     )
 }
+
+function EmojiStamp(props){
+  const [emojiList, setEmojiList] = React.useState([]);
+  const [EmojiListID, setEmojiListID] = React.useState([]);
+
+  //addEmoji
+  async function addEmoji(emojiID){
+    const user = await Auth.currentAuthenticatedUser();
+    console.log("user : ", user.username)
+
+    const newComment = await API.graphql(
+      graphqlOperation(mutations.createEmojiTable, {
+        input: {
+          FileID: props.value.id,
+          Emoji: emojiID,
+          UserID: user.username,
+        }
+      }))
+      console.log(newComment)
+  }
+
+  
+  //Emoji read
+  React.useEffect(() =>{
+    ;(async () => {
+      console.log("fileid", props.value.id)
+      const newEmoji = await API.graphql({ query: queries.showEmojiByFileId, variables: { FileID: props.value.id }});
+      setEmojiListID(newEmoji.data.showEmojiByFileID.items);
+      // await addList(newEmoji.data.showEmojiByFileID.items);
+      console.log("this emoji list :", EmojiListID);
+    })()
+  },[emojiList]);
+
+  function addList(emojiList){
+    setEmojiListID(emojiList);
+  }
+
+  // const onSelect = emoji => {
+  //   console.log({ emoji });
+  //   setEmojiList([...emojiList, emoji]);
+  // };
+
+  return (
+    <>
+        {EmojiListID.length
+          ? emojiList.map((id, i) => (
+              <Emoji
+                emoji={id}
+                size={32}
+                key={i}
+              />
+            ))
+          : null}
+        {/* 絵文字一覧 */}
+        {<Picker
+            onSelect={emoji => {
+              console.log({ emoji });
+              setEmojiList([...emojiList, emoji.id]);
+              addEmoji(emoji.id)
+            }}
+            native
+            i18n={{
+              search: '検索',
+              categories: {
+                search: '検索結果',
+                recent: 'よく使う絵文字',
+                people: '顔 & 人',
+                nature: '動物 & 自然',
+                foods: '食べ物 & 飲み物',
+                activity: 'アクティビティ',
+                places: '旅行 & 場所',
+                objects: 'オブジェクト',
+                symbols: '記号',
+                flags: '旗',
+                custom: 'カスタム',
+              },
+            }}
+            style={{
+              position: 'absolute',
+              zIndex: '1',
+            }}
+          />}
+      </>
+      
+  );
+}
+
+
+
