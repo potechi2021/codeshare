@@ -11,8 +11,9 @@ import {
   ListItemIcon,
 } from '@material-ui/core';
 import {Auth, API, graphqlOperation } from 'aws-amplify';
-import { useHistory } from 'react-router';
-import { useState, useRef, useEffect } from 'react'
+import { useHistory, useLocation } from 'react-router';
+import { useState, useRef, useEffect } from 'react';
+// import { useLocation } from "@reach/router";
 
 const drawerWidth = 150;
 const MAX_POST_CONTENT_LENGTH = 140;
@@ -39,6 +40,7 @@ const useStyles = makeStyles(theme => ({
 export default function RoomSidebar({activeListItem}) {
     const classes = useStyles();
     const history = useHistory();
+    const location = useLocation();
 
     const signOut = () => {
         Auth.signOut()
@@ -61,6 +63,29 @@ export default function RoomSidebar({activeListItem}) {
         document.addEventListener("mousedown", handleOutsideClick);
         return () => document.removeEventListener("mousedown", handleOutsideClick);
     }, []);
+    
+    function testClick(){
+        console.log("location:", location);
+        console.log("location pathname:", location.pathname);
+        console.log("https://master.d3t4uee5vnvism.amplifyapp.com/#" + location.pathname)
+        const url = "https://master.d3t4uee5vnvism.amplifyapp.com/#" + location.pathname;
+        return url;
+    }
+
+    function copyToClipboard() {
+        // コピー対象をJavaScript上で変数として定義する
+        var copyTarget = document.getElementById("copyTarget");
+
+        // コピー対象のテキストを選択する
+        copyTarget.select();
+
+        // 選択しているテキストをクリップボードにコピーする
+        document.execCommand("Copy");
+
+        // コピーをお知らせする
+        alert("コピーできました！ : " + copyTarget.value);
+    }
+
 
     const handleOutsideClick = (e) => {
         if (dropdownRef.current && !dropdownRef.current.contains(e.target)) {
@@ -69,6 +94,8 @@ export default function RoomSidebar({activeListItem}) {
       };
 
     return (
+            // <input id="copyTarget" type="text" value="コピー対象の文言" readonly>
+            // <button onclick="copyToClipboard()">Copy text</button>
         <Drawer
             className={classes.drawer}
             variant="permanent"
@@ -92,6 +119,31 @@ export default function RoomSidebar({activeListItem}) {
                     </ListItem>
 
                     <div>
+                         <span>
+                             <ListItem>
+                                 <ListItemText primary={
+                                     <Button
+                                     onClick={testClick()}
+                                     >
+                                         test
+                                     </Button>
+                                 } />
+
+                             </ListItem>
+                         </span>
+                         <span>
+                             <ListItem>
+                                 <ListItemText primary={
+                                    <input id="copyTarget" type="text" value={testClick()} readonly></input>
+                                    // <Button
+                                    //  onClick={testClick()}
+                                    //  >
+                                    //      test
+                                    //  </Button>
+                                 } />
+
+                             </ListItem>
+                         </span>
                          <span>
                              <ListItem>
                                  <ListItemText primary={

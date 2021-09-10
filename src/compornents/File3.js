@@ -61,6 +61,16 @@ export default function File3(props) {
         console.log(props.value)
         console.log(props.value)
         console.log(typeof props.value)
+        
+      });
+
+      React.useEffect(() =>{
+        ;(async () => {
+        const result = await Storage.get("Chromakey.java" , { download: true });
+        result.Body.text().then(text => console.log("result : ", text)); 
+        
+
+        })()
       });
 
         //ファイルをアップロード
