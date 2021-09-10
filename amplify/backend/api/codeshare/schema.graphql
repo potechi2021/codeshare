@@ -50,7 +50,7 @@ type FileTable @model (
   RoomID: ID!
   FileName: String!
   # FileID: String!
-  Comment: String!
+  Comment: [String!]
 }
 
 type MyPageTable @model (

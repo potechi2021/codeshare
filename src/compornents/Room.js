@@ -70,6 +70,7 @@ export default function Room(prop) {
     const { id } = useParams();
     const [roomState, roomSet] = React.useState([]);
     const [roomIDState, roomIDSet] = React.useState([]);
+    const comments = ["good", "nice"];
 
     React.useEffect(() =>{
       ;(async () => {
@@ -78,6 +79,9 @@ export default function Room(prop) {
         console.log(roomIDState)
         const rest = await API.graphql({ query: queries.showFileByRoom, variables: { RoomID: id }});
         roomSet(rest.data.showFileByRoom.items);
+        const user1 = await Auth.currentAuthenticatedUser() 
+        const user2 = await Auth.currentSession()
+        const user3 = await Auth.currentCredentials()
       })()
       return () => {
       }
@@ -96,28 +100,21 @@ export default function Room(prop) {
     async function onChange(e) {
       console.log()
       const file = e.target.files[0];
-      console.log(file.name)
-
- 
+      console.log(file.name);
       
       try {
-        
         await addFile(file.name);
         await Storage.put(file.name, file, {
           // contentType: 'image/' // contentType is optional
           contentType: 'text/plain'
         });
-
-
         // await API.graphql({ query: mutations.createFileTable , variables: {input: fileDetails}});
-
       } catch (error) {
         console.log('Error uploading file: ', error);
       }  
     }
 
-    //ファイルを追加
-
+    // ファイルを追加
     async function addFile(filename){
 
       const newfiletable = await API.graphql(
@@ -126,16 +123,14 @@ export default function Room(prop) {
             UserID: 100,
             RoomID: id,
             FileName: filename,
-            Comment: "comment",
+            // Comment: "comment",
           }
         }))
-
         console.log(newfiletable)
     }
 
    
     return (
-
       <React.Fragment>
         <body>
           <header>
@@ -159,8 +154,21 @@ export default function Room(prop) {
       {roomState.map((data) => {
         return <TabPanel>
         <h2>{data.UserID}</h2>
-        <h4>{data.Comment}</h4>
+        
+        {/* <h4>{data.Comment[1]}</h4>
+        {data.Comment.map((comment) => {
+              return <p>{comment}</p>
+            })} */}
             {tabElement(data.FileName)}
+            {/* コメント一覧 */}
+            <ul>
+              {data.Comment.length < 1 ? (
+                <div>コメントはありません</div>
+              ) : (
+                data.Comment.map(comment => <li>{comment}</li>)
+              )}
+            </ul>
+            
           </TabPanel> 
        })}
 
@@ -179,8 +187,15 @@ export default function Room(prop) {
       {roomState.map((data) => {
         return <TabPanel>
         <h2>{data.UserID}</h2>
-        <h4>{data.Comment}</h4>
             {tabElement(data.FileName)}
+            {/* コメント一覧 */}
+            <ul>
+              {data.Comment.length < 1 ? (
+                <div>コメントはありません</div>
+              ) : (
+                data.Comment.map(comment => <li>{comment}</li>)
+              )}
+            </ul>
           </TabPanel> 
        })}
 
