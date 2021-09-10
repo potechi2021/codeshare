@@ -83,7 +83,7 @@ export default function File3(props) {
       React.useEffect(() =>{
         ;(async () => {
         const result = await Storage.get( props.value , { download: true });
-        console.log("result : ", result.Body)
+        console.log("result : ", result)
         result.Body.text().then(text => setFileObject(text)); 
         // console.log("result!!! :", FileObject);
         setBadgeCode(FileObject, []);
@@ -94,10 +94,10 @@ export default function File3(props) {
         async function onChange(e) {
           console.log()
           const file = e.target.files[0];
-          console.log(file.name)
+          // console.log(file.name)
     
           try {
-            console.log("1")
+            // console.log("1")
             await Storage.put(file.name, file, {
               contentType: 'image/png' // contentType is optional
             });
@@ -116,7 +116,7 @@ export default function File3(props) {
                 <br />
                 {/* <AmplifyS3Text textKey={props.value} /> */}
                  <pre style={{ width: '80vw' }}>
-            <code className="java">
+            <code className="java"> 
               {badgeCode}
             </code>
           </pre>
