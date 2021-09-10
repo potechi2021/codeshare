@@ -135,6 +135,72 @@ export const listMyPageTables = /* GraphQL */ `
     }
   }
 `;
+export const getCommentTable = /* GraphQL */ `
+  query GetCommentTable($id: ID!) {
+    getCommentTable(id: $id) {
+      id
+      FileID
+      Comment
+      UserID
+      createdAt
+      updatedAt
+      ownerUserID
+    }
+  }
+`;
+export const listCommentTables = /* GraphQL */ `
+  query ListCommentTables(
+    $filter: ModelCommentTableFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listCommentTables(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        FileID
+        Comment
+        UserID
+        createdAt
+        updatedAt
+        ownerUserID
+      }
+      nextToken
+    }
+  }
+`;
+export const getEmojiTable = /* GraphQL */ `
+  query GetEmojiTable($id: ID!) {
+    getEmojiTable(id: $id) {
+      id
+      FileID
+      Emoji
+      UserID
+      createdAt
+      updatedAt
+      ownerUserID
+    }
+  }
+`;
+export const listEmojiTables = /* GraphQL */ `
+  query ListEmojiTables(
+    $filter: ModelEmojiTableFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listEmojiTables(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        FileID
+        Emoji
+        UserID
+        createdAt
+        updatedAt
+        ownerUserID
+      }
+      nextToken
+    }
+  }
+`;
 export const showClassByOwner = /* GraphQL */ `
   query ShowClassByOwner(
     $OwnerUserID: ID
@@ -269,6 +335,62 @@ export const showMyPage = /* GraphQL */ `
         id
         UserID
         ClassID
+        createdAt
+        updatedAt
+        ownerUserID
+      }
+      nextToken
+    }
+  }
+`;
+export const showCommentByFileId = /* GraphQL */ `
+  query ShowCommentByFileId(
+    $FileID: ID
+    $sortDirection: ModelSortDirection
+    $filter: ModelCommentTableFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    showCommentByFileID(
+      FileID: $FileID
+      sortDirection: $sortDirection
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+    ) {
+      items {
+        id
+        FileID
+        Comment
+        UserID
+        createdAt
+        updatedAt
+        ownerUserID
+      }
+      nextToken
+    }
+  }
+`;
+export const showEmojiByFileId = /* GraphQL */ `
+  query ShowEmojiByFileId(
+    $FileID: ID
+    $sortDirection: ModelSortDirection
+    $filter: ModelEmojiTableFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    showEmojiByFileID(
+      FileID: $FileID
+      sortDirection: $sortDirection
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+    ) {
+      items {
+        id
+        FileID
+        Emoji
+        UserID
         createdAt
         updatedAt
         ownerUserID

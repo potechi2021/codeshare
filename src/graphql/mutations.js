@@ -163,3 +163,99 @@ export const deleteMyPageColum = /* GraphQL */ `
     }
   }
 `;
+export const createCommentTable = /* GraphQL */ `
+  mutation CreateCommentTable(
+    $input: CreateCommentTableInput!
+    $condition: ModelCommentTableConditionInput
+  ) {
+    createCommentTable(input: $input, condition: $condition) {
+      id
+      FileID
+      Comment
+      UserID
+      createdAt
+      updatedAt
+      ownerUserID
+    }
+  }
+`;
+export const updateCommentTable = /* GraphQL */ `
+  mutation UpdateCommentTable(
+    $input: UpdateCommentTableInput!
+    $condition: ModelCommentTableConditionInput
+  ) {
+    updateCommentTable(input: $input, condition: $condition) {
+      id
+      FileID
+      Comment
+      UserID
+      createdAt
+      updatedAt
+      ownerUserID
+    }
+  }
+`;
+export const deleteCommentTable = /* GraphQL */ `
+  mutation DeleteCommentTable(
+    $input: DeleteCommentTableInput!
+    $condition: ModelCommentTableConditionInput
+  ) {
+    deleteCommentTable(input: $input, condition: $condition) {
+      id
+      FileID
+      Comment
+      UserID
+      createdAt
+      updatedAt
+      ownerUserID
+    }
+  }
+`;
+export const createEmojiTable = /* GraphQL */ `
+  mutation CreateEmojiTable(
+    $input: CreateEmojiTableInput!
+    $condition: ModelEmojiTableConditionInput
+  ) {
+    createEmojiTable(input: $input, condition: $condition) {
+      id
+      FileID
+      Emoji
+      UserID
+      createdAt
+      updatedAt
+      ownerUserID
+    }
+  }
+`;
+export const updateEmojiTable = /* GraphQL */ `
+  mutation UpdateEmojiTable(
+    $input: UpdateEmojiTableInput!
+    $condition: ModelEmojiTableConditionInput
+  ) {
+    updateEmojiTable(input: $input, condition: $condition) {
+      id
+      FileID
+      Emoji
+      UserID
+      createdAt
+      updatedAt
+      ownerUserID
+    }
+  }
+`;
+export const deleteEmojiTable = /* GraphQL */ `
+  mutation DeleteEmojiTable(
+    $input: DeleteEmojiTableInput!
+    $condition: ModelEmojiTableConditionInput
+  ) {
+    deleteEmojiTable(input: $input, condition: $condition) {
+      id
+      FileID
+      Emoji
+      UserID
+      createdAt
+      updatedAt
+      ownerUserID
+    }
+  }
+`;

@@ -67,3 +67,31 @@ type MyPageTable @model (
   UserID: ID!
   ClassID: [ID!]
 }
+
+type CommentTable @model (
+  mutations: {create: "createCommentTable", delete: "deleteCommentTable", update: "updateCommentTable"}
+)
+@auth(rules: [{allow: owner, ownerField: "ownerUserID", provider: userPools, operations:[read, create, delete]}, 
+              {allow: groups, groups: ["Admin"] },
+              {allow: private , operations:[read, create, delete, update]}])
+@key(name: "FileID", fields:["FileID"], queryField: "showCommentByFileID")
+
+{
+  FileID: ID!
+  Comment: String
+  UserID: String!
+}
+
+type EmojiTable @model (
+  mutations: {create: "createEmojiTable", delete: "deleteEmojiTable", update: "updateEmojiTable"}
+)
+@auth(rules: [{allow: owner, ownerField: "ownerUserID", provider: userPools, operations:[read, create, delete]}, 
+              {allow: groups, groups: ["Admin"] },
+              {allow: private , operations:[read, create, delete, update]}])
+@key(name: "FileID", fields:["FileID"], queryField: "showEmojiByFileID")
+
+{
+  FileID: ID!
+  Emoji: String
+  UserID: String!
+}

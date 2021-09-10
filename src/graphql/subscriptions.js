@@ -133,3 +133,81 @@ export const onDeleteMyPageTable = /* GraphQL */ `
     }
   }
 `;
+export const onCreateCommentTable = /* GraphQL */ `
+  subscription OnCreateCommentTable {
+    onCreateCommentTable {
+      id
+      FileID
+      Comment
+      UserID
+      createdAt
+      updatedAt
+      ownerUserID
+    }
+  }
+`;
+export const onUpdateCommentTable = /* GraphQL */ `
+  subscription OnUpdateCommentTable {
+    onUpdateCommentTable {
+      id
+      FileID
+      Comment
+      UserID
+      createdAt
+      updatedAt
+      ownerUserID
+    }
+  }
+`;
+export const onDeleteCommentTable = /* GraphQL */ `
+  subscription OnDeleteCommentTable {
+    onDeleteCommentTable {
+      id
+      FileID
+      Comment
+      UserID
+      createdAt
+      updatedAt
+      ownerUserID
+    }
+  }
+`;
+export const onCreateEmojiTable = /* GraphQL */ `
+  subscription OnCreateEmojiTable {
+    onCreateEmojiTable {
+      id
+      FileID
+      Emoji
+      UserID
+      createdAt
+      updatedAt
+      ownerUserID
+    }
+  }
+`;
+export const onUpdateEmojiTable = /* GraphQL */ `
+  subscription OnUpdateEmojiTable {
+    onUpdateEmojiTable {
+      id
+      FileID
+      Emoji
+      UserID
+      createdAt
+      updatedAt
+      ownerUserID
+    }
+  }
+`;
+export const onDeleteEmojiTable = /* GraphQL */ `
+  subscription OnDeleteEmojiTable {
+    onDeleteEmojiTable {
+      id
+      FileID
+      Emoji
+      UserID
+      createdAt
+      updatedAt
+      ownerUserID
+    }
+  }
+`;
