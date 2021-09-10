@@ -78,7 +78,7 @@ export default function MakeClass() {
       <React.Fragment>
         <body>
           <header>
-            <h1>サービス名</h1>
+            <h1>Code House</h1>
           </header>
           <main>
             <div class="makeRoomMain">
@@ -94,7 +94,6 @@ export default function MakeClass() {
                   <div>
                     <div class="myPageButton">
                       <Button
-                        variant="outlined"
                         onClick={() => {
                                         Auth.currentAuthenticatedUser().then((user) => {
                                         history.push('/mypage');
@@ -118,17 +117,12 @@ export default function MakeClass() {
                         説明　：
                         <textarea placeholder="説明を入力"></textarea>
                       </label>
+                      <Button
+                        onClick={handleSubmit}>
+                        部屋作成
+                      </Button>
                     </div>
-                    <div>
-                      
-                    </div>
-                    <div>
-                    <Button
-                      variant="outlined"
-                      onClick={handleSubmit}>
-                      部屋作成
-                    </Button>
-                    </div>
+                  
 
                   {/* <Button
                       variant="outlined"

@@ -141,7 +141,6 @@ function Class() {
                   <div>
                   */}
                   <Button
-                      variant="outlined"
                       onClick={handleClicked}>
                   {/* <Button
                       variant="outlined"
@@ -152,7 +151,7 @@ function Class() {
                                     }}> */}
                       Roomを作る
                   </Button>
-                  <p>ClassID： {classId}</p>
+                  {/* <p>ClassID： {classId}</p> */}
                   <div class="largeRoomList">
                     <h2>Room一覧</h2>
                     <ul class="largeRoomList2">
