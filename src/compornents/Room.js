@@ -129,6 +129,7 @@ export default function Room(prop) {
         console.log(newfiletable)
     }
 
+
     //コメント一覧
 
     function getComment(thisFileID){
@@ -162,8 +163,6 @@ export default function Room(prop) {
     //   console.log(newcomment);
     // });
 
-
-   
     return (
       <React.Fragment>
         <body>
@@ -174,16 +173,15 @@ export default function Room(prop) {
             <div class="side">
               <RoomSidebar activeListItem = "file1"></RoomSidebar>
             </div>
-
-      <Tabs>
-      <input type="file" onChange={onChange}/>
-     
-      <TabList>
-      {roomState.map((data) => {
-        return <Tab>{data.FileName}</Tab>
-       })}
-      </TabList>
-
+            <div>
+              <div class="fileUpload">
+                <label for="fileUpload">
+                  ファイルを選択して下さい
+                  <input type="file" onChange={onChange}/>
+                </label>
+              </div>
+              <div class="roomTabs">
+                <Tabs>
       
       {roomState.map((data) => {
         return <TabPanel>
@@ -215,7 +213,6 @@ export default function Room(prop) {
       </Tabs> 
       <Tabs>
       {/* <input type="file" onChange={onChange}/> */}
-      <br></br>
      
       <TabList>
       {roomState.map((data) => {
@@ -239,7 +236,31 @@ export default function Room(prop) {
           </TabPanel> 
        })}
 
-      </Tabs> 
+                  <TabList>
+                  {roomState.map((data) => {
+                    return <Tab>{data.FileName}</Tab>
+                  })}
+                  </TabList>
+
+                  
+                  {roomState.map((data) => {
+                    return <TabPanel>
+                    <h2>{data.UserID}</h2>
+                        {tabElement(data.FileName)}
+                        {/* コメント一覧
+                        <ul>
+                          {data.Comment.length < 1 ? (
+                            <div>コメントはありません</div>
+                          ) : (
+                            data.Comment.map(comment => <li>{comment}</li>)
+                          )}
+                        </ul> */}
+                      </TabPanel> 
+                  })}
+
+                </Tabs> 
+              </div>
+            </div>
 
 
           </main>
