@@ -51,15 +51,17 @@ export default function MakeClass() {
     const [text, setText] = React.useState('Please write.');
     const classes = useStyles();
     const history = useHistory();
-    const handleChange = (event) => {
-      const target = event.target;
-      const name = target.name;
-      setText(target[name].value);
-    };
+    console.log("Makeclass");
+    // const handleChange = (event) => {
+    //   const target = event.target;
+    //   const name = target.name;
+    //   setText(target[name].value);
+    // };
     const handleSubmit = (event) => {
       const target = event.target;
       event.preventDefault();
-      alert('入力内容: ' + target.value);
+      //alert('入力内容: ' + target.value);
+      console.log("MakeClass handleSubmit");
       const newclass = API.graphql(
         graphqlOperation(createClassTable, {
           input: {
@@ -69,8 +71,8 @@ export default function MakeClass() {
           }
         }))
       console.log(newclass);
-      const classData = newclass.data.createClassTable; // createしたクラス情報
-      console.log(classData);
+      //const classData = newclass.data.createClassTable; // createしたクラス情報
+      //console.log(classData);
     };
     return (
       <React.Fragment>
