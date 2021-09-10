@@ -96,6 +96,7 @@ export default function RoomSidebar({activeListItem}) {
     return (
             // <input id="copyTarget" type="text" value="コピー対象の文言" readonly>
             // <button onclick="copyToClipboard()">Copy text</button>
+        
         <Drawer
             className={classes.drawer}
             variant="permanent"
@@ -104,7 +105,9 @@ export default function RoomSidebar({activeListItem}) {
             }}
             anchor="left"
         >
-            <div className={classes.toolbar} />
+        
+          
+            {/*<div className={classes.toolbar} />*/}
                 <List>
                     <ListItem key='logout'>
                         <ListItemText primary={
