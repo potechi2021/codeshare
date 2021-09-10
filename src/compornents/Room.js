@@ -19,14 +19,14 @@ import {useHistory, useParams, withRouter } from 'react-router-dom';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
 import File3 from './File3'
-import {showFileByRoom} from '../graphql/queries' //変更
+import {showFileByRoom} from '../graphql/queries';
 import * as queries from '../graphql/queries';
 import * as mutations from '../graphql/mutations';
 import { Picker } from 'emoji-mart';
 import 'emoji-mart/css/emoji-mart.css';
 import { Emoji } from 'emoji-mart';
 
-Amplify.configure(awsconfig);
+Amplify.configure(awsconfig); //S3
 
 const drawerWidth = 240;
 
@@ -68,12 +68,14 @@ const useStyles = makeStyles(theme => ({
 export default function Room(prop) {
     const classes = useStyles();
     const history = useHistory();
-    const [value, setValue] = React.useState("hey")
-    const tmpRoomid = "10591538-5c32-4605-914d-9918c58aed0f";
     const { id } = useParams();
     const [roomState, roomSet] = React.useState([]);
+    const [value, setvalue] = React.useState([]);
     const [roomIDState, roomIDSet] = React.useState([]);
     const [comments, commentsSet] = React.useState("");
+    const [Comment, setComment] = React.useState([]);
+
+    //RoomID
     React.useEffect(() =>{
       ;(async () => {
         console.log("Room ID : ", id)
@@ -81,9 +83,6 @@ export default function Room(prop) {
         console.log(roomIDState)
         const rest = await API.graphql({ query: queries.showFileByRoom, variables: { RoomID: id }});
         roomSet(rest.data.showFileByRoom.items);
-        const user1 = await Auth.currentAuthenticatedUser() 
-        const user2 = await Auth.currentSession()
-        const user3 = await Auth.currentCredentials()
       })()
       return () => {
       }
@@ -93,27 +92,9 @@ export default function Room(prop) {
       roomIDSet(id)
     }
 
-    function tabElement(name){
-      return <File3 value = {name} /> 
+    function tabElement(filedata){
+      return <File3 value = {filedata}/> 
     }
-
-    // const handleChange = (event) => {
-    //     const target = event.target;
-    //     const name = target.name;
-    //     commentsSet(target[name].value);
-    // };
-    // const handleSubmit = useCallback((event, comments) => {
-    //   const target = event.target;
-    //   event.preventDefault();
-    //   console.log("Room handleSubmit");
-    //   const newcomment = API.graphql(
-    //     graphqlOperation(updateClassTable, {
-    //       input: {
-    //         Comment: comments+target,
-    //       }
-    //     }))
-    //   console.log(newcomment);
-    // });
 
      //ファイルをアップロード
     async function onChange(e) {
@@ -147,6 +128,41 @@ export default function Room(prop) {
         }))
         console.log(newfiletable)
     }
+
+    //コメント一覧
+
+    function getComment(thisFileID){
+      return API.graphql({ query: queries.showCommentByFileId, variables: { FileID: thisFileID }});
+    }
+
+    async function getCommentBody(thisFileID){
+      const newComment = await getComment(thisFileID);
+      const comments =  newComment.data.showCommentByFileID.items;
+      setComment(comments)
+      console.log("comment???:", Comment);
+      console.log("fileid???:", thisFileID);
+    }
+
+    //コメント投稿
+    //     const handleChange = (event) => {
+    //     const target = event.target;
+    //     const name = target.name;
+    //     commentsSet(target[name].value);
+    // };
+    // const handleSubmit = useCallback((event, comments) => {
+    //   const target = event.target;
+    //   event.preventDefault();
+    //   console.log("Room handleSubmit");
+    //   const newcomment = API.graphql(
+    //     graphqlOperation(updateClassTable, {
+    //       input: {
+    //         Comment: comments+target,
+    //       }
+    //     }))
+    //   console.log(newcomment);
+    // });
+
+
    
     return (
       <React.Fragment>
@@ -172,7 +188,10 @@ export default function Room(prop) {
       {roomState.map((data) => {
         return <TabPanel>
         <h2>{data.UserID}</h2>
-            {tabElement(data.FileName)}
+        <h2>{data.id}</h2>
+            {tabElement(data)}
+
+
             {/* コメント一覧
             <form onSubmit={handleSubmit}>
               <label>
@@ -186,11 +205,12 @@ export default function Room(prop) {
                 <div>コメントはありません</div>
               ) : (
                 data.Comment.map(comment => <li>{comment}</li>)
-              )}
-            </ul> */}
+              )} 
+              </ul> */}
             <EmojiStamp />
             </TabPanel> 
        })}
+
 
       </Tabs> 
       <Tabs>
@@ -207,7 +227,7 @@ export default function Room(prop) {
       {roomState.map((data) => {
         return <TabPanel>
         <h2>{data.UserID}</h2>
-            {tabElement(data.FileName)}
+            {tabElement(data)}
             {/* コメント一覧
             <ul>
               {data.Comment.length < 1 ? (
