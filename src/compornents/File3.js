@@ -15,6 +15,15 @@ import {
 } from '@material-ui/core';
 import Amplify , {Auth, API, graphqlOperation, Storage } from 'aws-amplify';
 import { useHistory } from 'react-router';
+import hljs from '../highlight.js/lib/core';
+import python from '../highlight.js/lib/languages/python';
+import java from '../highlight.js/lib/languages/java';
+import '../highlight.js/styles/github.css';
+
+
+hljs.registerLanguage('python', python);
+hljs.registerLanguage('java', java);
+
 
 
 const drawerWidth = 240;
@@ -53,23 +62,31 @@ const useStyles = makeStyles(theme => ({
 export default function File3(props) {
     const [user, setUser] = React.useState();
     const [AuthState, setAuthState] = React.useState();
+    const [FileObject, setFileObject] = React.useState();
     const classes = useStyles();
     const history = useHistory();
-    const message = 'テスト'
+    const [badgeCode, setBadgeCode] = React.useState('nikaera');
 
     React.useEffect(() => {
-        console.log(props.value)
-        console.log(props.value)
-        console.log(typeof props.value)
-        
+        return onAuthUIStateChange((nextAuthState, authData) => {
+            setAuthState(nextAuthState);
+            setUser(authData)
+            console.log("user:", user)
+        });
+    }, []);
+
+    React.useEffect(() => {
+        hljs.initHighlighting();
+        hljs.initHighlighting.called = false; 
       });
 
       React.useEffect(() =>{
         ;(async () => {
-        const result = await Storage.get("Chromakey.java" , { download: true });
-        result.Body.text().then(text => console.log("result : ", text)); 
-        
-
+        const result = await Storage.get( props.value , { download: true });
+        console.log("result : ", result.Body)
+        result.Body.text().then(text => setFileObject(text)); 
+        // console.log("result!!! :", FileObject);
+        setBadgeCode(FileObject, []);
         })()
       });
 
@@ -90,27 +107,19 @@ export default function File3(props) {
           }  
         }
 
-        const reactElement = (
-          <div>
-            <p>{props.value}</p>
-          </div>
-        )
-
-        //classid
-
-        //roomid
-
     return (
       <React.Fragment>
         <body>
 
           <main>
               <div className={classes.root}>
-                {/* <input type="file" onChange={onChange}/> */}
                 <br />
-
-                {/* {reactElement} */}
-                <AmplifyS3Text textKey={props.value} />
+                {/* <AmplifyS3Text textKey={props.value} /> */}
+                 <pre style={{ width: '80vw' }}>
+            <code className="java">
+              {badgeCode}
+            </code>
+          </pre>
               </div>
             
           </main>
