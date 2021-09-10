@@ -123,14 +123,10 @@ export default function Room(prop) {
       const newfiletable = await API.graphql(
         graphqlOperation(mutations.createFileTable, {
           input: {
-            // id: 1,
             UserID: 100,
             RoomID: id,
             FileName: filename,
             Comment: "comment",
-            // createdAt: "2021-09-09T03:37:52.578Z",
-            // updatedAt: "2021-09-09T03:37:52.578Z",
-            // ownerUserID: 100,
           }
         }))
 
