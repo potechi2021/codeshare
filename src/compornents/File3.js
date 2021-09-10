@@ -19,6 +19,8 @@ import hljs from '../highlight.js/lib/core';
 import python from '../highlight.js/lib/languages/python';
 import java from '../highlight.js/lib/languages/java';
 import '../highlight.js/styles/github.css';
+import * as queries from '../graphql/queries';
+import * as mutations from '../graphql/mutations';
 
 
 hljs.registerLanguage('python', python);
@@ -37,7 +39,7 @@ const useStyles = makeStyles(theme => ({
     root: {
       display: 'flex',
       height: '100%',
-      width: 800,
+      width: 500,
       marginLeft: 'auto',
       marginRight: 'auto',
     },
@@ -66,7 +68,9 @@ export default function File3(props) {
     const classes = useStyles();
     const history = useHistory();
     const [badgeCode, setBadgeCode] = React.useState('nikaera');
+    const [Comment, setComment] = React.useState([]);
 
+    //user auth
     React.useEffect(() => {
         return onAuthUIStateChange((nextAuthState, authData) => {
             setAuthState(nextAuthState);
@@ -75,20 +79,60 @@ export default function File3(props) {
         });
     }, []);
 
+    //file color
     React.useEffect(() => {
         hljs.initHighlighting();
         hljs.initHighlighting.called = false; 
-      });
+    });
 
-      React.useEffect(() =>{
+    //file
+    React.useEffect(() =>{
         ;(async () => {
         const result = await Storage.get( props.value , { download: true });
         console.log("result : ", result)
         result.Body.text().then(text => setFileObject(text)); 
-        // console.log("result!!! :", FileObject);
         setBadgeCode(FileObject, []);
         })()
-      });
+    });
+    
+    //comment
+    React.useEffect(() =>{
+        ;(async () => {
+          const newComment = await API.graphql({ query: queries.showCommentByFileId, variables: { FileID: "3c460c8e-f999-4204-9c68-e8ffe9cae98f" }});
+          console.log("comment:", newComment.data.showCommentByFileID.items);
+          const comments =  newComment.data.showCommentByFileID.items;
+          setComment(comments)
+          console.log("comment！:", Comment);
+        })()
+    });
+
+    //コメントを追加
+    async function addComment(){
+
+      console.log(Auth.currentAuthenticatedUser());
+      const user1 = await Auth.currentAuthenticatedUser();
+
+      console.log("user : ", user1.username)
+
+      const newComment = await API.graphql(
+        graphqlOperation(mutations.createCommentTable, {
+          input: {
+            FileID: "3c460c8e-f999-4204-9c68-e8ffe9cae98f",
+            Comment: "wow!",
+            UserID: user1.username,
+          }
+        }))
+        console.log(newComment)
+      }
+
+      //ファイルID -> コメントを表示 
+      async function showComment(){
+        const newComment = await API.graphql({ query: queries.showCommentByFileId, variables: { FileID: "3c460c8e-f999-4204-9c68-e8ffe9cae98f" }});
+        return newComment.data.showCommentByFileID.items;
+      }
+
+      
+
 
         //ファイルをアップロード
         async function onChange(e) {
@@ -111,11 +155,21 @@ export default function File3(props) {
       <React.Fragment>
         <body>
 
+        <Button
+            variant="outlined"
+            onClick={addComment}>
+            test
+        </Button>
+        <Button
+            variant="outlined"
+            onClick={showComment}>
+            test show
+        </Button>
+
           <main>
               <div className={classes.root}>
                 <br />
-                {/* <AmplifyS3Text textKey={props.value} /> */}
-                 <pre style={{ width: '80vw' }}>
+                 <pre style={{ width: '60vw' }}>
             <code className="java"> 
               {badgeCode}
             </code>
