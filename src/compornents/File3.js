@@ -18,13 +18,11 @@ import { useHistory } from 'react-router';
 import hljs from '../highlight.js/lib/core';
 import python from '../highlight.js/lib/languages/python';
 import java from '../highlight.js/lib/languages/java';
-import javascript from '../highlight.js/lib/languages/javascript';
 import '../highlight.js/styles/github.css';
 
 
 hljs.registerLanguage('python', python);
 hljs.registerLanguage('java', java);
-hljs.registerLanguage('javascriptt', javascript);
 
 
 
@@ -68,7 +66,6 @@ export default function File3(props) {
     const classes = useStyles();
     const history = useHistory();
     const [badgeCode, setBadgeCode] = React.useState('nikaera');
-    const [SourceType, setSourceType] = React.useState('python');
 
     React.useEffect(() => {
         return onAuthUIStateChange((nextAuthState, authData) => {
@@ -86,11 +83,10 @@ export default function File3(props) {
       React.useEffect(() =>{
         ;(async () => {
         const result = await Storage.get( props.value , { download: true });
-        console.log("result : ", result.Body)
+        console.log("result : ", result)
         result.Body.text().then(text => setFileObject(text)); 
+        // console.log("result!!! :", FileObject);
         setBadgeCode(FileObject, []);
-        selectType(props.value)
-        // console.log()
         })()
       });
 
@@ -98,10 +94,10 @@ export default function File3(props) {
         async function onChange(e) {
           console.log()
           const file = e.target.files[0];
-          console.log(file.name)
+          // console.log(file.name)
     
           try {
-            console.log("1")
+            // console.log("1")
             await Storage.put(file.name, file, {
               contentType: 'image/png' // contentType is optional
             });
@@ -110,23 +106,6 @@ export default function File3(props) {
             console.log('Error uploading file: ', error);
           }  
         }
-
-      function selectType(word){
-        const kakuchosi = word.split('.');
-        console.log("kokusaika", kakuchosi[1]);
-        
-        if(kakuchosi[1] == "js"){
-          setSourceType("javascript")
-        }
-        else if(kakuchosi[1] == "java"){
-          setSourceType("java")
-        }
-        else{
-          setSourceType("python")
-        }
-
-        console.log(SourceType);
-      }
 
     return (
       <React.Fragment>
@@ -137,7 +116,7 @@ export default function File3(props) {
                 <br />
                 {/* <AmplifyS3Text textKey={props.value} /> */}
                  <pre style={{ width: '80vw' }}>
-            <code className={SourceType}>
+            <code className="java"> 
               {badgeCode}
             </code>
           </pre>
