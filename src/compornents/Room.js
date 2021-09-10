@@ -183,58 +183,64 @@ export default function Room(prop) {
               <div class="roomTabs">
                 <Tabs>
       
-      {roomState.map((data) => {
-        return <TabPanel>
-        <h2>{data.UserID}</h2>
-        <h2>{data.id}</h2>
-            {tabElement(data)}
+                  <TabList>
+                    {roomState.map((data) => {
+                      return <Tab>{data.FileName}</Tab>
+                    })}
+                  </TabList>
+
+                  {roomState.map((data) => {
+                    return <TabPanel>
+                    <h2>{data.UserID}</h2>
+                    {/*<h2>{data.id}</h2>*/}
+                        {tabElement(data)}
 
 
-            {/* コメント一覧
-            <form onSubmit={handleSubmit}>
-              <label>
-                コメント:
-                <textarea value={value} onChange={handleChange(data.Comment)} />
-              </label>
-              <input type="submit" value="コメントを追加する" />
-            </form>
-            <ul>
-              {data.Comment.length < 1 ? (
-                <div>コメントはありません</div>
-              ) : (
-                data.Comment.map(comment => <li>{comment}</li>)
-              )} 
-              </ul> */}
-            <EmojiStamp />
-            </TabPanel> 
-       })}
+                        {/* コメント一覧
+                        <form onSubmit={handleSubmit}>
+                          <label>
+                            コメント:
+                            <textarea value={value} onChange={handleChange(data.Comment)} />
+                          </label>
+                          <input type="submit" value="コメントを追加する" />
+                        </form>
+                        <ul>
+                          {data.Comment.length < 1 ? (
+                            <div>コメントはありません</div>
+                          ) : (
+                            data.Comment.map(comment => <li>{comment}</li>)
+                          )} 
+                          </ul> */}
+                        <EmojiStamp />
+                        </TabPanel> 
+                  })}
 
 
-      </Tabs> 
-      <Tabs>
-      {/* <input type="file" onChange={onChange}/> */}
-     
-      <TabList>
-      {roomState.map((data) => {
-        return <Tab>{data.FileName}</Tab>
-       })}
-      </TabList>
+                </Tabs> 
+                <Tabs>
+                  {/* <input type="file" onChange={onChange}/> */}
 
-      
-      {roomState.map((data) => {
-        return <TabPanel>
-        <h2>{data.UserID}</h2>
-            {tabElement(data)}
-            {/* コメント一覧
-            <ul>
-              {data.Comment.length < 1 ? (
-                <div>コメントはありません</div>
-              ) : (
-                data.Comment.map(comment => <li>{comment}</li>)
-              )}
-            </ul> */}
-          </TabPanel> 
-       })}
+                  <TabList>
+                  {roomState.map((data) => {
+                    return <Tab>{data.FileName}</Tab>
+                  })}
+                  </TabList>
+
+                  
+                  {roomState.map((data) => {
+                    return <TabPanel>
+                    <h2>{data.UserID}</h2>
+                        {tabElement(data)}
+                        {/* コメント一覧
+                        <ul>
+                          {data.Comment.length < 1 ? (
+                            <div>コメントはありません</div>
+                          ) : (
+                            data.Comment.map(comment => <li>{comment}</li>)
+                          )}
+                        </ul> */}
+                      </TabPanel> 
+                  })}
 
                   <TabList>
                   {roomState.map((data) => {
