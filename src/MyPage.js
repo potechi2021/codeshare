@@ -61,7 +61,7 @@ function MyPage() {
 
     React.useEffect(() =>{
       ;(async () => {
-        //console.log("初め")
+        console.log('Mypage useEffect1');
         const res = await API.graphql(graphqlOperation(listClassTables)); //非同期 async await
         classSet(res.data.listClassTables.items)
         //console.log(classState)
@@ -71,16 +71,20 @@ function MyPage() {
       }
     },[])
     React.useEffect(() =>{
-      return () => {
-        //console.log(classId);
-        //console.log("遷移");
-        history.push({pathname:'/class/' + classId});
-      }
+      console.log('Mypage useEffect2');
+      console.log(classId);
+        if(classId!==''){
+          console.log("Mypage->Class遷移");
+          history.push({pathname:'/class/' + classId});
+        }
     }, [classId])
     const handleSelected = useCallback((id) => {
+      console.log("MyPage handleSelected");
       classIdSet(id);
       console.log(id);
-    }, []);
+      console.log(classId);
+    }, [classId]);
+    
     if (classState) {
       return (
         <React.Fragment>
@@ -94,10 +98,7 @@ function MyPage() {
                   <Sidebar activeListItem = "mypage"></Sidebar>
                 </div>
                 <div class="content">
-                  {/*
-                  <div className={classes.root} class="mypage">
-                    mypage
-                  </div>
+                  
                   <div>
                     <Button
                       variant="outlined"
@@ -109,6 +110,8 @@ function MyPage() {
                                     }}>
                       部屋を作る
                     </Button>
+                  </div>
+                    {/*
                     <Button
                       variant="outlined"
                       onClick={() => {
@@ -119,7 +122,6 @@ function MyPage() {
                                     }}>
                       関数型言語
                     </Button>
-                  </div>
                   */}
                   
                   <div class="largeRoomList">

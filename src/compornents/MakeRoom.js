@@ -53,7 +53,8 @@ function MakeRoom() {
     const rooms = useStyles();
     const history = useHistory();
     const location = useLocation();   
-    const classId = location.state.classId;
+    const classId = location.state.classid;
+
     // const { id } = useParams();
     // console.log(id);
     // const classId = id;
@@ -70,7 +71,8 @@ function MakeRoom() {
     const handleSubmit = (event) => {
       const target = event.target;
       event.preventDefault();
-      alert('入力内容: ' + target.value);
+      //alert('入力内容: ' + target.value);
+      console.log("MakeRoom handleSubmit");
       const newroom = API.graphql(
         graphqlOperation(createRoomTable, {
           input: {
@@ -99,7 +101,7 @@ function MakeRoom() {
                 onClick={() => {
                                 Auth.currentAuthenticatedUser().then((user) => {
                                 history.push('/');
-                                console.log("click");
+                                console.log("MakeRoom->Mypage");
                                 })
                             }}>
                 マイページに戻る

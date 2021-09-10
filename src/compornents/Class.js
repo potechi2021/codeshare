@@ -63,9 +63,8 @@ function Class() {
         
     React.useEffect(() =>{
       ;(async () => {
-        //console.log("初め")
         //const classId = id;
-        console.log("class");
+        console.log("Class useEffect1");
         const res = await API.graphql(graphqlOperation(listRoomTables)); //非同期 async await
         roomSet(res.data.listRoomTables.items);
         //console.log(roomState)
@@ -77,25 +76,34 @@ function Class() {
       }
     }, []);
     React.useEffect(() =>{
-      return () => {
-        console.log(classId);
-        console.log(roomId);
-        console.log("遷移");
+      console.log("Class useEffect2");
+      console.log(classId);
+      console.log(roomId);
+      if(roomId!==''){
+        console.log("Class->Room遷移");
         history.push('/room/' + roomId);
       }
     }, [roomId])
     const handleSelected = useCallback((roomid) => {
+      console.log("Class handleSelected");
       roomIdSet(roomid);
       console.log(roomid);
       //history.push('/room/' + roomId);
     }, []);
-    const handleClicked = () => {
-      //history.push('/makeroom/');
+    const handleClicked = useCallback(() => {
+      console.log("Class handleClicked");
       console.log(classId);
-      history.push('/makeroom', {classId: classId });
+      if(classId!=''){
+        console.log("Class->MakeRoom遷移");
+        history.push({
+          pathname: '/makeroom',
+          state: { classid: classId }
+        });
+        //history.push('/makeroom', {classid:classId});
+      }
       //classIdSet(classId);
       console.log("click makeroom");
-    };
+    }, [classId]);
 
     // const handleSubmit = (event) => {
     //   const target = event.target;
