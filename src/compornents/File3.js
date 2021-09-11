@@ -73,6 +73,7 @@ export default function File3(props) {
     const [badgeCode, setBadgeCode] = React.useState('mada');
     const [Comment, setComment] = React.useState([]);
     const [Form, setForm] = React.useState([]);
+    var commentCounter = 0;
 
     //user auth
     React.useEffect(() => {
@@ -100,7 +101,7 @@ export default function File3(props) {
         setBadgeCode(FileObject, []);
         console.log("セットできてる？", FileObject)
         })()
-    },[]);
+    });
 
     
     //comment
@@ -112,7 +113,7 @@ export default function File3(props) {
           setComment(comments)
           console.log("comment！:", Comment);
         })()
-    }, []);
+    }, [commentCounter]);
 
     //コメントを追加
     async function addComment(comment){
@@ -129,6 +130,7 @@ export default function File3(props) {
           }
         }))
         console.log(newComment)
+        commentCounter += 1;
     }
 
     const handleSubmit = useCallback((event, comments) => {
@@ -137,6 +139,8 @@ export default function File3(props) {
         console.log("Room handleSubmit");
         //コメントを追加
         addComment(Form)
+        // history.go(0)
+        // window.location.reload();
     });
     //コメント投稿
     const handleChange = (event) => {
@@ -239,9 +243,9 @@ export default function File3(props) {
 
               </div>
               
-          <EmojiStamp value = {props.value}/>
             
           </main>
+          <EmojiStamp value = {props.value}/>
 
 
         </body>

@@ -206,6 +206,7 @@ export default function Room(prop) {
                   <input type="file" onChange={onChange}/>
                 </label>
               </div>
+                  <input type="file" onChange={onChange}/>
               <div class="roomTabs">
                 <Tabs>
       
@@ -237,7 +238,7 @@ export default function Room(prop) {
                             data.Comment.map(comment => <li>{comment}</li>)
                           )} 
                           </ul> */}
-                        <EmojiStamp />
+                        {/* <EmojiStamp /> */}
                         </TabPanel> 
                   })}
 
