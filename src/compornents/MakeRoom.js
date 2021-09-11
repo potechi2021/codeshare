@@ -71,7 +71,7 @@ function MakeRoom() {
     const handleSubmit = (event) => {
       const target = event.target;
       event.preventDefault();
-      //alert('入力内容: ' + target.value);
+      alert('追加されました！');
       console.log("MakeRoom handleSubmit");
       const newroom = API.graphql(
         graphqlOperation(createRoomTable, {
@@ -128,11 +128,12 @@ function MakeRoom() {
                           onChange={(e) => setText({...text, comment: e.target.value})}/>
                       </label>
                     </div>
-
+                  <div class="makeButton2">
                   <Button
                     onClick={handleSubmit}>
                     部屋作成
                   </Button>
+                  </div>
                 </div>
                 </div>
               </div>

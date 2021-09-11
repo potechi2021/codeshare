@@ -195,6 +195,7 @@ export default function Room(prop) {
               <input class="copyURLbutton" type="button" value="Copy" onclick={copyURL()}></input>
               <div class="copyURL">{testClick()}</div>
               <input id="copyTarget" class="inputURL" type="text" value={testClick()} readonly></input>
+              
             </div>
           </header>
           <main>
@@ -296,6 +297,7 @@ export default function Room(prop) {
 
                 </Tabs> 
               </div>
+              <div id="page_top"><a href="#"></a></div>
             </div>
 
 
