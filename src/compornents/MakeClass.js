@@ -122,10 +122,12 @@ export default function MakeClass() {
                           onChange={(e) => setText({...text, comment: e.target.value})}/>
                         
                       </label>
+                      <div class="makeButton2">
                       <Button
                         onClick={handleSubmit}>
                         部屋作成
                       </Button>
+                      </div>
                     </div>
                   
 
