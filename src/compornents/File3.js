@@ -15,10 +15,14 @@ import {
 } from '@material-ui/core';
 import Amplify , {Auth, API, graphqlOperation, Storage } from 'aws-amplify';
 import { useHistory } from 'react-router';
-import hljs from '../highlight.js/lib/core';
-import python from '../highlight.js/lib/languages/python';
-import java from '../highlight.js/lib/languages/java';
-import '../highlight.js/styles/github.css';
+// import { hljs } from '../highlight.js/lib/core';
+// import python from '../highlight.js/lib/languages/python';
+// import java from '../highlight.js/lib/languages/java';
+// import '../highlight.js/styles/github.css';
+import hljs from 'highlight.js';
+import 'highlight.js/styles/github.css';
+import python from 'highlight.js/lib/languages/python';
+import java from 'highlight.js/lib/languages/java';
 import * as queries from '../graphql/queries';
 import * as mutations from '../graphql/mutations';
 import { Picker } from 'emoji-mart';
@@ -67,7 +71,7 @@ const useStyles = makeStyles(theme => ({
 export default function File3(props) {
     const [user, setUser] = React.useState();
     const [AuthState, setAuthState] = React.useState();
-    const [FileObject, setFileObject] = React.useState();
+    const [FileObject, setFileObject] = React.useState(); 
     const classes = useStyles();
     const history = useHistory();
     const [badgeCode, setBadgeCode] = React.useState('mada');
@@ -96,22 +100,24 @@ export default function File3(props) {
         console.log(props.value.FileName)
         const result = await Storage.get( props.value.FileName , { download: true });
         
-        result.Body.text().then(text => setFileObject(text)); 
-        result.Body.text().then(text => console.log("result : ", text)); 
-        setBadgeCode(FileObject, []);
-        console.log("セットできてる？", FileObject)
+        result.Body.text().then(text => {
+          setFileObject(text);
+          console.log("result : ", text);
+          setBadgeCode(FileObject, []);
+          console.log("セットできてる？", FileObject);
+        }); 
         })()
-    });
+    },[]);
 
     
     //comment
     React.useEffect(() =>{
         ;(async () => {
           const newComment = await API.graphql({ query: queries.showCommentByFileId, variables: { FileID: props.value.id }});
-          console.log("comment:", newComment.data.showCommentByFileID.items);
+          // console.log("comment:", newComment.data.showCommentByFileID.items);
           const comments =  newComment.data.showCommentByFileID.items;
           setComment(comments)
-          console.log("comment！:", Comment);
+          console.log("comment type:", comments);
         })()
     }, [commentCounter]);
 
@@ -129,9 +135,13 @@ export default function File3(props) {
             UserID: user.username,
           }
         }))
-        console.log(newComment)
+        
         commentCounter += 1;
-    }
+        
+        
+        setComment(Comment.concat(newComment.data.createCommentTable));
+      
+      }
 
     const handleSubmit = useCallback((event, comments) => {
         const target = event.target;
@@ -139,8 +149,6 @@ export default function File3(props) {
         console.log("Room handleSubmit");
         //コメントを追加
         addComment(Form)
-        // history.go(0)
-        // window.location.reload();
     });
     //コメント投稿
     const handleChange = (event) => {
@@ -250,6 +258,8 @@ export default function File3(props) {
       </React.Fragment>
     )
 }
+
+
 
 function EmojiStamp(props){
   const [emojiList, setEmojiList] = React.useState([]);

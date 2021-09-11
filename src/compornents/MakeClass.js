@@ -63,11 +63,12 @@ export default function MakeClass() {
       alert('追加されました！');
       console.log("MakeClass handleSubmit");
       const newclass = await API.graphql(
+
         graphqlOperation(createClassTable, {
           input: {
             ClassName: text.classname,
             OwnerUserID: '0003',
-            Comment: text.comment,
+            Comment: "お試し",
           }
         }))
       console.log(newclass);
