@@ -89,44 +89,53 @@ function MakeRoom() {
     return (
       <React.Fragment>
         <body>
-          {/* <header>
+          <header>
             <h1>Code House</h1>
-          </header> */}
+          </header>
           <main>
-            <div className={rooms.root}>
-              makeroom</div>    
-            <div>
-            <Button
-                variant="outlined"
-                onClick={() => {
-                                Auth.currentAuthenticatedUser().then((user) => {
-                                history.push('/');
-                                console.log("MakeRoom->Mypage");
-                                })
-                            }}>
-                マイページに戻る
-              </Button>
-              {/* <p>state：{location.state.classid}</p> */}
-              <label>
-                第何回：
-                <input type="text"
-                  name="roomname"
-                  value={text.roomname}
-                  onChange={(e) => setText({...text, roomname: e.target.value})}/>
-              </label>
-              <br></br>
-              <label>
-                説明：
-                <input type="text"
-                  name="comment"
-                  value={text.comment}
-                  onChange={(e) => setText({...text, comment: e.target.value})}/>
-              </label>
+            <div class="makeRoomMain">
+              <div class="side">
+                <Sidebar activeListItem = "mypage"></Sidebar>
+              </div>
+              <div class="content">
+                <div>
+                  <div class="myPageButton">
+                    <Button
+                        onClick={() => {
+                                        Auth.currentAuthenticatedUser().then((user) => {
+                                        history.push('/');
+                                        console.log("MakeRoom->Mypage");
+                                        })
+                                    }}>
+                        マイページに戻る
+                      </Button>
+                      {/* <p>state：{location.state.classid}</p> */}
+                    <div class="input">
+                      <label>
+                        第何回：
+                        <input type="text"
+                          name="roomname"
+                          value={text.roomname}
+                          onChange={(e) => setText({...text, roomname: e.target.value})}/>
+                      </label>
+                    </div>
+                    <div class="input">
+                      <label>
+                        説明：
+                        <input type="text"
+                          name="comment"
+                          value={text.comment}
+                          onChange={(e) => setText({...text, comment: e.target.value})}/>
+                      </label>
+                    </div>
+
                   <Button
-                    variant="outlined"
                     onClick={handleSubmit}>
                     部屋作成
-                </Button>
+                  </Button>
+                </div>
+                </div>
+              </div>
             </div>
           </main>
         </body>
