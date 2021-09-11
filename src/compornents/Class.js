@@ -172,6 +172,7 @@ function Class() {
                       })}
                     </ul>
                   </div>
+                  <div id="page_top"><a href="#"></a></div>
                 </div>
               </div>
             </main>

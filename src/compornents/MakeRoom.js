@@ -71,7 +71,7 @@ function MakeRoom() {
     const handleSubmit = (event) => {
       const target = event.target;
       event.preventDefault();
-      //alert('入力内容: ' + target.value);
+      alert('追加されました！');
       console.log("MakeRoom handleSubmit");
       const newroom = API.graphql(
         graphqlOperation(createRoomTable, {

@@ -60,7 +60,7 @@ export default function MakeClass() {
     const handleSubmit = async (event) => {
       const target = event.target;
       event.preventDefault();
-      //alert('入力内容: ' + target.value);
+      alert('追加されました！');
       console.log("MakeClass handleSubmit");
       const newclass = await API.graphql(
         graphqlOperation(createClassTable, {
