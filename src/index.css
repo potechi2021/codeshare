@@ -94,6 +94,15 @@ main {
   display: flex;
 }
 
+room_main {
+  padding-top: 10px;
+  background-color: #FCF7EC;
+  color: black;
+  height: 100%;
+  min-height: calc(100vh - 80px);
+  display: flex;
+}
+
 input[type="file"] {
   display: none;
 }
@@ -101,6 +110,21 @@ input[type="file"] {
 .fileUpload {
   height: 100px;
   padding: 30px;
+}
+
+.react-tabs {
+  margin: 10px;
+}
+
+.java hljs language-java{
+  width: auto;
+  margin: 10px;
+}
+
+.submitFileBtnHide {
+  opacity:0;
+  appearance: none;
+  position: absolute;
 }
 
 label[for="fileUpload"] {

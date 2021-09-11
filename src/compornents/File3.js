@@ -42,7 +42,7 @@ const useStyles = makeStyles(theme => ({
     root: {
       display: 'block',
       height: '100%',
-      width: 500,
+      width: 'auto',
       marginLeft: 'auto',
       marginRight: 'auto',
     },
@@ -194,23 +194,21 @@ export default function File3(props) {
       <React.Fragment>
         <body>
 
-        <Button
-            variant="outlined"
+        {/* <Button
             onClick={addComment}>
             test
         </Button>
         <Button
-            variant="outlined"
             onClick={showComment}>
             test show
-        </Button>
+        </Button> */}
         {/* <Button
             variant="outlined"
             onClick={addEmoji}>
             test add emoji
         </Button> */}
 
-          <main>
+          <room_main>
           <div className={classes.root}>
               <br />
           <pre style={{ width: '60vw' }}>
@@ -235,7 +233,7 @@ export default function File3(props) {
 
           <form onSubmit={handleSubmit}>
               <label>
-                コメント:
+                コメント：
                 <textarea value={Form} onChange={handleChange}/>
               </label>
               <input type="submit" value="コメントを追加する"  />
@@ -244,7 +242,7 @@ export default function File3(props) {
               </div>
               
             
-          </main>
+          </room_main>
           <EmojiStamp value = {props.value}/>
 
 
