@@ -120,6 +120,23 @@ export default function RoomSidebar({activeListItem}) {
                         } />
                     </ListItem>
 
+                    <ListItem key='mypage'>
+                      <ListItemText primary={
+                        <Button
+                        variant="outlined"
+                        onClick={() => {
+                          Auth.currentAuthenticatedUser().then((user) => {
+                          history.push('/mypage');
+                          console.log("click");
+                          })
+                        }}
+                        fullWidth
+                        >
+                          My Page
+                        </Button>
+                      } />
+                    </ListItem>
+
                     <div>
                         <span>
                             <ListItem>
