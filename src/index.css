@@ -68,6 +68,10 @@ textarea {
   opacity: 0;
 }
 
+.react-tabs{
+  width: 600px;
+}
+
 .inputURL {
   position: absolute;
   top: 0;
@@ -114,6 +118,28 @@ room_main {
 
 input[type="file"] {
   display: none;
+}
+
+.makeStyles-root-15{
+  margin-left: -100px;
+  width: 500px;
+}
+
+.comments{
+  color: #404040;
+  border-left: solid 6px #ff8945;/*左側の線*/
+  border-bottom: solid 2px #dadada;/*下に灰色線*/
+  background: whitesmoke;
+  margin-bottom: 5px;/*下のバーとの余白*/
+  line-height: 1.5;
+  list-style-type: none!important;/*ポチ消す*/
+  font-weight: bold;
+}
+
+.pre code.hljs{display:block;overflow-x:auto;padding:10px}code.hljs{padding:3px 5px}.hljs{
+  margin-left: -100px;
+  width: 600px;
+
 }
 
 .fileUpload {
