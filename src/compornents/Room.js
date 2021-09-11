@@ -84,6 +84,7 @@ export default function Room(prop) {
         console.log(roomIDState)
         const rest = await API.graphql({ query: queries.showFileByRoom, variables: { RoomID: id }});
         roomSet(rest.data.showFileByRoom.items);
+        console.log("type: ", rest.data.showFileByRoom.items)
       })()
       return () => {
       }
@@ -129,6 +130,7 @@ export default function Room(prop) {
           // contentType: 'image/' // contentType is optional
           contentType: 'text/plain'
         });
+        // roomSet(roomState.concat)
         // await API.graphql({ query: mutations.createFileTable , variables: {input: fileDetails}});
       } catch (error) {
         console.log('Error uploading file: ', error);
@@ -147,7 +149,7 @@ export default function Room(prop) {
             // Comment: "comment",
           }
         }))
-        console.log(newfiletable)
+      console.log(newfiletable)
     }
 
 
