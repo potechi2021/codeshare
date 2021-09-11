@@ -46,7 +46,7 @@ const useStyles = makeStyles(theme => ({
     root: {
       display: 'block',
       height: '100%',
-      width: '600px',
+      width: '400px',
       marginLeft: 'auto',
       marginRight: 'auto',
     },
@@ -224,6 +224,7 @@ export default function File3(props) {
           <br></br>
 
         {/* コメント表示 */}
+        <div class="comments" >
           <List>
           {Comment.map((data) => {
             return <ListItem>
@@ -233,6 +234,8 @@ export default function File3(props) {
             </ListItem>
           })}
           </List>
+        </div>
+        <br />
 
           {/* コメント送信 */}
 
@@ -241,6 +244,7 @@ export default function File3(props) {
                 コメント：
                 <textarea value={Form} onChange={handleChange}/>
               </label>
+              <br />
               <input type="submit" value="コメントを追加する"  />
           </form>
 
@@ -248,6 +252,8 @@ export default function File3(props) {
               
             
           </room_main>
+          <br />
+          <br />
           <EmojiStamp value = {props.value}/>
 
 
@@ -311,6 +317,7 @@ function EmojiStamp(props){
               // JSON.stringify(id)
             ))
           : null}
+          <br></br>
         {/* 絵文字一覧 */}
         {<Picker
             onSelect={emoji => {
