@@ -41,9 +41,18 @@ textarea {
 }
 
 .displayURL {
-  margin-left: 20px;
+  margin-left: 80px;
+  width: 600px;
   position: relative;
   display: inline-block;
+}
+
+.copyURLbutton {
+  background-color: #ff8945 !important;
+  color: white !important;
+  margin: 10px !important;
+  margin-left: 0px !important;
+  font: bold;
 }
 
 .copyURLbutton:hover {
@@ -196,6 +205,14 @@ code {
 
 .mypage {
   height: 50px;
+}
+
+.makeButton {
+  margin-left: 20px;
+}
+
+.makeButton2 {
+  margin-left: 0px;
 }
 
 .largeRoomList {

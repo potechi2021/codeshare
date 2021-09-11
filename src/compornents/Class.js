@@ -140,6 +140,7 @@ function Class() {
                     class</div>    
                   <div>
                   */}
+                  <div class="makeButton">
                   <Button
                       onClick={handleClicked}>
                   {/* <Button
@@ -151,6 +152,7 @@ function Class() {
                                     }}> */}
                       Roomを作る
                   </Button>
+                  </div>
                   {/* <p>ClassID： {classId}</p> */}
                   <div class="largeRoomList">
                     <h2>Room一覧</h2>
