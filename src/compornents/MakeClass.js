@@ -57,12 +57,12 @@ export default function MakeClass() {
     //   const name = target.name;
     //   setText(target[name].value);
     // };
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
       const target = event.target;
       event.preventDefault();
       //alert('入力内容: ' + target.value);
       console.log("MakeClass handleSubmit");
-      const newclass = API.graphql(
+      const newclass = await API.graphql(
         graphqlOperation(createClassTable, {
           input: {
             ClassName: text.classname,
@@ -115,7 +115,12 @@ export default function MakeClass() {
                     <div class="input">
                       <label>
                         説明　：
-                        <textarea placeholder="説明を入力"></textarea>
+                        <textarea type="text"
+                          name="comment"
+                          placeholder="説明を入力"
+                          value={text.comment}
+                          onChange={(e) => setText({...text, comment: e.target.value})}/>
+                        
                       </label>
                       <Button
                         onClick={handleSubmit}>
