@@ -112,7 +112,6 @@ export default function RoomSidebar({activeListItem}) {
                     <ListItem key='logout'>
                         <ListItemText primary={
                             <Button
-                            variant="outlined"
                             onClick={signOut}
                             fullWidth
                             >
