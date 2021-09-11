@@ -95,7 +95,7 @@ export default function Sidebar({activeListItem}) {
                         <ListItemText primary="Class" />
                     </ListItem>
 
-                    <ListItem
+                    {/* <ListItem
                         button
                         selected={activeListItem === 'makeroom'}
                         onClick={() => {
@@ -107,7 +107,7 @@ export default function Sidebar({activeListItem}) {
                         key='makeroom'
                     >
                         <ListItemText primary="Make Room" />
-                    </ListItem>
+                    </ListItem> */}
                 </List>
         </Drawer>
         )
