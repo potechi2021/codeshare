@@ -15,7 +15,7 @@ import { useHistory, useLocation } from 'react-router';
 import { useState, useRef, useEffect } from 'react';
 // import { useLocation } from "@reach/router";
 
-const drawerWidth = 150;
+const drawerWidth = 200;
 const MAX_POST_CONTENT_LENGTH = 140;
 
 const useStyles = makeStyles(theme => ({
