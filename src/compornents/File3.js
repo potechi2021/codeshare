@@ -42,7 +42,7 @@ const useStyles = makeStyles(theme => ({
     root: {
       display: 'block',
       height: '100%',
-      width: 'auto',
+      width: '600px',
       marginLeft: 'auto',
       marginRight: 'auto',
     },
