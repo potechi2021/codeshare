@@ -190,9 +190,10 @@ export default function Room(prop) {
           <header>
             <h1>CodeHouse</h1>
             <div class="displayURL">
-              <input class="copyURLbutton" type="button" value="Copy" onclick={copyURL()}></input>
               <div class="copyURL">{testClick()}</div>
               <input id="copyTarget" class="inputURL" type="text" value={testClick()} readonly></input>
+              <input class="copyURLbutton" type="button" value="Copy" onclick={copyURL()}></input>
+              
             </div>
           </header>
           <main>
