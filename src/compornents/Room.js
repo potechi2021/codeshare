@@ -150,6 +150,9 @@ export default function Room(prop) {
           }
         }))
       console.log(newfiletable)
+      
+      roomSet(roomState.concat(newfiletable.data.createFileTable));
+      
     }
 
 
@@ -273,11 +276,11 @@ export default function Room(prop) {
                       </TabPanel> 
                   })}
 
-                  <TabList>
+                  {/* <TabList>
                   {roomState.map((data) => {
                     return <Tab>{data.FileName}</Tab>
                   })}
-                  </TabList>
+                  </TabList> */}
 
                   
                   {roomState.map((data) => {
