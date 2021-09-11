@@ -101,10 +101,7 @@ export default function File3(props) {
         const result = await Storage.get( props.value.FileName , { download: true });
         
         result.Body.text().then(text => {
-          setFileObject(text);
-          console.log("result : ", text);
-          setBadgeCode(FileObject, []);
-          console.log("セットできてる？", FileObject);
+          setBadgeCode(text, []);
         }); 
         })()
     },[]);
@@ -305,12 +302,13 @@ function EmojiStamp(props){
   return (
     <>
         {EmojiListID.length
-          ? emojiList.map((id, i) => (
+          ? EmojiListID.map((id, i) => (
               <Emoji
-                emoji={id}
+                emoji={id.Emoji}
                 size={32}
                 key={i}
               />
+              // JSON.stringify(id)
             ))
           : null}
         {/* 絵文字一覧 */}
