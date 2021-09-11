@@ -118,7 +118,7 @@ export default function Room(prop) {
     }
 
      //ファイルをアップロード
-    async function onChange(e) {
+    async function onFileInputChange(e) {
       console.log()
       const file = e.target.files[0];
       console.log(file.name);
@@ -202,11 +202,12 @@ export default function Room(prop) {
             <div>
               <div class="fileUpload">
                 <label for="fileUpload">
-                  ファイルを選択して下さい
-                  <input type="file" onChange={onChange}/>
+                  <Button component="label" >
+                    ファイルを選択して下さい
+                    <input type="file" onChange={onFileInputChange}/>
+                  </Button>
                 </label>
               </div>
-                  <input type="file" onChange={onChange}/>
               <div class="roomTabs">
                 <Tabs>
       
